@@ -1,16 +1,16 @@
 # Best practices for scientific software development
 
-This project contains files to generate the [Best practices for scientific software development guide]. You can find out more about the project [here]().
+This project contains files to generate the [Best practices for scientific software development guide](https://phac-modelling-hub.github.io/dev-practices/). You can find out more about the project [here](https://phac-modelling-hub.github.io/dev-practices/index.html).
 
 # Reporting issues
 
-If you find issues in the guide, please report them by [opening an issue](). If you are opening an issue, please use labels to categorize it. The three most relevant labels are likely to be:
+If you find issues in the guide, please report them by [opening an issue](https://github.com/phac-modelling-hub/dev-practices/issues). If you are opening an issue, please use labels to categorize it. The three most relevant labels are likely to be:
 
 1. `typo`: There is a typo
 1. `formatting/appearance issues`: Something looks wrong visually
 1. `unclear/missing info`: Text is unclear or information is missing
 
-# Contributing to this guide
+# For contributors
 
 The guide is a [Quarto Website](https://quarto.org/docs/websites/):
 
@@ -18,6 +18,6 @@ The guide is a [Quarto Website](https://quarto.org/docs/websites/):
 1. The website settings are in `_quarto.yml`. Edit this file to change the appearance of the guide of the navigation elements.
 1. Preview the website using [these instructions](https://quarto.org/docs/websites/#website-preview).
 
-## Continuous integration
+## Publishing the site
 
-We use a [GitHub Actions](https://docs.github.com/en/actions/get-started/quickstart) to builds and deploy the website when the `main` branch is changed. Build instructions are in `.github/workflows/publish-website.yml`.
+Use `quarto publish gh-pages` locally (on `main`) to publish the latest version of the site.
