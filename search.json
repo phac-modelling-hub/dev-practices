@@ -1,695 +1,7 @@
 [
   {
-    "objectID": "docs/projects/consistency.html",
-    "href": "docs/projects/consistency.html",
-    "title": "Consistency",
-    "section": "",
-    "text": "There are a few consistency conventions that make your projects more widely-understandable and robust.\nWe suggest documenting any project conventions in your project’s main README file (or developer guide).",
-    "crumbs": [
-      "Projects",
-      "Consistency"
-    ]
-  },
-  {
-    "objectID": "docs/projects/consistency.html#project-directory-organisation",
-    "href": "docs/projects/consistency.html#project-directory-organisation",
-    "title": "Consistency",
-    "section": "Project directory organisation",
-    "text": "Project directory organisation\nIt can be helpful to use a standardised way to organise your project directory (also referred to here as the root directory). We recommend the following when setting up a directory for a new project:\n\nYou should start your project in an empty, project-specific directory\n\nIdeally, you would set up a git repository on GitLab or GitHub first, and then clone it locally.\n\nYou should not use spaces or special characters in directory or file names.\n\nSpaces can be a pain when using the command line as spaces usually need to be escaped with a \\ in this case.\n\nYou should not sync Git repositories using cloud storage providers (e.g., OneDrive, Dropbox, Google Drive, NextCloud).\n\nUsing Git (like many development activities) results in the creation, modification, and deletion a large number of small and/or temporary files. These changes can overwhelm file-storage providers, leading to synchronization conflicts and excess CPU usage.\nIn some cases, cloud storage providers may block certain file types for security reasons. For instance, OneDrive blocks .js files, which are used by renv for virtual environment management. When files are blocked, they are not uploaded, so you’re not actually backing up a complete copy of your project files, and you will regularly get annoying notifications from OneDrive telling you to remove files that cannot be synced.\n\n\n\nDirectory structure\nProjects using Git and a Git server, as recommended in the version control section of this guide, should have a few key files at the root level, no matter the language(s) being used:\nproject_directory/\n  .git/\n  .gitignore\n  LICENSE\n  NOTICE\n  README\n\n\n.git/ and .gitignore\n.git/ and .gitignore (as their names suggest) control how Git works with your project.\nThe .git/ folder is the ‘thing’ that makes your project directory a Git repository. It is created automatically when you enable Git (e.g., by cloning a remote repository or through git init). It contains both the local Git configuration and your project’s version control data.\n.gitignore controls which files are ignored by Git (i.e. are never added to version control). Unlike .git/, .gitignore is not created automatically. Learn more about using a .gitignore file here.\n\n\nLICENSE and NOTICE\nThese files are only required if you are publishing your project online. See Licenses for more information.\n\n\nREADME\nEvery project repository should contain a README file, which serves as the most basic project-level documentation for your work. See README files for more information.\n\n\nDirectory structure for R and Python\nWe recommended the following components in addition to the general directory structure above:\nproject_directory\n  data/\n  notes/\n  scripts/\n  tests/\n  R/ **or** py/\n\ndata/ should contain any data used in your analyses, unless you must not commit it to a Git server and need to keep it in a shared location like OneDrive or SharePoint. In this case, be sure to add these files to your .gitignore file.\nnotes/ should contain your project notes.\n\nWe recommend using Quarto for notes so that you can weave executed code and text together. Note that Quarto is a separate program that you would ordinarily need to install in addition to R (or Python), but it now comes bundled with RStudio, our preferred IDE for R, so no additional installation is required if you already have RStudio.\n\nscripts/ should contain any scripts for your project.\ntests/ should contain code tests. We recommend spending a few minutes writing at least one unit test every time you write a function, and running these tests after major changes to your code, to be proactive about code bugs.\nFor R, R/ should contain your functions, ideally one main function per .R file, with specific helper functions below. This is also where functions must life if you go on to package your code. For Python, you could use py/ instead.1",
-    "crumbs": [
-      "Projects",
-      "Consistency"
-    ]
-  },
-  {
-    "objectID": "docs/projects/consistency.html#specifying-paths",
-    "href": "docs/projects/consistency.html#specifying-paths",
-    "title": "Consistency",
-    "section": "Specifying paths",
-    "text": "Specifying paths\nWhen specifying file paths in your project, it pays to be consistent. We recommend that you always write paths relative to the root directory, and that you always run scripts out of the root directory.\nThis practice has several advantages. For one, your paths won’t break from user to user since they are relative. Also, paths will break less often if files are moved around. When paths are relative to their present location, they are fragile to both the location of the file in which you’re calling the file path, and to the location of the target file. By making paths relative to the root directory, you eliminate the case where they break because you changed the location of the source file.\nFor R, we recommend the use of the here package, which adopts this convention. You can get started with here using this guide.",
-    "crumbs": [
-      "Projects",
-      "Consistency"
-    ]
-  },
-  {
-    "objectID": "docs/projects/consistency.html#code-style",
-    "href": "docs/projects/consistency.html#code-style",
-    "title": "Consistency",
-    "section": "Code style",
-    "text": "Code style\nCode that is easier to read will be easier to maintain, debug, and build on in the future. Code style is the collection of conventions that govern the formatting of the code we write. For instance, code style can include decisions about\n\nusing different cases for functions versus variables (camelCase for variables, snake_case() for function names)2\nformatting style for comments, and how to denote sections of code\nhow to indent blocks of code\n\nStyle is subjective and sometimes programming-language-specific. The most important thing to remember is:\n\nThe code you write should be optimized for the average code reader and not the specific writer.\n\nChoose a set of rules and stick to them within a project. Try to choose rules that are familiar to many.\n\nLinters and Stylers\nSome conventions have been encoded in helpful “linter” tools that can crawl your code to look for convention violations. Linters can be especially helpful when you’re first adopting a popular code style, or if you’re preparing to contribute to an open-source project.\nThere are also styler tools that automatically format existing code using a specific style guide.\n\n\nRecommendations and resources\n\n\n\nLanguage\nRecommended style guide\nAssociated linter\nAssociated styler\n\n\n\n\nPython\nPEP8\npycodestyle\nautopep8\n\n\nR\ntidyverse style guide\nlintr\nstylr",
-    "crumbs": [
-      "Projects",
-      "Consistency"
-    ]
-  },
-  {
-    "objectID": "docs/projects/consistency.html#footnotes",
-    "href": "docs/projects/consistency.html#footnotes",
-    "title": "Consistency",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nFor Python packages, the convention is rather that you name the directory containing your module contents with the module name, but this can be confusing for scientific projects that are not specifically software packages, hence our recommendation to use py.↩︎\nYou can read more about case styles here.↩︎",
-    "crumbs": [
-      "Projects",
-      "Consistency"
-    ]
-  },
-  {
-    "objectID": "docs/projects/readmes.html",
-    "href": "docs/projects/readmes.html",
-    "title": "README files",
-    "section": "",
-    "text": "You’re not having déjà vu—we’ve already discussed using README files as a day-to-day coding practice. All of these suggestions still apply within projects, though we expand upon them here.\nFor projects, we recommend maintaining a project-specific README in your project’s main (root) directory. It is the first place users and collaborators should look to get information about what your project does and possibly how to use or contribute to your code. Note that “collaborators” include you in the future, so this is relevant even for solo projects!",
-    "crumbs": [
-      "Projects",
-      "README files"
-    ]
-  },
-  {
-    "objectID": "docs/projects/readmes.html#what-to-include",
-    "href": "docs/projects/readmes.html#what-to-include",
-    "title": "README files",
-    "section": "What to include",
-    "text": "What to include\nA good top-level project README can include:\n\nIntroduction:\n\nA scope statement that briefly outlines the goal of the project (this can help you ensure that your projects remain focused as they’re developed)\nAuthors and contact information (especially if publishing the project online)\nWhere to learn more about the project (e.g., links to additional documentation)\n\nOne-time setup:\n\nAny one-time setup required to use and/or develop the code base (e.g., supporting software installations, cloning of sibling repositories)\n\nUsing the the code\n\nAny setup required at the start of each user session (e.g. activating virtual environments)\nAn overview of how the code is organized (e.g. main scripts and what they do, the order in which scripts should be executed)\nAny manual updates and settings that can/must be done to the code before running it (e.g. variables, data download)\nCommands for running the code\nExpected outputs of the code and where to find them (e.g. subdirectories)\nAny limitations of the code that a user should be aware of\nCommon troubleshooting tips for the code\n\nDeveloping the code\n\nAny setup required at the start of each development session\nDevelopment conventions (e.g., code style)\nOther notes for developer\n\n\nThe above are simply suggestions and may or may not apply for each of your projects: take what’s helpful and leave what isn’t!",
-    "crumbs": [
-      "Projects",
-      "README files"
-    ]
-  },
-  {
-    "objectID": "docs/projects/readmes.html#readme-format",
-    "href": "docs/projects/readmes.html#readme-format",
-    "title": "README files",
-    "section": "README format",
-    "text": "README format\nFor projects that are hosted on GitLab or GitHub, you may wish to use README.md as opposed to README.tex as these Git servers automatically render Markdown README files to display nicely for reading on the web.\nFor R projects, you can also use a README.Rmd file in R Markdown format to generate a README.md that includes the results of executable R code in README.Rmd, like code demonstrations and plots. The idea is to edit README.Rmd and then knit it to produce README.md, which will display nicely on the landing page for your project repository on a Git server. You can use the usethis::use_readme_rmd() to easily create this source file with the correct setup.1",
-    "crumbs": [
-      "Projects",
-      "README files"
-    ]
-  },
-  {
-    "objectID": "docs/projects/readmes.html#readmes-in-subdirectories",
-    "href": "docs/projects/readmes.html#readmes-in-subdirectories",
-    "title": "README files",
-    "section": "READMEs in subdirectories",
-    "text": "READMEs in subdirectories\nYou may also wish to include READMEs in subfolders, (e.g., in your data folders), if you want to make additional, specific notes about the files within that would perhaps be too detailed for the top-level project README. For instance, if there is data that must be downloaded/updated manually in the data/ subdirectory, instructions for this process could be documented in data/README.md (which could then be referenced from the top-level README.md).",
-    "crumbs": [
-      "Projects",
-      "README files"
-    ]
-  },
-  {
-    "objectID": "docs/projects/readmes.html#footnotes",
-    "href": "docs/projects/readmes.html#footnotes",
-    "title": "README files",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nusethis::use_readme_rmd() also adds some code to git so that it will check whether README.Rmd and README.md are in sync before allowing you to push up to the remote repository, as a safety net.↩︎",
-    "crumbs": [
-      "Projects",
-      "README files"
-    ]
-  },
-  {
-    "objectID": "docs/extras/pipenv.html",
-    "href": "docs/extras/pipenv.html",
-    "title": "Virtual environments in Python",
-    "section": "",
-    "text": "Use pipenv to manage virtual environments\nPython’s venv is the prototypical example of a virtual environment. We (and the official Python documentation) recommend the use of pipenv over venv, as it combines the functions of pip (package management) and venv (virtual environments).\n\n\nInstall pipenv\nSee pipenv’s official installation instructions.\n\n\nUnderstand Pipfile, Pipfile.lock, and requirements.txt\nThere are three files used to record the state of a Python virtual environment:\n\nPipfile\nPipfile.lock\nrequirements.txt\n\nYou should not modify these files by hand; virtual environment managers like pipenv offer tools to create and modify these files as necessary.\nYou should keep Pipfile, Pipfile.lock, and requirements.txt in version control. You should not keep Pipfile.lock in version control if you are targeting multiple versions of Python.\nTODO: clarify the difference between Pipfile and Pipefile.lock… there seems to be a difference in the commands below, but it’s not clear what it is.\n\n\nPipfile and requirements.txt\nPipfile and requirements.txt describe the dependencies that must be installed in the virtual environment to use your code. These files declare the supported version(s) of Python and the supported version(s) of each of the dependencies. Pipfile and requirements.txt serve the same purpose; the use of a Pipfile has largely replaced the use of requirements.txt. A notable exception is Microsoft’s Azure App Service.\nAn example of a Pipfile for a Django project, CEDAR.\n[[source]]\nname = \"pypi\"\nurl = \"https://pypi.org/simple\"\nverify_ssl = true\n\n[dev-packages]\npyparsing = \"*\"\npydot = \"*\"\n\n[packages]\ndjango = \"*\"\npsycopg2-binary = \"*\"\ndjango-crispy-forms = \"*\"\ndjango-extensions = \"*\"\ndjango-widget-tweaks = \"*\"\npandas = \"*\"\ncrispy-bootstrap5 = \"*\"\ndjango-autocomplete-light = \"*\"\ndjango-bootstrap5 = \"*\"\nfontawesomefree = \"*\"\nwhitenoise = \"*\"\n\n[requires]\npython_version = \"3.10\"\nThis Pipfile specifies a required version of Python (3.10.X), but no required versions of the dependencies. Notice there is a seperate section [dev-packages]; using a Pipfile, you can specify packages that are required for developers (but not end-users) of your code. See the use section below for more details.\n\n\nPipfile.lock\nPipfile.lock is like a ‘snapshot’ of the current state of the virtual environment. Pipfile.lock declares the dependencies (and sub-dependencies) of your project, and the currently installed version number and hash of each. The Pipfile.lock enables you to save and share the state of your virtual environment for reproducible analyses.\nAn example of a partial Pipfile.lock for CEDAR (the same project as above).\n{\n    \"_meta\": {\n        \"hash\": {\n            \"sha256\": \"646f9dd9ace85a9096e357475c92c9f3e16bfab0054df756ccc491652f25e64c\"\n        },\n        \"pipfile-spec\": 6,\n        \"requires\": {\n            \"python_version\": \"3.10\"\n        },\n        \"sources\": [\n            {\n                \"name\": \"pypi\",\n                \"url\": \"https://pypi.org/simple\",\n                \"verify_ssl\": true\n            }\n        ]\n    },\n    \"default\": {\n        \"asgiref\": {\n            \"hashes\": [\n                \"sha256:71e68008da809b957b7ee4b43dbccff33d1b23519fb8344e33f049897077afac\",\n                \"sha256:9567dfe7bd8d3c8c892227827c41cce860b368104c3431da67a0c5a65a949506\"\n            ],\n            \"markers\": \"python_version &gt;= '3.7'\",\n            \"version\": \"==3.6.0\"\n        },\n        \"crispy-bootstrap5\": {\n            \"hashes\": [\n                \"sha256:0745a67199619149b7feca87dab7a45664876ed50fb582b38fd2aeb3f8a8d869\",\n                \"sha256:f3ff1ef5cb379fe80b1b02e245008f276444098a4bdb8d855bed84c623798a85\"\n            ],\n            \"index\": \"pypi\",\n            \"version\": \"==0.7\"\n        },\n        \"django\": {\n            \"hashes\": [\n                \"sha256:4b214a05fe4c99476e99e2445c8b978c8369c18d4dea8e22ec412862715ad763\",\n                \"sha256:ff56ebd7ead0fd5dbe06fe157b0024a7aaea2e0593bb3785fb594cf94dad58ef\"\n            ],\n            \"index\": \"pypi\",\n            \"version\": \"==4.1.5\"\n        },\n        \"django-autocomplete-light\": {\n            \"hashes\": [\n                \"sha256:0f6da75c1c7186698b867a467a8cdb359f0513fdd8e09288a0c2fb018ae3d94e\"\n            ],\n            \"index\": \"pypi\",\n            \"version\": \"==3.9.4\"\n        },\nUnlike Pipfile and requirements.txt, Pipfile.lock is not designed to be human-readable.\n\n\nCreate or activate a virtual environment\nEach user will have to create their own virtual environment on their machine. However, the lock file can be shared and updated via Github to ensure project collaborators stay in sync.\nTo create a new virtual environment or activate an existing virtual environment:\npipenv shell\nTo check if an existing virtual environment is available:\n pipenv --venv\n\n\nInstall packages\nTo install all dependencies in the Pipfile:\npipenv install\n\n# or\n\npipenv install --skip lock\nTo install all dependencies in the Pipfile.lock:\npipenv sync\nAlternatively,\npipenv install --ignore-pipfile --deploy\n\n\nAdd or remove packages\nTo install a dependency and add it to the Pipfile and Pipfile.lock\npipenv install &lt;packagename&gt;\n\npipenv uninstall &lt;packagename&gt;\n\n\nUpdate packages\nTo update all packages: pipenv update or a specific packlage: pipenv update &lt;pkg&gt;\n\n\nDeploy (write)\nTo create a Pipfile.lock:\npipenv lock\nTo create a requirements.txt:\npipenv run pip freeze\nTo create a requirements.txt including Pipfile.lock information (e.g., hashes):\npipenv lock -r\npipenv requirements &gt; requirements.txt",
-    "crumbs": [
-      "Extras",
-      "Virtual environments in Python"
-    ]
-  },
-  {
-    "objectID": "docs/day-to-day/readmes.html",
-    "href": "docs/day-to-day/readmes.html",
-    "title": "README files",
-    "section": "",
-    "text": "title: README files\nREADME files give useful information about files in a folder. READMEs are text files (usually .txt or .md) so that they can be read without any special software. By convention, they are named with uppercase “README” to draw attention to themselves when a folder is opened. If present, READMEs should be the first thing you consult when (re-)opening a project!\nWhen populating a README, think about what someone new to your folder would need to know to use it or build upon it. For instance, when you realize there’s something finicky or manual about using your files that you don’t have time to fix, at least document it in a README!",
-    "crumbs": [
-      "Day-to-day coding",
-      "README files"
-    ]
-  },
-  {
-    "objectID": "docs/day-to-day/readmes.html#what-to-include",
-    "href": "docs/day-to-day/readmes.html#what-to-include",
-    "title": "README files",
-    "section": "What to include",
-    "text": "What to include\nYou can (and should!) include a README anywhere you need to document something, such as:\n\nthe purpose of the files in a folder\nhow to use the files in a folder\nspecial notes about installing software to run code in the folder\ninformation about data in the folder, including where, how, and when it was last retrieved",
-    "crumbs": [
-      "Day-to-day coding",
-      "README files"
-    ]
-  },
-  {
-    "objectID": "docs/extras/index.html",
-    "href": "docs/extras/index.html",
-    "title": "Extras",
-    "section": "",
-    "text": "The following pages are referenced and linked throughout the main guide. We collect them here to make them easier to find:\n\nInstall git\nWriting commit messages\nAdministering GitLab Groups and GitHub Organizations\nGitHub flow demo using the command line\nVirtual environments in Python",
-    "crumbs": [
-      "Extras"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/index.html",
-    "href": "docs/package-development/index.html",
-    "title": "Package development",
-    "section": "",
-    "text": "For some projects, you may get to a point where you want to reuse your one project’s code within other projects or you may want to distribute your code so that others can use it easily. For distribution, the combined best practices suggested in the day-to-day and projects sections will certainly get you much of the way, though they don’t offer as much when reusing you code in other projects. In this case, it may make sense to develop a package with your code.1\nWe suggest the following best practices when developing a software package:\nIf you are working with others on your package, you may also want to:\nOnce you package your code, it is important to think about how you will deploy, maintain, and continue to develop your package, especially if you want to released it to others (colleagues, the public) for ongoing use. We discuss best practices for package deployment in the next section.",
-    "crumbs": [
-      "Package development"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/index.html#footnotes",
-    "href": "docs/package-development/index.html#footnotes",
-    "title": "Package development",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nThankfully, modern tools and resources make package development much less daunting than it used to be, and we will point to many such helpers as we go through the best practices for package development.↩︎",
-    "crumbs": [
-      "Package development"
-    ]
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/licenses.html",
-    "href": "docs/deployment-and-maintenance/licenses.html",
-    "title": "Licenses",
-    "section": "",
-    "text": "You may want to choose a license for every project, whether or not you intend on publishing it at the outset. The idea is to set yourself up well if and when you decide to publish a project. It’s important to remember that simply making your work available to others does not mean they can (legally) use it:\nIf you’re going to share your project, you must choose a license. Consult the Government of Canada Guide for Publishing Open Source Code for detailed advice on how to choose the right license for your open source software.",
-    "crumbs": [
-      "Deployment and maintenance",
-      "Licenses"
-    ]
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/licenses.html#add-license-files-to-the-project-repository",
-    "href": "docs/deployment-and-maintenance/licenses.html#add-license-files-to-the-project-repository",
-    "title": "Licenses",
-    "section": "Add license files to the project repository",
-    "text": "Add license files to the project repository\n\nLICENSE\nOnce you’ve chosen a license, create a LICENSE file (LICENSE.txt or LICENSE.md) at the root level of your project repository and save within it the selected license text. License text can be found in the Recommended permissive licenses section of the Government of Canada Guide for Publishing Open Source Code.\n\n\nNOTICE\n\nThe NOTICE file is reserved for a certain subset of legally required notifications which are not satisfied by either the text of LICENSE or the presence of licensing information embedded within the bundled dependency.\nhttps://infra.apache.org/licensing-howto.html\n\nA NOTICE file (NOTICE.txt or LICENSE.md) is an optional supplement to a LICENSE file that describes—when there are multiple copyright holders—the portion of the work for which they hold copyright, and under what license they have made that portion the work available. The NOTICE file may also contain copyright notifications as demanded by dependencies.",
-    "crumbs": [
-      "Deployment and maintenance",
-      "Licenses"
-    ]
-  },
-  {
-    "objectID": "docs/projects/index.html",
-    "href": "docs/projects/index.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Sometimes you may just need a one-off script to perform a task, but in general, we believe it is more robust to work in terms of projects.\nA coding project lives in a single directory. You may have several smaller projects that are part of a larger overarching goal, but each smaller project should have an easily-articulated focus.\nWe suggest the following best practices when developing a coding project, which are also roughly in the order that you’d want to start doing them for a new project:\n\nUse a version-controlled repository to house your project\nMaintain a project-specific README\nUse virtual environments to improve reproducibility\nUse consistent project organisation and code style\nSet up pipelines for complex and/or routine analyses",
-    "crumbs": [
-      "Projects"
-    ]
-  },
-  {
-    "objectID": "docs/extras/models-in-production.html",
-    "href": "docs/extras/models-in-production.html",
-    "title": "Guidelines for models in production",
-    "section": "",
-    "text": "These guidelines are primarily meant for modellers within the PHAC Modelling Hub, but may be of use to others more widely.\nA model “in production” is a model upon which we rely to regularly produce modelling outputs. Such a model can be one that accepts requests on-demand, or a model that is brought back into production regularly based on business need.\nFor models in production, it is important that the model code is:\nThe best practices outlined here are meant to ensure that models in productions have the above properties."
-  },
-  {
-    "objectID": "docs/extras/models-in-production.html#model-code-organisation",
-    "href": "docs/extras/models-in-production.html#model-code-organisation",
-    "title": "Guidelines for models in production",
-    "section": "Model code organisation",
-    "text": "Model code organisation\nWe suggest using two main types of codebases for models in production:\n\nA model package that includes code to simulate the model\nA modelling pipeline (one per modelling request) that includes code to generate the required modelling products"
-  },
-  {
-    "objectID": "docs/extras/models-in-production.html#model-package",
-    "href": "docs/extras/models-in-production.html#model-package",
-    "title": "Guidelines for models in production",
-    "section": "Model package",
-    "text": "Model package\nA model package is a software package that includes the code required to run a model’s simulator.\n\nModel package development\nThe development of model packages occurs in two phases:\n\nPrototyping: developing the initial code base that enables the simulation of a model, lightweight function documentation and testing\nPackaging: cleaning up the prototype code base, developing the documentation, and packaging the software in a standardized format\n\nOne may oscillate back and for between these phases as further development of the same core model occurs.\nIn both phases, consistent use of the best practices recommended throughout this guide is encouraged. The prototyping phase benefits most from the practices recommended for day-to-day coding and projects, while packaging benefits most from practices recommended for package development and code deployment and maintenance.\n\n\nPrototyping\nThe prototyping phase involves building the initial code base that enables one to simulate a specific model. In this phase, you are encouraged to continually document, test, and style your code in the suggested ways as this will help you package down the line, but packaging is not the main focus here. The goal is simply to produce a working version of your model simulator.\n\n\nPackaging\nOnce an iteration of the prototype code is sufficiently advanced to be useful and/or is being used to produce a modelling output, it should be packaged and archived. The term “packaging” is deliberate: here it literally means bundled into a software package.\nArchiving should be achieved through package versioning so that model simulation code from a specific era can easily be called into a request-specific modelling pipelines to produce outputs (e.g. through the use of a virtual environment).\nThere is a start-up cost associated with packaging, but the benefits of using a universal framework to package your code can be immense for models in production. It can help you ensure your models are reliable, robust, and sufficiently documented.\nPackaging may sound daunting at first, but there are many resources and utilities that can help you get through this task efficiently, relatively painlessly, and in a manner that is consistent with the best practices in our guide:\n\nFor R users, the best place to get started is to use the R Packages book by Hadley Wickham and Jennifer Bryan. If you’ve never developed a package before, start with the first chapter, The Whole Game, which outlines the process of developing an R package from start to finish.\nFor Python users, the pyOpenSci Package Guide is an excellent resource.\n\n\n\nMinimum documentation standards for model packages\nAll packages for models in production must comply with minimum documentation standards to ensure that the codebase is accessible to others in the Modelling Hub.\nThe minimum package documentation standards are:\n\nA README file in the main directory of the project repository with:\n\nthe authors of the code;\npackage installation instructions + the installation of any dependencies (if not automatic);\ninformation on where to find the getting started guide for the package code.\n\nA get started guide that runs through a basic example of using the code\nFunction documentation, such that:\n\nall input arguments are stated with the expected type, default values, and a description;\nall output objects are stated with the type and a description;\nany side-effects of the function are described.\n\nDefault value documentation, including:\n\nAn explanation of each value’s function in the model, with units.\nCitations for any values that come from literature.\n\n\nSetting up a package site that displays your package documentation in an easy-to-use format is entirely optional, but encouraged. For R users, pkgdown provides a quick and easy way to generate a package website using existing roxygen2 documentation and other information. For python users, quartodoc does a similar task, building off of numpy-stype docstrings. Package sites can then be deployed via the PHAC Modelling Hub GitHub organization using GitLab Pages or GitHub Pages, depending on the Git server being used.\nFor creating, building, and deploying a package site, R users can use the usethis package, which automates much of the process.\n\n\nDefault values\nDefault values must be included for all variables that need to be specified with a numeric value for the model to be simulated, such as parameter values, initial conditions, etc. In this way, a model simulator is ready to be used straight out of the package.\nIt is suggested that the package include features to:\n\nquickly retrieve default values for the user\nupdate (select) default values in the model simulator\n\nThese features are meant to lower the overhead for getting started with the model.\n\n\nDeployment\nOnce packaged, the public-facing model code should be hosted within the PHAC Modelling Hub GitHub organization. Hosting your generic models package on one of our organisational Git servers ensures that the code is available to all those on the team and not inadvertently stuck in a specific team member’s Git server account."
-  },
-  {
-    "objectID": "docs/extras/models-in-production.html#modelling-pipelines",
-    "href": "docs/extras/models-in-production.html#modelling-pipelines",
-    "title": "Guidelines for models in production",
-    "section": "Modelling pipelines",
-    "text": "Modelling pipelines\nA model pipeline is a separate project that puts a model package into use by scaffolding it with supplementary code that reads in data and parameters required to run a model simulator and produces modelling outputs in a format that is useful for clients (e.g., plots, reports, slide decks).\nIt is recommended to have one modelling pipeline per request that depends on a specific version of the model package, to ensure reproducibility of modelling products.\nModelling pipelines, as the name suggests, benefit from being set up as actual pipelines, which are self-documenting to a degree and make efficient use of computational resources.\n\nMinimum documentation standards for modelling pipelines\nTODO"
-  },
-  {
-    "objectID": "docs/extras/models-in-production.html#footnotes",
-    "href": "docs/extras/models-in-production.html#footnotes",
-    "title": "Guidelines for models in production",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\n“Sufficiently” documented means that team members other than the primary modeller(s) can step in to run the model and respond to modelling requests without too much overhead or difficulty.↩︎"
-  },
-  {
-    "objectID": "docs/day-to-day/index.html",
-    "href": "docs/day-to-day/index.html",
-    "title": "Day-to-day coding",
-    "section": "",
-    "text": "There are a few fundamental best practices that we suggest you implement in your day-to-day coding workflow:\n\nUse an integrated development environment\nDocument your work with README files\nComment your code\nUse functions\n\nThese practices will eventually support more complex efforts, like developing projects or developing and maintaining software packages. These day-to-day practices also give you the greatest ‘bang-for-your-buck’ in terms of the return on your time and learning investment.",
-    "crumbs": [
-      "Day-to-day coding"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/function-docs.html",
-    "href": "docs/package-development/function-docs.html",
-    "title": "Function documentation",
-    "section": "",
-    "text": "If you’re using functions, they should form the bulk of your code, and as such, they should be documented properly. When documenting your functions, be sure to answer the following questions:",
-    "crumbs": [
-      "Package development",
-      "Function documentation"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/function-docs.html#documentation-formatting",
-    "href": "docs/package-development/function-docs.html#documentation-formatting",
-    "title": "Function documentation",
-    "section": "Documentation formatting",
-    "text": "Documentation formatting\nWe recommend documenting your functions where the functions themselves are defined with specific comment syntax, and then using a utility to convert those notes into a standardized documentation format.\nFor the special comment syntax, we recommend following the numpydoc style of docstrings for Python and the roxygen2 format for R. Although these tools are meant primarily for package development, we recommend you use these formats whether or not you think you will eventually turn your code into a package. Not only will you be using a standard, commonly understood formats to document function inputs, outputs, etc., but if you do choose to turn your code into a package down the line, you can make use of automated documentation tools without having to go back and re-write old documentation.\n\nExamples\nHere is an example of the roxygen2 documentation format:\n#' Add together two numbers\n#'\n#' @param x A number.\n#' @param y A number, defaults to 2.\n#' @return A number.\n#' @examples\n#' add(1, 1)\n#' add(10, 1)\n\nadd &lt;- function(x, y = 2) {\n  x + y\n}\nHere is an example of the numpydoc docstrings format:\ndef add(x,y):\n    \"\"\"Add together two numbers.\n\n    Parameters\n    ----------\n    x : num\n        A number.\n    y : num\n        A number, defaults to 2.\n\n    Returns\n    ----------\n    num\n        A number with the sum of x and y.\n\n    Examples\n    ----------\n    &gt;&gt;&gt; add(1,1)\n    \"\"\"\n    return x + y",
-    "crumbs": [
-      "Package development",
-      "Function documentation"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/function-docs.html#recommendations-and-resources",
-    "href": "docs/package-development/function-docs.html#recommendations-and-resources",
-    "title": "Function documentation",
-    "section": "Recommendations and resources",
-    "text": "Recommendations and resources\n\n\n\nLanguage\nRecommended documentation format\nAssociated automatic documentation tool\nTutorial\n\n\n\n\nR\nroxygen2 format\nroxygen2\nWriting function documentation using roxygen2\n\n\nPython\nnumpydoc docstring standard\nsphynx\nWriting documentation for python packages",
-    "crumbs": [
-      "Package development",
-      "Function documentation"
-    ]
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/code-review.html",
-    "href": "docs/deployment-and-maintenance/code-review.html",
-    "title": "Code review",
-    "section": "",
-    "text": "For projects with multiple developers, code review is an important step during the development and code maintenance process. It provides an opportunity to gain feedback on the changes you’ve made within a branch and to help catch potential issues. It is important when writing a pull request to provide a description of the changes and, if applicable, ways to test the changes.\nOnce a pull request (or merge request) is created, you can request a review from another person. This requires having another person available who has the time to review the code. If no such person is available, it is still possible to use the code review process yourself as a way to take a second look at all the changes prior to integrating them in with the final project.\n\nAddressing reviewers comments\nThe reviewer can make comments or suggestions in-line, referencing particular lines of code. Addressing these comments involves making changes and committing these on the same branch. These comments can be pushed to GitHub/GitLab.\n\n\nCode reviewer guidelines\nA useful document for performing code reviews is Google’s code review practices. Here, the term Changelist (CL) is equivalent to a pull-request/merge-request. An important general principle when reviewing code from this guide would be:\n\nIn general, reviewers should favor approving a CL once it is in a state where it definitely improves the overall code health of the system being worked on, even if the CL isn’t perfect. - https://google.github.io/eng-practices/review/reviewer/standard.html\n\nThat is to say, it is important to provide just the right amount of feedback. Enough to address any major issues without getting too caught up in requesting changes for every minor issue (these could be included in the pull-request as suggestions for later rather than required changes).\n\n\nFinishing the review process\nOnce all changes are approved by the reviewer, the changes may be merged into the main project branch in GitHub/GitLab, which will close the pull/merge request.",
-    "crumbs": [
-      "Deployment and maintenance",
-      "Code review"
-    ]
-  },
-  {
-    "objectID": "docs/projects/version-control.html",
-    "href": "docs/projects/version-control.html",
-    "title": "Version control",
-    "section": "",
-    "text": "Managing versions of your work is one of the most important activities when it comes to working efficiently, for reproducibility, and when collaborating with others. You’re probably already familiar with the basic idea of version control through Microsoft Word or Powerpoint via OneDrive and SharePoint. Many people who develop software use a distributed version control software to manage their work, which means each developer works on their own, local copy of a given project and synchronizes through a centralized server.\nThe most common and our recommended distributed version control software for coding is Git. Unlike with OneDrive and Sharepoint, Git’s version control is not automatic. Instead, you must log your changes manually every so often and explicitly send your changes up to a Git server so that collaborators can see and retrieve them.\nGit operates on collections of files, usually grouped into a single folder, which we call a repository (or “repo”). The idea is to have one repo per project. Git is optimized to work with text-based files, such as code, csv files, and the like.1\nTo get started with Git, start by installing it.",
-    "crumbs": [
-      "Projects",
-      "Version control"
-    ]
-  },
-  {
-    "objectID": "docs/projects/version-control.html#gitlab-and-github",
-    "href": "docs/projects/version-control.html#gitlab-and-github",
-    "title": "Version control",
-    "section": "GitLab and GitHub",
-    "text": "GitLab and GitHub\nTo collaborate with others using Git, you must sync your repository to a Git server. A Git server offers a central “home” in the cloud that collaborators can interface with asynchronously:\n\nThere are two main “flavours” of Git server software: GitHub and GitLab. These software are largely similar, with one important exception; GitLab can be run on a private server, whereas GitHub is only offered by Microsoft at github.com.\n\nAccess control\nA repository can be public (accessible to anyone with access to the Git server), or private (accessible only to registered users who have been granted access).\nGranting repository access to individual users may work well for smaller projects, but it quickly becomes impractical at scale. To manage access for many users at once, GitHub and GitLab offer Organizations and Groups respectively. Organizations and Groups are essentially “shared accounts” or “containers” for projects that offer sophisticated security and administrative features.\nImportantly, Organizations and Groups move repos to unique project URLs. Personal repositories are located at examplegitserver.com/user-name/repo-name. Organization and Group repositories are located at examplegitserver.com/organization-name/repo-name. Organizations and Groups are particularly useful for project branding and continuity; the same URL can be used for the life of the project, even as users join or leave over time.\nTo learn more about administering organizations and groups, see the GitLab Groups and GitHub Organizations page.\n\n\nGitLab and GitHub docs\nThis guide gives an introduction to using GitHub and GitLab when developing projects, but you may wish to occasionally consult the documentation for either product for more advanced usage:\n\nGitLab docs\nGitHub docs",
-    "crumbs": [
-      "Projects",
-      "Version control"
-    ]
-  },
-  {
-    "objectID": "docs/projects/version-control.html#git-basics",
-    "href": "docs/projects/version-control.html#git-basics",
-    "title": "Version control",
-    "section": "Git basics",
-    "text": "Git basics\nThere are a few fundamental actions that you will use often with Git, which we outline here.\n\nCreating a new repository for your project\nWhen starting a new project, you will likely want to create a new repository to house your project files. We recommend that the project lead create the first copy of your repo in the cloud, i.e. on GitLab or GitHub via a web browser, after deciding which remote home to use for this particular project.\nInstructions for creating a new repo can be found here for GitLab and here for GitHub. We recommend that you initialize your new repository with a README and and a license file and be mindful of the visibility level for your repository.\nTo invite collaborators, follow these instructions for GitLab and these instructions for GitHub.\nOnce the cloud repository is created, the project lead and all collaborators should create a local, synchronized copy (or “clone”) of the project on their computers in order to be able to work on the project files. To clone the project, you need to first decide how you will interact with Git on your computer, which we discuss in the next section. (We discuss how to actually clone a repository in a subsequent section.)\n\n\nGit clients\nGit is fundamentally a command line program and some users simply interface with it via the command line. When you install Git, you will see a new app called Git Bash, which gives you a command line interface to Git. However, it is generally easier to interact with Git primarly via a client with a graphical user interface (GUI). These can either be standalone programs or bundled within an integrated development environment (like RStudio or VSCode).\nThe Git website includes a list of Git GUI Clients. We recommend using GitHub Desktop as a starting point. It is one of the few cross-platform open source Git GUI clients. Despite its name, GitHub Desktop works with all Git servers, including GitLab. GitHub Desktop is available on corporate machines through the Company Portal. If you have a GitHub account that you use for work, you should sign into it in the GitHub Desktop app.\nThis guide will demo instructions for basic Git use via GitHub Desktop. If you prefer to learn how to use Git via the command line, you should consult this command line guide on the official Git site.\n\n\nCloning a repository\nNow that you’ve created a new repository in the cloud, you need to clone it locally to your computer so that you can work on the repo’s files. This action copies the current files and Git history to your computer, and creates a link between your copy and the main copy in the cloud (in this case called the “origin” repository).\nWe strongly recommend against cloning code repositories to OneDrive or Sharepoint locations, as these services block the synchronization of certain code files for security reasons. Using OneDrive or Sharepoint locations for your code repositories can lead to only some files being backed up in the Microsoft cloud, along with annoying and persistent notifications from the OneDrive/Sharepoint app telling you that there is a synchronisation issue and to remove certain files. Instead, we recommend creating a folder in your local user folder (C:/Users/USERNAME) to house all Git repos. GitLab and GitHub both store a separate copy of your repository in the cloud, so you still inherently are backing up your work on an external device.\nTo clone a GitHub repo in GitHub Desktop:\n\nIn GitHub Desktop, go to File &gt; Options... &gt; Accounts and sign into your GitHub account (if you’re not already signed in).\nGo to your repository on github.com, and click the big green “Code” button. Select “Open in GitHub Desktop”.\nChoose a local path where you’d like the repository clone and click “Clone”.\n\n\n\nIgnoring files\nNot all files should be tracked by Git, including:\n\nsensitive data files that must only be stored locally\ngenerated temporary files that collaborators can (and will) be easily recreated when they run the code\nfiles over 100 MB (GitHub’s file transfer limit)\n\nWe can use .gitignore file to avoid including these files in the repository’s file history as well as pushing them up to the cloud.\nA .gitignore is a text file usually kept at the top level of your repository. Git will ignore any files that match names and patterns listed in a .gitignore file, meaning that the files will not be tracked. It is a good practice to ignore these files as soon as possible after creating your repository, to avoid accidentally synchronizing them to a Git server.\nOne way to ignore files is by right-clicking them in the “Changes” pane of GitHub Desktop and selecting one of the ignore options, either “ignore this file” or “ignore all files with the same extension”:\n \nOnce you ignore your first file, you will see the new .gitignore file in Windows Explorer:\n\nYou can open .gitignore and simply type in filenames and patterns to new lines in the file, as opposed to right-clicking files individually in GitHub Desktop. You can find rules for populating your .gitignore file here.\nAnother option is to start with a template .gitignore file with commonly-ignored file types for your project’s programming language(s), which you can generate easily using gitignore.io.\n\n\nMaking changes\nNow that your repository is available to you locally, you can start developing your code. Every time you make changes to your files (create/delete/edit a file), you will see them reflected in GitHub Desktop, under the Changes tab:\n\nChanges are shown relative to the last snapshot, i.e., relative to the last commit to the repository. The green plus to a file means a file was added, the yellow dot means a file was modified, and a red minus means a file was deleted. When a change is listed but unchecked, it is “unstaged”, and when it is checked it is “staged” in preparation for making a commit.\nIn either case, these changes have been made, but they have not been committed to the version history of the repository. You can see the changes in detail on the right-hand side, in the diff view: green lines have been added and red lines have been deleted relative to the last snapshot (commit) of the code.\n\nYou can stage entire files by checking them, or just some lines in a file by selecting/deselecting lines in the diff view.\nOnce you have selected the changes you want to bundle together for your snapshot, write a commit message to summarise the changes in the lower left of the app window and click the Commit button:\n\nThe main commit message is mandatory and should provide a short summary of your changes. The additional description is optional.\nOnce committed, you will see this latest change, and all others before it in the History pane:\n\nFor more on writing commit messages, see the Writing commit messages page.\n\n\nRemoving files from tracking\nIf you’ve accidentally committed a file that you want to ignore, just adding the file to the .gitignore will not work to ignore the file. You must first remove the file from tracking, and then adding it to the .gitignore will take effect. GitHub Desktop does not have a feature to remove files from tracking, so we must do it from the command line.\nOpen up the Git Bash program and navigate to your repository’s directory using\ncd path/to/directory\nwhere you’d fill path/to/directory in with an absolute path to your project repo.2\nNow that you are in your project’s repository, you can remove a file from tracking with\ngit rm path/to/file\nFor instance, if I wanted to remove a file called data.csv from the top level of my repository, I would do\ngit rm data.csv\nNow if you were to add this file to the .gitignore, it would actually be ignored!\nTo purge an accidentally committed file from your GitHub repository, you’ll need to follow these instructions.\n\n\nSynchronizing\nNote the little up arrow beside the latest commit from our previous example:\n\nThe arrow indicates that some changes we committed have yet to be sent up to the cloud repository. Commits only log changes to your local file history. To send your changes to the cloud repository, you must push them up:\n\nIf you are working on two computers or collaborating with others, you will want to periodically sync in the opposite direction and retrieve any changes from the cloud repository. We start with a fetch to check for any changes available online:\n\nIf changes are present, GitHub Desktop shows us how many new commits are available (just one here) and we get the option to pull them down to our local copy:\n\n\n\nBranching\n\nUnderstanding branches\nBranches are a way of working on your files in a way that is isolated from other versions of your code. The default branch is main and should be thought of as the “live” version of your code; you should avoid making changes directly to your code on main unless you are confident that your changes won’t break anything. Instead, experimentation and development should be done on another branch, especially when you are collaborating with others to avoid clashing with their changes in an uncontrolled way. Branches can be merged into one another at any point in time to reconcile changes.\nThis paradigm comes from the world of software development and it may very well be overkill for a solo research project. However, it can be very useful when collaborating with others, and we recommend a common Git workflow that uses branches below.\nWe can visualise branching to understand it better. Imagine your file history as a timeline with a series of commits denoting snapshots of your code:\n\nThis history is of a repository where some authors are collaborating on a manuscript together. One author decides to add a section on methods, but does not want to disrupt the work of others, so they make a branch:\n\nThis author branched off of main at a commit with message “completed analysis section”. The add-methods branch history starts at that change. Changes can continue to be made to main, but add-methods will not include them (unless they are explicitly pulled into add-methods). In this way, branching enables work in parallel.\nWhen work on the add-methods branch is complete, these changes can be pulled into main with a pull request (or “merge request” on GitLab).\n\nThe idea is to formally request a pull into main and allow for a review and approval process before the merge is complete. Before being able to accept a pull request from add-methods into main, any additional changes to main must be merged into the add-methods branch first. Here, that means adding commit numbers 51003d7 “added figures” and 3563aa1 “added authors” to add-methods. This is a precaution to avoid merge conflicts.\nGit will automatically attempt to resolve these changes and generally does a good job at this unless conflicting changes happen to be made to the same part of a file. If Git detects conflicting changes, it will create a merge conflict between the branches, where it will add text to the conflicted files flagging where conflicts are.\nIn the example above, imagine that we have a file called authors.qmd and we are trying to pull changes to this file from add-method into main. Someone working on main put the line “The authors of this code are unknown.” (with commit number 3563aa1 “added authors”) in this file, and in parallel someone working on add-methods put “The authors of this code are wonderful people!” (with commit number 28eb227 “edited methods section”) in the same line of this file. These are conflicting changes that Git would not know how to reconcile, so the pull request into main would be blocked. Instead, Git would flag the conflict by inserting the following text into authors.qmd:\n\nConflicts are sandwiched between the markers &lt;&lt;&lt;&lt;&lt;&lt;&lt; and &gt;&gt;&gt;&gt;&gt;&gt;&gt;. You can find them easily by searching the conflicted file for &lt; characters. Git will insert both proposed changes divided by =======, and it will label where each change came from. In the example above, the top change comes from HEAD, and the bottom change comes from the add-methods branch. HEAD is a generic term for the tip of the branch you’re currently working on. If you are merging add-methods into main, you would do that from the main branch, so here HEAD would be main.\nTo resolve the conflict, simply erase everything between and including the conflict markers except the change you want to keep. In the above example, if we were to accept the change from add-methods, the resolved conflict would just look like:\n\n\n\nWorking with branches\nTo make a branch in GitHub Desktop, start by opening the branch pane by clicking on the current branch in the top middle of the app window, and then click the “New branch” button:\n\nYou new branch will start from the tip of the branch you’re currently on so be sure to first select and synchronize the branch you want to start from before clicking “New branch”. The “New branch” button will open a pop-up where you will input a name for your new branch:\n\nIt is good practice to use a concise and descriptive name that quickly conveys the goal of the work on the new branch. Once you create the branch, it will only be created locally; you must push it up to the cloud repository yourself, by selecting the “Publish branch” button that will be available:\n\nOnce you’ve done that, you will be able to see your branch online:\n\n\n\n\nMerge/pull request\nAs suggested above, before creating a pull request (or “merge request” in GitLab), you will want to ensure your branch is up-to-date with the branch you’re merging into (usually main) and resolve any conflicts. You can do so by starting on your new branch, e.g. add-methods, opening the branch menu in GitHub Desktop, and selecting the button at the bottom that would say “Choose a branch to merge into add-methods”. Here you would select main and then resolve any merge conflicts as explained above. Finish by pushing those changes up to the origin (cloud) repository.\nOnce you’ve synchronized your new branch with the base branch of your pull request, you can open a pull request.\nFor repositories connected to GitHub, you should use these instructions for creating a pull request from GitHub Desktop. For repositories connected to GitLab, you should use these instructions for creating a merge request from the merge request list on the GitLab website.\nOnce the request is created, it can be reviewed and merged online:\n\nGitLab: reviewing and merging merge requests\n\nTo merge, simply find your request in the project repository online on GitLab, open it, and click the merge button at the bottom.\n\nGitHub: reviewing and merging pull requests\n\nBe sure to synchronize local repositories after merges. You may also want to delete the new branch that was merged if it has served its purpose (both locally and in the cloud repository), which you can do easily from GitHub Desktop for GitHub repositories:",
-    "crumbs": [
-      "Projects",
-      "Version control"
-    ]
-  },
-  {
-    "objectID": "docs/projects/version-control.html#git-workflow",
-    "href": "docs/projects/version-control.html#git-workflow",
-    "title": "Version control",
-    "section": "Git workflow",
-    "text": "Git workflow\n\nGitHub flow\nGit, GitLab, and GitHub are very flexible pieces of software and it’s possible to use them in many different ways. We recommend the use of GitHub flow3, which is a straightforward and simple workflow. Here is an overview:\n\nFor any new addition to your code (new feature, bug fix, etc), create a new branch locally based off of main. We will call this the “feature branch”. Pick a branch name that quickly conveys its purpose.\nPush your feature branch to the remote (cloud) repository as a back up and so that anyone you’re collaborating with on this new feature can check the branch out locally too.\nMake changes to your code and commit them into the feature branch.\nOnce you’ve completed the task you set out address with this feature branch, pull the latest version of the main branch from the remote repository into your new feature branch and resolve any merge conflicts.\nSubmit a pull request (or a merge request on GitLab) to merge your feature branch into main. Optionally request a review from a collaborator. Address reviewer comments and make further changes by pushing to the feature branch (these changes will be appended to the pull request). Ideally the review does not take long so that there are no further changes to the main branch in the meantime, but if it does, you may have to pull the main branch into the feature branch once more to resolve any merge conflicts before completing the merge into main.\nWhen the review is complete, accept the pull request and merge the changes into the main branch.\nDelete the new feature branch (on both the remote repository and your local copy).\n\nIn this workflow, you should strive to create branches that are meant to address a non-trivial issue (e.g. more than simply a typo fix), but that require work that won’t take more than a few days. This way, collaborators reviewing your work will have enough to react to without being overwhelmed, and you will not diverge so much from the default branch that when it comes time to merge your new work into main, you won’t have too much to reconcile (even if your collaborators have also merged into main since you last branched off).\nYou should be able to use GitHub Flow via GitHub Desktop and GitLab/GitHub online with the instructions in the Git basics section. To use it via a command line environment, such as in the Git Bash app, follow the instructions here.\n\n\nProject management with GitLab and GitHub\nBeyond enabling teams to collaborate in a version-controlled setting, GitHub and GitLab both offer features that make project management easy and complementary to GitHub flow. Issues (on both GitLab and GitHub) are an easy way to track tasks associated with each project. Issues can be tagged with various labels, assigned to individuals, and organized further using Issue boards (GitLab) and Projects (GitHub).\nIssues are numbered and can be referenced in discussions on GitHub and GitLab with a hashtag followed by the issue number (e.g. #5). One can use these references to close completed issues automatically by using keywords in commit messages and pull requests. For instance, if a commit message includes the text “fixes #7”, then issue #7 will automatically be closed when this commit is pulled into main in the remote repository. More information about keywords can be found here for GitLab and here for GitHub.\nTo enhance GitHub flow with these additional project management features, we recommend that the flow is amended to start with the creation of an Issue for which a feature branch is then created, and that keywords are used to close any Issues associated with a commit and/or pull request.",
-    "crumbs": [
-      "Projects",
-      "Version control"
-    ]
-  },
-  {
-    "objectID": "docs/projects/version-control.html#git-tips-and-tricks",
-    "href": "docs/projects/version-control.html#git-tips-and-tricks",
-    "title": "Version control",
-    "section": "Git tips and tricks",
-    "text": "Git tips and tricks\n\nCommit a (mostly) empty directory\nGit is designed to track files, not directories—directories are only added to Git as a side-effect of tracking their contents. As a result, Git cannot track and commit empty directories.\nIf your code requires the existence of such a directory (e.g., a /tmp directory for writing temporary files, or an /output directory for rendering documents), your code should check for the existence of the directory, and if it’s not present, create it.\nHowever, if you can’t create the directory programatically, you can instead commit a (mostly) empty directory to your repository.\n\nSolution 1: README.md\nAdd a README.md file as a placeholder, excluding all other files in the directory. You can use the README to document the purpose of the directory (and READMEs in the first and second levels of your project are automatically rendered by Git servers on the repo website).\nCreate the README in the directory, then append the following lines to your project’s main .gitignore file (in the main project directory):\n# To exclude the directory and its contents.\nexample-dir/*\n\n# To create an exception for the README.md.\n!example-dir/README.md\n\n\nSolution 2: More .gitignore\n.gitignore files can be nested, so you can add a .gitignore, excluding all other files in the directory.\nCreate the .gitignore file in the directory, then add the following lines to the .gitignore you just created:\n# To exclude the directory and its contents.\n*\n\n# But do not exclude the .gitignore (! means not)\n!.gitignore\n\n\n\nWorking with the repository history\nTODO Outline various options when merging:\n\ndropping repo history (snapshot approach)\nre-writing repo history\nmaintaining repo history\n\nDiscuss considerations in each case.",
-    "crumbs": [
-      "Projects",
-      "Version control"
-    ]
-  },
-  {
-    "objectID": "docs/projects/version-control.html#footnotes",
-    "href": "docs/projects/version-control.html#footnotes",
-    "title": "Version control",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nGit can still track more complex file types, like Word documents or Excel spreadsheets, but some features, like easily comparing file versions with diffs, will not be as easy to use.↩︎\nA simple way to find an absolute path to your repo is to select the folder in Windows Explorer (select, not open) and then in the Home ribbon, click the “Copy path” button. You would then paste the copied path into Git Bash after the cd command using Shift+Ins or by right-clicking and clicking Paste. Be sure to remove the quotes around the path before hitting enter!↩︎\nGitHub flow is very similar in spirit to trunk-based development. You can learn more about this approach and the motivation behind it here.↩︎",
-    "crumbs": [
-      "Projects",
-      "Version control"
-    ]
-  },
-  {
-    "objectID": "docs/extras/admin-git-groups.html",
-    "href": "docs/extras/admin-git-groups.html",
-    "title": "Administering GitLab Groups and GitHub Organizations",
-    "section": "",
-    "text": "More than one person should be an owner of an organization at a time. Group/organization owners should enable two-factor authorization, and enforce it on the team.\nAccess to groups and organizations as well as their repositories is controlled by permissions. A permission is the ability to perform a specific action. For example, the ability to view a repository is a permission. The ability to write to a repository is a permission. The ability to grant others permissions is itself a permission.\nA role is a set of permissions grouped together (often logically by task). Roles can be assigned to individuals or teams (groups of individuals). For example, a ‘write’ role permits a contributor to both view and change the contents of a repository. An ‘admin’ role allows a contributer to view, change, or even delete a repository.\nRepository-level roles give organization members, outside collaborators and teams of people varying levels of access to repositories. Organization-level roles are sets of permissions that can be assigned to individuals or teams to manage an organization and the organization’s repositories, teams, and settings.",
-    "crumbs": [
-      "Extras",
-      "Administering GitLab Groups and GitHub Organizations"
-    ]
-  },
-  {
-    "objectID": "docs/day-to-day/commenting.html",
-    "href": "docs/day-to-day/commenting.html",
-    "title": "Commenting code",
-    "section": "",
-    "text": "There is a balance to strike when it comes to commenting code: you want to comment just enough to guide a reader of your code (including possibly future you in a few months time!) without commenting every single thing. Your code should, to some degree, stand for itself: choosing descriptive variable and function names, and keeping the sequence of commands as straight-forward as possible will go a long way. However, comments still have their place, Hadley Wickham puts in his Advanced R textbook:\nThe code itself will explain a lot of the what; the key to understanding it will lie in the why. Use the comments to document your thought process as you were developing the code. Be sure to comment as you’re writing your code to ensure you remember all the key details. Using comments to section and label long bits of code is a great idea too, to help readers understand the outline of your code.",
-    "crumbs": [
-      "Day-to-day coding",
-      "Commenting code"
-    ]
-  },
-  {
-    "objectID": "docs/day-to-day/commenting.html#script-headers",
-    "href": "docs/day-to-day/commenting.html#script-headers",
-    "title": "Commenting code",
-    "section": "Script headers",
-    "text": "Script headers\nWhen writing a script, it’s a good idea to include some basic information in a block comment before the code begins, such as:\n\na description of the file’s contents and purpose\nauthor name(s) and contact information\n\nIf the script is stand-alone (not part of a folder with a README containing the following information), be sure to also include:\n\nnotes on script usage\n(if you are publishing this script online) any necessary legal information, such as a license\n\nHere is an example of a descriptive header for a stand-alone Python script being published online:\n# = = = = = = = = = = = = = = =\n#\n# PURPOSE: This script takes input and produces output.\n# AUTHOR: Jane Doe &lt;jane.doe@canada.ca&gt;\n#\n# COMMAND LINE USAGE:\n#\n# script.py --help\n# script.py --input [INPUT] --output [OUTPUT]\n#\n# EXAMPLE:\n#\n# script.py --input input.txt --output output.txt\n#\n# LICENSE: MIT\n#\n# Copyright 2024 Government of Canada\n#\n# Permission is hereby granted, free of charge, to any\n# person obtaining a copy of this software and associated\n# documentation files (the “Software”), to deal in the\n# Software without restriction, including without limitation\n# the rights to use, copy, modify, merge, publish,\n# distribute, sublicense, and/or sell copies of the\n# Software, and to permit persons to whom the Software is\n# furnished to do so, subject to the following conditions:\n#\n# The above copyright notice and this permission notice\n# shall be included in all copies or substantial portions of\n# the Software.\n#\n# THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY\n# KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE\n# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n# PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS\n# OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR\n# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\n# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\n# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n#\n# = = = = = = = = = = = = = = =",
-    "crumbs": [
-      "Day-to-day coding",
-      "Commenting code"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Best practices for scientific software development",
-    "section": "",
-    "text": "If you’re reading this guide, it’s probably because you write scientific code and want to get better at doing so. But what does it mean to be good at coding? What probably comes to mind immediately is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.\nThe goals of this guide are to teach you both how to write better code and how to get better at the process of writing code. This means adopting habits, or best practices, while writing scientific software that ensure your projects are well-documented, reproducible, and extensible. Scientists often write code, but they are not software developers in the traditional sense. However, their lives could be made easier by adopting some of the ways in which professional software developers work. This guide collects such practices and discusses them in a way that is specific to working in science."
-  },
-  {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "Best practices for scientific software development",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis guide builds on previous work by Eric Enns, Eric Marinier, Deep Sidhu, Phil Mabon, and Aaron Petkau in the National Microbiology Laboratory.↩︎"
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/index.html",
-    "href": "docs/deployment-and-maintenance/index.html",
-    "title": "Deployment and maintenance",
-    "section": "",
-    "text": "Once a project has matured or a package has been developed, you may want to deploy it for wider use. In this case, you will need to maintain the work, and you may also want to continue to develop it.\nThere are several practices that make project/package deployment, maintenance, and continuing development robust:\n\nInclude a license\nVersion your code\nAutomate your tests with continuous integration\n\nIf you are working with others in deploying/maintaining code, you may also want to:\n\nPerform code reviews",
-    "crumbs": [
-      "Deployment and maintenance"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/get-started.html",
-    "href": "docs/package-development/get-started.html",
-    "title": "Get started guides",
-    "section": "",
-    "text": "Another useful document to include with your code is a get started guide. This document should guide the user through a basic task for your code, along with some accompanying text.\nGet started guides can be as simple as a section in your README file, or single script in your main directory (perhaps called quick-start.py or getting_started.R), where you demonstrate your code, annotated with plenty of comments and text blocks to guide the reader.\nWhen writing an R package, there is a tool for such demos: vignettes. We recommend including a get started vignette with your package to help orient new users.",
-    "crumbs": [
-      "Package development",
-      "Get started guides"
-    ]
-  },
-  {
-    "objectID": "docs/day-to-day/functions.html",
-    "href": "docs/day-to-day/functions.html",
-    "title": "Functions",
-    "section": "",
-    "text": "When we first learn to code, we often start by working within a console, and experiment by writing one line, executing it, inspecting the output, then writing another, executing that, etc. We then might graduate to writing several lines of code at once in a script, and then executing the script, and inspecting the final output. This might work well for a while, but as we find ourselves writing longer and longer more complex scripts, there can be a great deal of code repetition, and perhaps even copy-pasting of similar code blocks.\nThe problem with sticking with this approach is that our scripts quickly become unreadable and inflexible. Moreover, we can easily introduce bugs during the copy-paste-replace cycle. The solution is to use functions.\nFunctions package a unit of code that can be used and reused in some sequence to get a result or produce an effect. Ideally, functions are simple (easy to understand, returns only one output), and modular. We recommend you read this book chapter about writing functions (whether or not you code in R specifically). It motivates the use of functions and outlines many basic principles about writing good ones.",
-    "crumbs": [
-      "Day-to-day coding",
-      "Functions"
-    ]
-  },
-  {
-    "objectID": "docs/day-to-day/functions.html#recommendations-and-resources",
-    "href": "docs/day-to-day/functions.html#recommendations-and-resources",
-    "title": "Functions",
-    "section": "Recommendations and resources",
-    "text": "Recommendations and resources\n\n\n\nLanguage\nResources\n\n\n\n\nR\nWriting functions in R\n\n\nPython\nWriting functions in Python",
-    "crumbs": [
-      "Day-to-day coding",
-      "Functions"
-    ]
-  },
-  {
-    "objectID": "docs/extras/install-git.html",
-    "href": "docs/extras/install-git.html",
-    "title": "Install git",
-    "section": "",
-    "text": "Installing git is the first step to using git. If you wish to use git with a graphical user interface (GUI), we recommend a simple client like GitHub Desktop, which comes bundled with the git command line interface. Otherwise, you can install git from the official website.\n\nGit for Windows\nGit for Windows includes a number of configuration options that you can set during installation:\n\nSelect Components\n\nIn addition to the default selected components, select Check daily for git for Windows updates.\n\nChoosing the default editor used by git\n\nSelect your preferred editior. Note, git may allow you to select editors that aren’t currently installed.\n\nAdjusting the name of the initial branch in new repositories\n\nSelect Overide the default branch name for new repositories, and set main as the new default.\n\nAdjusting your PATH environment.\n\n(default) Select git from the command line and also from 3rd-party software.\n\nChoosing the SSH executable\n\nNo recommendation.\n\nChoosing HTTPS transport backend\n\nNo recommendation.\n\nConfiguring the line ending conversions\n\n(default) Select Checkout Windows-style, commit Unix-style line endings.\n\nConfiguring the terminal emulator to use with git Bash\n\nNo recommendation.\n\nChoose the default behaviour of ‘git pull’\n\nSelect Default (Fast-forward or merge).\n\nChoose a credential helper\n\n(default) Select git Credential Manager.\n\nConfiguring extra options\n\n(default) Select Enable file system caching.\n\nConfiguring experimental options\n\n(default)\n\n\n\n\nConfigure git\nOnce you’ve installed git, you should set (as described in git’s First-Time git Setup guide):\n\nYour git identity (username and email)\nYour default branch name to main\n\n\n\nSet Identity\nEvery commit contains your username and email address. You can set these globally (i.e., for all your repositories) from the command line via the git Bash program that was installed with git for Windows:\ngit config --global user.name \"John Doe\"\ngit config --global user.email johndoe@example.com\n\n\nSet Default Branch Name\nYou should set main as your default branch name, if it isn’t that already.\ngit config --global init.defaultBranch main",
-    "crumbs": [
-      "Extras",
-      "Install git"
-    ]
-  },
-  {
-    "objectID": "docs/projects/virtual-environments.html",
-    "href": "docs/projects/virtual-environments.html",
-    "title": "Virtual environments",
-    "section": "",
-    "text": "An environment is the collection of hardware and software available to your project on a particular system. If your project relies on software beyond the code in your project folder (e.g., packages), these dependencies must be installed and loaded into the environment for your project to work correctly.\nBy default, most languages install dependencies in a shared system-wide location or library. While this improves efficiency (because each project does not need to bring its own copies of common dependencies), it can also cause conflicts between projects. What happens if two or more projects on the same system require different, incompatible dependencies? For instance, you might write code for a project today with the most recent version of a package, but you have a project developed six months ago with an earlier version of the package that breaks when you upgrade the package to the latest version. You may not even know about this breaking change until you unearth your old project, at which point you might be under a deadline (think revisions for a manuscript!)\nThis is the problem that virtual environments were designed to solve. A virtual environment helps isolate your project from the rest of the system by replacing the system-wide library with a project-specific library. When you run or build your project in a virtual environment, its dependencies are installed to, and made available from, the project-specific library, ensuring changes to your project (e.g., the addition, updating, or removal of a dependency) do not affect others on the system, and vice-versa.\nIn this way, you can ensure that you will still be able to run your code in the future. Also, since you can usually save the state of your virtual environment one or a few simple files and then distribute this ‘snapshot’ with your project, collaborators and users can reproduce your virtual environment on their own system to get your code running for themselves (ideally) seamlessly.\nVirtual environments are a great tool for reproducibility, especially where you’re not planning on taking the extra step to package your code. We encourage their regular use for all projects.",
-    "crumbs": [
-      "Projects",
-      "Virtual environments"
-    ]
-  },
-  {
-    "objectID": "docs/projects/virtual-environments.html#recommendations-and-resources",
-    "href": "docs/projects/virtual-environments.html#recommendations-and-resources",
-    "title": "Virtual environments",
-    "section": "Recommendations and resources",
-    "text": "Recommendations and resources\n\n\n\nLanguage\nRecommended virtual environment manager\nResources\n\n\n\n\nR\nrenv\nGet started with renv\n\n\nPython\npipenv\nGet started with pipenv",
-    "crumbs": [
-      "Projects",
-      "Virtual environments"
-    ]
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/versioning.html",
-    "href": "docs/deployment-and-maintenance/versioning.html",
-    "title": "Versioning",
-    "section": "",
-    "text": "Versioning your code can help with reproducibility, especially if the code is likely to have a long lifecycle, with applications across many specific projects. Code hosted on GitLab and GitHub can be versioned easily with built-in release tools. More information can be found in these GitLab and GitHub docs.",
-    "crumbs": [
-      "Deployment and maintenance",
-      "Versioning"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/developer-docs.html",
-    "href": "docs/package-development/developer-docs.html",
-    "title": "Developer documentation",
-    "section": "",
-    "text": "TO DO"
-  },
-  {
-    "objectID": "docs/day-to-day/IDEs.html",
-    "href": "docs/day-to-day/IDEs.html",
-    "title": "Integrated development environments",
-    "section": "",
-    "text": "Integrated development environments (or IDEs) aim to make the process of developing code easier by gathering commonly used development tools into one program. We recommend working in an IDE when developing code; the more you work within an IDE, the more you’ll get used to its tools and shortcuts, and the more efficient you’ll be while working.",
-    "crumbs": [
-      "Day-to-day coding",
-      "Integrated development environments"
-    ]
-  },
-  {
-    "objectID": "docs/day-to-day/IDEs.html#language-specific-vs-language-agnostic-ides",
-    "href": "docs/day-to-day/IDEs.html#language-specific-vs-language-agnostic-ides",
-    "title": "Integrated development environments",
-    "section": "Language-specific vs language-agnostic IDEs",
-    "text": "Language-specific vs language-agnostic IDEs\nThere are language-specific IDEs that work readily out-of-the-box for a given language. There are also language-agnostic IDEs that enable a developer to work with multiple languages in the same program. Language-agnostic IDEs enable you to get used to a single interface across languages. This functionality is often enabled through extensions to the IDE, and it can take some research, setup, and experimentation to find the extensions that are right for you and a given coding language.\nIf you know you’ll be working with a specific language for the bulk of your work, we recommend using a language-specific IDE as it is simpler. As you get more experience coding and build up a repertoire of languages, you may want to switch to a language-agnostic IDE for the flexibility.",
-    "crumbs": [
-      "Day-to-day coding",
-      "Integrated development environments"
-    ]
-  },
-  {
-    "objectID": "docs/day-to-day/IDEs.html#recommendations-and-resources",
-    "href": "docs/day-to-day/IDEs.html#recommendations-and-resources",
-    "title": "Integrated development environments",
-    "section": "Recommendations and resources",
-    "text": "Recommendations and resources\n\n\n\nLanguage\nRecommended IDE\nResources\n\n\n\n\nR\nRStudio\n\nGet started with RStudio\n\n\n\nPython\nPyCharm Community Edition\n\nGet started with PyCharm\n\n\n\nLanguage-agnostic\nPositron Visual Studio Code\n\nGet started with Positron\nGet started with VSCode\n\n\n\n\nRStudio and VSCode are pre-approved for installation by corporate IT and can be installed readily via Company Portal.\nPyCharm Community Edition is free, though it is not pre-approved and so you can either request approval through Service Gateway or install it yourself on a Science Network laptop. PyCharm Professional is available by request in Service Gateway (listed as “PhyCharm”), though it must be paid for through an SAP request.",
-    "crumbs": [
-      "Day-to-day coding",
-      "Integrated development environments"
-    ]
-  },
-  {
-    "objectID": "docs/extras/writing-commit-messages.html",
-    "href": "docs/extras/writing-commit-messages.html",
-    "title": "Writing commit messages",
-    "section": "",
-    "text": "The purpose of a commit is to tell you what has changed, while the purpose of a commit message is to explain the why.\nA commit message consists only of plain text. The two suggested formats are traditional and Conventional Commits.",
-    "crumbs": [
-      "Extras",
-      "Writing commit messages"
-    ]
-  },
-  {
-    "objectID": "docs/extras/writing-commit-messages.html#traditional-commit-messages",
-    "href": "docs/extras/writing-commit-messages.html#traditional-commit-messages",
-    "title": "Writing commit messages",
-    "section": "Traditional commit messages",
-    "text": "Traditional commit messages\nThe first line of a commit message is the commit title or subject; it should:\n\nbe written in the imperative (‘remove function’ not ‘removed function’)\nbe written in sentence case, start with a capital letter, and end with no punctuation\nbe between 50 - 80 characters\n\nThe title should be followed by a blank line and a more thorough description in the message body, unless the subject is sufficiently explanatory.\nThis description may be written in the imperative or past tense, in sentence case or in point form.\nYou can also include keywords in commit messages that trigger useful automations. For instance, a commit message that includes the text “fixes #10” will automatically close issue #10 once that commit is pulled into the main branch. This feature is available in both GitHub and GitLab.\nThis keyword feature is actually enabled by the Conventional Commits standard, which we describe next.",
-    "crumbs": [
-      "Extras",
-      "Writing commit messages"
-    ]
-  },
-  {
-    "objectID": "docs/extras/writing-commit-messages.html#conventional-commits",
-    "href": "docs/extras/writing-commit-messages.html#conventional-commits",
-    "title": "Writing commit messages",
-    "section": "Conventional Commits",
-    "text": "Conventional Commits\nConventional Commits is a specification for commit messages, designed to be human and machine-readable:\n\nThe Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages.\n\nThis diagram is based upon the Angular project’s specification of a conventional commit header:\n&lt;type&gt;(&lt;scope&gt;): &lt;short summary&gt;\n  │       │             │\n  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.\n  │       │\n  │       └─⫸ Commit Scope: (e.g. animations|bazel|benchpress|common|compiler|compiler-cli|core|\n  │                          elements|forms|http|language-service|localize|platform-browser|\n  │                          platform-browser-dynamic|platform-server|router|service-worker|\n  │                          upgrade|zone.js|packaging|changelog|docs-infra|migrations|\n  │                          devtools)\n  │\n  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test\n\n\n[optional body]\n\n[optional footer(s)]\n\n// Note:\n// The &lt;type&gt; and &lt;summary&gt; fields are mandatory.\n// The (&lt;scope&gt;) field is optional; examples taken from the Angular project.\nSee an example here.\nAngular specifies a limited number of types:\n\nbuild: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)\nci: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)\ndocs: Documentation only changes\nfeat: A new feature\nfix: A bug fix\nperf: A code change that improves performance\nrefactor: A code change that neither fixes a bug nor adds a feature\ntest: Adding missing tests or correcting existing tests\n\nHowever, it may be useful to define others for your project.",
-    "crumbs": [
-      "Extras",
-      "Writing commit messages"
-    ]
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/continuous-integration.html",
-    "href": "docs/deployment-and-maintenance/continuous-integration.html",
-    "title": "Continuous integration",
-    "section": "",
-    "text": "Continuous integration (CI) is the process of continually merging different feature branches into the main branch1 and automatically triggering software tests2 or the overall software build process to help ensure software stability during the development process. CI provides continual feedback on potential issues that may have been introduced during development of new features so they can be addressed before a merge into main. For more information about this process, you can read overviews from Atlassian or Wikipedia.\nContinuous integration is often paired with the code review process, where software integration test suites are run during a pull-request/merge request, and the reviewer will only sign-off on merging code into the main branch on successful execution of the test suite.\nBoth GitHub and GitLab provide the capability of triggering tests (or other code) during the initiation of a pull-request and informing reviewers if these tests have passed or failed as part of the pull-request/merge-request. This is accomplished via GitHub Actions and GitLab Pipelines.",
-    "crumbs": [
-      "Deployment and maintenance",
-      "Continuous integration"
-    ]
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/continuous-integration.html#triggering-test-suites-in-github",
-    "href": "docs/deployment-and-maintenance/continuous-integration.html#triggering-test-suites-in-github",
-    "title": "Continuous integration",
-    "section": "Triggering test suites in GitHub",
-    "text": "Triggering test suites in GitHub\nDepending on the programming language you are developing with, there may already be templates and guides on how to setup GitHub actions for running test suites. There are existing repositories for R actions and a guide for Python actions.",
-    "crumbs": [
-      "Deployment and maintenance",
-      "Continuous integration"
-    ]
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/continuous-integration.html#footnotes",
-    "href": "docs/deployment-and-maintenance/continuous-integration.html#footnotes",
-    "title": "Continuous integration",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis technique builds upon branching and our recommended git workflow.↩︎\nLike unit tests↩︎",
-    "crumbs": [
-      "Deployment and maintenance",
-      "Continuous integration"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/unit-testing.html",
-    "href": "docs/package-development/unit-testing.html",
-    "title": "Unit testing",
-    "section": "",
-    "text": "Software testing is an investigation in which the correctness and quality of an application are objectively determined. You are required to performing testing on your software applications.\nTesting is the process of ensuring your code works as intended. Tests should be created while you are developing your code and not as an afterthought. There are several testing methods, but we focus on unit tests as they are powerful, relatively simple, and can be built up piece-by-piece in your code, as your code grows.",
-    "crumbs": [
-      "Package development",
-      "Unit testing"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/unit-testing.html#what-is-unit-testing",
-    "href": "docs/package-development/unit-testing.html#what-is-unit-testing",
-    "title": "Unit testing",
-    "section": "What is unit testing?",
-    "text": "What is unit testing?\nUnit testing is the process of writing small, independent tests that probe one function at a time. The idea is to provide some test input to your function, have your function process it, and compare the function’s output to the output you’d expect if your function is working correctly. You may want to test various types of inputs (whichever your function is built to handle), or provide test inputs with known quirks (edge cases) to ensure your function, well, still functions correctly.",
-    "crumbs": [
-      "Package development",
-      "Unit testing"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/unit-testing.html#why-should-you-write-unit-tests",
-    "href": "docs/package-development/unit-testing.html#why-should-you-write-unit-tests",
-    "title": "Unit testing",
-    "section": "Why should you write unit tests?",
-    "text": "Why should you write unit tests?\nAt face value, the process of writing unit tests might seem silly: you built a function, gave it an input where you know the output, and got the output you expected… so what? And you’re right, this is underwhelming if your function definition never changes, but what if you add a feature to your function and don’t realize that it now changes the expected output in a specific case? The unit test you wrote for that case will then fail, alerting you to this change!\nA general rule of thumb is to add at least one new unit test whenever you add a new feature to your code (e.g. a new function, a new feature within an existing function, etc.).",
-    "crumbs": [
-      "Package development",
-      "Unit testing"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/unit-testing.html#code-coverage",
-    "href": "docs/package-development/unit-testing.html#code-coverage",
-    "title": "Unit testing",
-    "section": "Code coverage",
-    "text": "Code coverage\nIf you are packaging your code, it’s a good practice to ensure that you have high code coverage. Code coverage measures the percentage of your code that actually gets executed when your tests are run. It does not mean that all possible errors are covered by your tests, but the higher the code coverage, the lower the chance that you have undetected bugs in your code.",
-    "crumbs": [
-      "Package development",
-      "Unit testing"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/unit-testing.html#recommendation-and-resources",
-    "href": "docs/package-development/unit-testing.html#recommendation-and-resources",
-    "title": "Unit testing",
-    "section": "Recommendation and resources",
-    "text": "Recommendation and resources\n\n\n\nLanguage\nRecommended unit testing framework\nResources\n\n\n\n\nR\ntestthat\n\nWriting tests with testthat\nChecking code coverage with covr\n\n\n\nPython\npytest\n\nWriting tests with pytest\nChecking code coverage with coverage",
-    "crumbs": [
-      "Package development",
-      "Unit testing"
-    ]
-  },
-  {
-    "objectID": "docs/projects/pipelines.html",
-    "href": "docs/projects/pipelines.html",
-    "title": "Pipelines",
-    "section": "",
-    "text": "Some scientific projects can grow to be very complex, involving many scripts and dependencies between pieces of code. Some projects involve routine analyses that you need to repeat on a regular bases. Both of these cases, which are not mutually exclusive benefit from the use of pipelines.\nPipelines are a way of defining complex analyses by explicitly declaring dependencies between inputs, intermediate objects, and outputs. Once defined as such, they can be executed with workflow management software to ensure analysis steps are executed in a correct order and that objects are re-computed only if there are changes to upstream dependencies, which can make work much more efficient.",
-    "crumbs": [
-      "Projects",
-      "Pipelines"
-    ]
-  },
-  {
-    "objectID": "docs/projects/pipelines.html#snakemake",
-    "href": "docs/projects/pipelines.html#snakemake",
-    "title": "Pipelines",
-    "section": "Snakemake",
-    "text": "Snakemake\nSnakemake is workflow management software tailored to defining and running data analysis pipelines, especially geared towards Python users. Here, a pipeline is constructed as a series of linked steps (defined as rules, which can include executing arbitrary command-line software). Some of the advantages that Snakemake provides over Make comes to the execution porition, where each rule can not only define the code to run, but also how to install the underlying software (using conda or Docker/singularity containers) as well as how to execute the software in a variety of environments (such as a local computer, or a high-performance computational cluster).",
-    "crumbs": [
-      "Projects",
-      "Pipelines"
-    ]
-  },
-  {
-    "objectID": "docs/projects/pipelines.html#nextflow",
-    "href": "docs/projects/pipelines.html#nextflow",
-    "title": "Pipelines",
-    "section": "Nextflow",
-    "text": "Nextflow\nNextflow shares some similarities to Snakemake, in that they are workflow management software that can be used to define a data analysis pipeline, as well as define how to install the required software and manage code execution in a variety of environments (local machines, high-performance computing clusters, or cloud environments). However, one key difference is that Snakemake is Python-based while Nextflow is Groovy-based (Groovy being built on top of Java). Additionally, Nextflow also has a community of contributed pipelines and modules, focused on bioinformatics analysis, that can be re-used in different pipelines (via the nf-core community).",
-    "crumbs": [
-      "Projects",
-      "Pipelines"
-    ]
-  },
-  {
-    "objectID": "docs/package-development/readmes.html",
-    "href": "docs/package-development/readmes.html",
+    "objectID": "package-development/readmes.html",
+    "href": "package-development/readmes.html",
     "title": "README files",
     "section": "",
     "text": "(Yes, again! READMEs are really useful.)\nRecommendations for READMEs from the day-to-day coding and projects sections still apply when developing a package, though there are a few additional items you may want to consider adding:\n\nA short description of the software and the problem it solves\nInstallation instructions\nThe location of a guide to get started with the package\nReferences in the scientific literature that support methods implemented in the package\nAuthors and contact info\nHow users can report issues with the package or suggestions for improvement\nHow to cite the package",
@@ -699,14 +11,708 @@
     ]
   },
   {
-    "objectID": "docs/extras/githubflow-demo-cli.html",
-    "href": "docs/extras/githubflow-demo-cli.html",
+    "objectID": "package-development/index.html",
+    "href": "package-development/index.html",
+    "title": "Package development",
+    "section": "",
+    "text": "For some projects, you may get to a point where you want to reuse your one project’s code within other projects or you may want to distribute your code so that others can use it easily. For distribution, the combined best practices suggested in the day-to-day and projects sections will certainly get you much of the way, though they don’t offer as much when reusing you code in other projects. In this case, it may make sense to develop a package with your code.1\nWe suggest the following best practices when developing a software package:\nIf you are working with others on your package, you may also want to:\nOnce you package your code, it is important to think about how you will deploy, maintain, and continue to develop your package, especially if you want to released it to others (colleagues, the public) for ongoing use. We discuss best practices for package deployment in the next section.",
+    "crumbs": [
+      "Package development"
+    ]
+  },
+  {
+    "objectID": "package-development/index.html#footnotes",
+    "href": "package-development/index.html#footnotes",
+    "title": "Package development",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThankfully, modern tools and resources make package development much less daunting than it used to be, and we will point to many such helpers as we go through the best practices for package development.↩︎",
+    "crumbs": [
+      "Package development"
+    ]
+  },
+  {
+    "objectID": "package-development/function-docs.html",
+    "href": "package-development/function-docs.html",
+    "title": "Function documentation",
+    "section": "",
+    "text": "If you’re using functions, they should form the bulk of your code, and as such, they should be documented properly. When documenting your functions, be sure to answer the following questions:",
+    "crumbs": [
+      "Package development",
+      "Function documentation"
+    ]
+  },
+  {
+    "objectID": "package-development/function-docs.html#documentation-formatting",
+    "href": "package-development/function-docs.html#documentation-formatting",
+    "title": "Function documentation",
+    "section": "Documentation formatting",
+    "text": "Documentation formatting\nWe recommend documenting your functions where the functions themselves are defined with specific comment syntax, and then using a utility to convert those notes into a standardized documentation format.\nFor the special comment syntax, we recommend following the numpydoc style of docstrings for Python and the roxygen2 format for R. Although these tools are meant primarily for package development, we recommend you use these formats whether or not you think you will eventually turn your code into a package. Not only will you be using a standard, commonly understood formats to document function inputs, outputs, etc., but if you do choose to turn your code into a package down the line, you can make use of automated documentation tools without having to go back and re-write old documentation.\n\nExamples\nHere is an example of the roxygen2 documentation format:\n#' Add together two numbers\n#'\n#' @param x A number.\n#' @param y A number, defaults to 2.\n#' @return A number.\n#' @examples\n#' add(1, 1)\n#' add(10, 1)\n\nadd &lt;- function(x, y = 2) {\n  x + y\n}\nHere is an example of the numpydoc docstrings format:\ndef add(x,y):\n    \"\"\"Add together two numbers.\n\n    Parameters\n    ----------\n    x : num\n        A number.\n    y : num\n        A number, defaults to 2.\n\n    Returns\n    ----------\n    num\n        A number with the sum of x and y.\n\n    Examples\n    ----------\n    &gt;&gt;&gt; add(1,1)\n    \"\"\"\n    return x + y",
+    "crumbs": [
+      "Package development",
+      "Function documentation"
+    ]
+  },
+  {
+    "objectID": "package-development/function-docs.html#recommendations-and-resources",
+    "href": "package-development/function-docs.html#recommendations-and-resources",
+    "title": "Function documentation",
+    "section": "Recommendations and resources",
+    "text": "Recommendations and resources\n\n\n\nLanguage\nRecommended documentation format\nAssociated automatic documentation tool\nTutorial\n\n\n\n\nR\nroxygen2 format\nroxygen2\nWriting function documentation using roxygen2\n\n\nPython\nnumpydoc docstring standard\nsphynx\nWriting documentation for python packages",
+    "crumbs": [
+      "Package development",
+      "Function documentation"
+    ]
+  },
+  {
+    "objectID": "extras/githubflow-demo-cli.html",
+    "href": "extras/githubflow-demo-cli.html",
     "title": "GitHub flow demo using the command line",
     "section": "",
     "text": "Create a new branch with git checkout -b branch-name.\nPush your feature branch to the remote (cloud) repository with git push origin branch-name.\nMake changes with git add modified-file and git commit -m \"commit message\".\nResolve any merge conflicts by following the instructions here.\nSubmit a merge/pull request by following these instructions for GitLab and these instructions for GitHub.\nWhen the review is complete, accept the pull request (on GitLab or GitHub and merge the changes into the main branch.\nDelete the new feature branch (on both the remote reposotory and your local copy) with git push -d remote-name branch-name followed by git branch -d branch-name. remote-name is the name of the remote (cloud) repository and will usually be origin by default.",
     "crumbs": [
       "Extras",
       "GitHub flow demo using the command line"
+    ]
+  },
+  {
+    "objectID": "extras/index.html",
+    "href": "extras/index.html",
+    "title": "Extras",
+    "section": "",
+    "text": "The following pages are referenced and linked throughout the main guide. We collect them here to make them easier to find:\n\nInstall git\nWriting commit messages\nAdministering GitLab Groups and GitHub Organizations\nGitHub flow demo using the command line\nVirtual environments in Python",
+    "crumbs": [
+      "Extras"
+    ]
+  },
+  {
+    "objectID": "extras/models-in-production.html",
+    "href": "extras/models-in-production.html",
+    "title": "Guidelines for models in production",
+    "section": "",
+    "text": "These guidelines are primarily meant for modellers within the PHAC Modelling Hub, but may be of use to others more widely.\nA model “in production” is a model upon which we rely to regularly produce modelling outputs. Such a model can be one that accepts requests on-demand, or a model that is brought back into production regularly based on business need.\nFor models in production, it is important that the model code is:\nThe best practices outlined here are meant to ensure that models in productions have the above properties."
+  },
+  {
+    "objectID": "extras/models-in-production.html#model-code-organisation",
+    "href": "extras/models-in-production.html#model-code-organisation",
+    "title": "Guidelines for models in production",
+    "section": "Model code organisation",
+    "text": "Model code organisation\nWe suggest using two main types of codebases for models in production:\n\nA model package that includes code to simulate the model\nA modelling pipeline (one per modelling request) that includes code to generate the required modelling products"
+  },
+  {
+    "objectID": "extras/models-in-production.html#model-package",
+    "href": "extras/models-in-production.html#model-package",
+    "title": "Guidelines for models in production",
+    "section": "Model package",
+    "text": "Model package\nA model package is a software package that includes the code required to run a model’s simulator.\n\nModel package development\nThe development of model packages occurs in two phases:\n\nPrototyping: developing the initial code base that enables the simulation of a model, lightweight function documentation and testing\nPackaging: cleaning up the prototype code base, developing the documentation, and packaging the software in a standardized format\n\nOne may oscillate back and for between these phases as further development of the same core model occurs.\nIn both phases, consistent use of the best practices recommended throughout this guide is encouraged. The prototyping phase benefits most from the practices recommended for day-to-day coding and projects, while packaging benefits most from practices recommended for package development and code deployment and maintenance.\n\n\nPrototyping\nThe prototyping phase involves building the initial code base that enables one to simulate a specific model. In this phase, you are encouraged to continually document, test, and style your code in the suggested ways as this will help you package down the line, but packaging is not the main focus here. The goal is simply to produce a working version of your model simulator.\n\n\nPackaging\nOnce an iteration of the prototype code is sufficiently advanced to be useful and/or is being used to produce a modelling output, it should be packaged and archived. The term “packaging” is deliberate: here it literally means bundled into a software package.\nArchiving should be achieved through package versioning so that model simulation code from a specific era can easily be called into a request-specific modelling pipelines to produce outputs (e.g. through the use of a virtual environment).\nThere is a start-up cost associated with packaging, but the benefits of using a universal framework to package your code can be immense for models in production. It can help you ensure your models are reliable, robust, and sufficiently documented.\nPackaging may sound daunting at first, but there are many resources and utilities that can help you get through this task efficiently, relatively painlessly, and in a manner that is consistent with the best practices in our guide:\n\nFor R users, the best place to get started is to use the R Packages book by Hadley Wickham and Jennifer Bryan. If you’ve never developed a package before, start with the first chapter, The Whole Game, which outlines the process of developing an R package from start to finish.\nFor Python users, the pyOpenSci Package Guide is an excellent resource.\n\n\n\nMinimum documentation standards for model packages\nAll packages for models in production must comply with minimum documentation standards to ensure that the codebase is accessible to others in the Modelling Hub.\nThe minimum package documentation standards are:\n\nA README file in the main directory of the project repository with:\n\nthe authors of the code;\npackage installation instructions + the installation of any dependencies (if not automatic);\ninformation on where to find the getting started guide for the package code.\n\nA get started guide that runs through a basic example of using the code\nFunction documentation, such that:\n\nall input arguments are stated with the expected type, default values, and a description;\nall output objects are stated with the type and a description;\nany side-effects of the function are described.\n\nDefault value documentation, including:\n\nAn explanation of each value’s function in the model, with units.\nCitations for any values that come from literature.\n\n\nSetting up a package site that displays your package documentation in an easy-to-use format is entirely optional, but encouraged. For R users, pkgdown provides a quick and easy way to generate a package website using existing roxygen2 documentation and other information. For python users, quartodoc does a similar task, building off of numpy-stype docstrings. Package sites can then be deployed via the PHAC Modelling Hub GitHub organization using GitLab Pages or GitHub Pages, depending on the Git server being used.\nFor creating, building, and deploying a package site, R users can use the usethis package, which automates much of the process.\n\n\nDefault values\nDefault values must be included for all variables that need to be specified with a numeric value for the model to be simulated, such as parameter values, initial conditions, etc. In this way, a model simulator is ready to be used straight out of the package.\nIt is suggested that the package include features to:\n\nquickly retrieve default values for the user\nupdate (select) default values in the model simulator\n\nThese features are meant to lower the overhead for getting started with the model.\n\n\nDeployment\nOnce packaged, the public-facing model code should be hosted within the PHAC Modelling Hub GitHub organization. Hosting your generic models package on one of our organisational Git servers ensures that the code is available to all those on the team and not inadvertently stuck in a specific team member’s Git server account."
+  },
+  {
+    "objectID": "extras/models-in-production.html#modelling-pipelines",
+    "href": "extras/models-in-production.html#modelling-pipelines",
+    "title": "Guidelines for models in production",
+    "section": "Modelling pipelines",
+    "text": "Modelling pipelines\nA model pipeline is a separate project that puts a model package into use by scaffolding it with supplementary code that reads in data and parameters required to run a model simulator and produces modelling outputs in a format that is useful for clients (e.g., plots, reports, slide decks).\nIt is recommended to have one modelling pipeline per request that depends on a specific version of the model package, to ensure reproducibility of modelling products.\nModelling pipelines, as the name suggests, benefit from being set up as actual pipelines, which are self-documenting to a degree and make efficient use of computational resources.\n\nMinimum documentation standards for modelling pipelines\nTODO"
+  },
+  {
+    "objectID": "extras/models-in-production.html#footnotes",
+    "href": "extras/models-in-production.html#footnotes",
+    "title": "Guidelines for models in production",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\n“Sufficiently” documented means that team members other than the primary modeller(s) can step in to run the model and respond to modelling requests without too much overhead or difficulty.↩︎"
+  },
+  {
+    "objectID": "extras/admin-git-groups.html",
+    "href": "extras/admin-git-groups.html",
+    "title": "Administering GitLab Groups and GitHub Organizations",
+    "section": "",
+    "text": "More than one person should be an owner of an organization at a time. Group/organization owners should enable two-factor authorization, and enforce it on the team.\nAccess to groups and organizations as well as their repositories is controlled by permissions. A permission is the ability to perform a specific action. For example, the ability to view a repository is a permission. The ability to write to a repository is a permission. The ability to grant others permissions is itself a permission.\nA role is a set of permissions grouped together (often logically by task). Roles can be assigned to individuals or teams (groups of individuals). For example, a ‘write’ role permits a contributor to both view and change the contents of a repository. An ‘admin’ role allows a contributer to view, change, or even delete a repository.\nRepository-level roles give organization members, outside collaborators and teams of people varying levels of access to repositories. Organization-level roles are sets of permissions that can be assigned to individuals or teams to manage an organization and the organization’s repositories, teams, and settings.",
+    "crumbs": [
+      "Extras",
+      "Administering GitLab Groups and GitHub Organizations"
+    ]
+  },
+  {
+    "objectID": "deployment-and-maintenance/licenses.html",
+    "href": "deployment-and-maintenance/licenses.html",
+    "title": "Licenses",
+    "section": "",
+    "text": "You may want to choose a license for every project, whether or not you intend on publishing it at the outset. The idea is to set yourself up well if and when you decide to publish a project. It’s important to remember that simply making your work available to others does not mean they can (legally) use it:\nIf you’re going to share your project, you must choose a license. Consult the Government of Canada Guide for Publishing Open Source Code for detailed advice on how to choose the right license for your open source software.",
+    "crumbs": [
+      "Deployment and maintenance",
+      "Licenses"
+    ]
+  },
+  {
+    "objectID": "deployment-and-maintenance/licenses.html#add-license-files-to-the-project-repository",
+    "href": "deployment-and-maintenance/licenses.html#add-license-files-to-the-project-repository",
+    "title": "Licenses",
+    "section": "Add license files to the project repository",
+    "text": "Add license files to the project repository\n\nLICENSE\nOnce you’ve chosen a license, create a LICENSE file (LICENSE.txt or LICENSE.md) at the root level of your project repository and save within it the selected license text. License text can be found in the Recommended permissive licenses section of the Government of Canada Guide for Publishing Open Source Code.\n\n\nNOTICE\n\nThe NOTICE file is reserved for a certain subset of legally required notifications which are not satisfied by either the text of LICENSE or the presence of licensing information embedded within the bundled dependency.\nhttps://infra.apache.org/licensing-howto.html\n\nA NOTICE file (NOTICE.txt or LICENSE.md) is an optional supplement to a LICENSE file that describes—when there are multiple copyright holders—the portion of the work for which they hold copyright, and under what license they have made that portion the work available. The NOTICE file may also contain copyright notifications as demanded by dependencies.",
+    "crumbs": [
+      "Deployment and maintenance",
+      "Licenses"
+    ]
+  },
+  {
+    "objectID": "deployment-and-maintenance/code-review.html",
+    "href": "deployment-and-maintenance/code-review.html",
+    "title": "Code review",
+    "section": "",
+    "text": "For projects with multiple developers, code review is an important step during the development and code maintenance process. It provides an opportunity to gain feedback on the changes you’ve made within a branch and to help catch potential issues. It is important when writing a pull request to provide a description of the changes and, if applicable, ways to test the changes.\nOnce a pull request (or merge request) is created, you can request a review from another person. This requires having another person available who has the time to review the code. If no such person is available, it is still possible to use the code review process yourself as a way to take a second look at all the changes prior to integrating them in with the final project.\n\nAddressing reviewers comments\nThe reviewer can make comments or suggestions in-line, referencing particular lines of code. Addressing these comments involves making changes and committing these on the same branch. These comments can be pushed to GitHub/GitLab.\n\n\nCode reviewer guidelines\nA useful document for performing code reviews is Google’s code review practices. Here, the term Changelist (CL) is equivalent to a pull-request/merge-request. An important general principle when reviewing code from this guide would be:\n\nIn general, reviewers should favor approving a CL once it is in a state where it definitely improves the overall code health of the system being worked on, even if the CL isn’t perfect. - https://google.github.io/eng-practices/review/reviewer/standard.html\n\nThat is to say, it is important to provide just the right amount of feedback. Enough to address any major issues without getting too caught up in requesting changes for every minor issue (these could be included in the pull-request as suggestions for later rather than required changes).\n\n\nFinishing the review process\nOnce all changes are approved by the reviewer, the changes may be merged into the main project branch in GitHub/GitLab, which will close the pull/merge request.",
+    "crumbs": [
+      "Deployment and maintenance",
+      "Code review"
+    ]
+  },
+  {
+    "objectID": "day-to-day/readmes.html",
+    "href": "day-to-day/readmes.html",
+    "title": "README files",
+    "section": "",
+    "text": "title: README files\nREADME files give useful information about files in a folder. READMEs are text files (usually .txt or .md) so that they can be read without any special software. By convention, they are named with uppercase “README” to draw attention to themselves when a folder is opened. If present, READMEs should be the first thing you consult when (re-)opening a project!\nWhen populating a README, think about what someone new to your folder would need to know to use it or build upon it. For instance, when you realize there’s something finicky or manual about using your files that you don’t have time to fix, at least document it in a README!",
+    "crumbs": [
+      "Day-to-day coding",
+      "README files"
+    ]
+  },
+  {
+    "objectID": "day-to-day/readmes.html#what-to-include",
+    "href": "day-to-day/readmes.html#what-to-include",
+    "title": "README files",
+    "section": "What to include",
+    "text": "What to include\nYou can (and should!) include a README anywhere you need to document something, such as:\n\nthe purpose of the files in a folder\nhow to use the files in a folder\nspecial notes about installing software to run code in the folder\ninformation about data in the folder, including where, how, and when it was last retrieved",
+    "crumbs": [
+      "Day-to-day coding",
+      "README files"
+    ]
+  },
+  {
+    "objectID": "day-to-day/index.html",
+    "href": "day-to-day/index.html",
+    "title": "Day-to-day coding",
+    "section": "",
+    "text": "There are a few fundamental best practices that we suggest you implement in your day-to-day coding workflow:\n\nUse an integrated development environment\nDocument your work with README files\nComment your code\nUse functions\n\nThese practices will eventually support more complex efforts, like developing projects or developing and maintaining software packages. These day-to-day practices also give you the greatest ‘bang-for-your-buck’ in terms of the return on your time and learning investment.",
+    "crumbs": [
+      "Day-to-day coding"
+    ]
+  },
+  {
+    "objectID": "day-to-day/commenting.html",
+    "href": "day-to-day/commenting.html",
+    "title": "Commenting code",
+    "section": "",
+    "text": "There is a balance to strike when it comes to commenting code: you want to comment just enough to guide a reader of your code (including possibly future you in a few months time!) without commenting every single thing. Your code should, to some degree, stand for itself: choosing descriptive variable and function names, and keeping the sequence of commands as straight-forward as possible will go a long way. However, comments still have their place, Hadley Wickham puts in his Advanced R textbook:\nThe code itself will explain a lot of the what; the key to understanding it will lie in the why. Use the comments to document your thought process as you were developing the code. Be sure to comment as you’re writing your code to ensure you remember all the key details. Using comments to section and label long bits of code is a great idea too, to help readers understand the outline of your code.",
+    "crumbs": [
+      "Day-to-day coding",
+      "Commenting code"
+    ]
+  },
+  {
+    "objectID": "day-to-day/commenting.html#script-headers",
+    "href": "day-to-day/commenting.html#script-headers",
+    "title": "Commenting code",
+    "section": "Script headers",
+    "text": "Script headers\nWhen writing a script, it’s a good idea to include some basic information in a block comment before the code begins, such as:\n\na description of the file’s contents and purpose\nauthor name(s) and contact information\n\nIf the script is stand-alone (not part of a folder with a README containing the following information), be sure to also include:\n\nnotes on script usage\n(if you are publishing this script online) any necessary legal information, such as a license\n\nHere is an example of a descriptive header for a stand-alone Python script being published online:\n# = = = = = = = = = = = = = = =\n#\n# PURPOSE: This script takes input and produces output.\n# AUTHOR: Jane Doe &lt;jane.doe@canada.ca&gt;\n#\n# COMMAND LINE USAGE:\n#\n# script.py --help\n# script.py --input [INPUT] --output [OUTPUT]\n#\n# EXAMPLE:\n#\n# script.py --input input.txt --output output.txt\n#\n# LICENSE: MIT\n#\n# Copyright 2024 Government of Canada\n#\n# Permission is hereby granted, free of charge, to any\n# person obtaining a copy of this software and associated\n# documentation files (the “Software”), to deal in the\n# Software without restriction, including without limitation\n# the rights to use, copy, modify, merge, publish,\n# distribute, sublicense, and/or sell copies of the\n# Software, and to permit persons to whom the Software is\n# furnished to do so, subject to the following conditions:\n#\n# The above copyright notice and this permission notice\n# shall be included in all copies or substantial portions of\n# the Software.\n#\n# THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY\n# KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE\n# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n# PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS\n# OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR\n# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\n# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\n# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n#\n# = = = = = = = = = = = = = = =",
+    "crumbs": [
+      "Day-to-day coding",
+      "Commenting code"
+    ]
+  },
+  {
+    "objectID": "projects/consistency.html",
+    "href": "projects/consistency.html",
+    "title": "Consistency",
+    "section": "",
+    "text": "There are a few consistency conventions that make your projects more widely-understandable and robust.\nWe suggest documenting any project conventions in your project’s main README file (or developer guide).",
+    "crumbs": [
+      "Projects",
+      "Consistency"
+    ]
+  },
+  {
+    "objectID": "projects/consistency.html#project-directory-organisation",
+    "href": "projects/consistency.html#project-directory-organisation",
+    "title": "Consistency",
+    "section": "Project directory organisation",
+    "text": "Project directory organisation\nIt can be helpful to use a standardised way to organise your project directory (also referred to here as the root directory). We recommend the following when setting up a directory for a new project:\n\nYou should start your project in an empty, project-specific directory\n\nIdeally, you would set up a git repository on GitLab or GitHub first, and then clone it locally.\n\nYou should not use spaces or special characters in directory or file names.\n\nSpaces can be a pain when using the command line as spaces usually need to be escaped with a \\ in this case.\n\nYou should not sync Git repositories using cloud storage providers (e.g., OneDrive, Dropbox, Google Drive, NextCloud).\n\nUsing Git (like many development activities) results in the creation, modification, and deletion a large number of small and/or temporary files. These changes can overwhelm file-storage providers, leading to synchronization conflicts and excess CPU usage.\nIn some cases, cloud storage providers may block certain file types for security reasons. For instance, OneDrive blocks .js files, which are used by renv for virtual environment management. When files are blocked, they are not uploaded, so you’re not actually backing up a complete copy of your project files, and you will regularly get annoying notifications from OneDrive telling you to remove files that cannot be synced.\n\n\n\nDirectory structure\nProjects using Git and a Git server, as recommended in the version control section of this guide, should have a few key files at the root level, no matter the language(s) being used:\nproject_directory/\n  .git/\n  .gitignore\n  LICENSE\n  NOTICE\n  README\n\n\n.git/ and .gitignore\n.git/ and .gitignore (as their names suggest) control how Git works with your project.\nThe .git/ folder is the ‘thing’ that makes your project directory a Git repository. It is created automatically when you enable Git (e.g., by cloning a remote repository or through git init). It contains both the local Git configuration and your project’s version control data.\n.gitignore controls which files are ignored by Git (i.e. are never added to version control). Unlike .git/, .gitignore is not created automatically. Learn more about using a .gitignore file here.\n\n\nLICENSE and NOTICE\nThese files are only required if you are publishing your project online. See Licenses for more information.\n\n\nREADME\nEvery project repository should contain a README file, which serves as the most basic project-level documentation for your work. See README files for more information.\n\n\nDirectory structure for R and Python\nWe recommended the following components in addition to the general directory structure above:\nproject_directory\n  data/\n  notes/\n  scripts/\n  tests/\n  R/ **or** py/\n\ndata/ should contain any data used in your analyses, unless you must not commit it to a Git server and need to keep it in a shared location like OneDrive or SharePoint. In this case, be sure to add these files to your .gitignore file.\nnotes/ should contain your project notes.\n\nWe recommend using Quarto for notes so that you can weave executed code and text together. Note that Quarto is a separate program that you would ordinarily need to install in addition to R (or Python), but it now comes bundled with RStudio, our preferred IDE for R, so no additional installation is required if you already have RStudio.\n\nscripts/ should contain any scripts for your project.\ntests/ should contain code tests. We recommend spending a few minutes writing at least one unit test every time you write a function, and running these tests after major changes to your code, to be proactive about code bugs.\nFor R, R/ should contain your functions, ideally one main function per .R file, with specific helper functions below. This is also where functions must life if you go on to package your code. For Python, you could use py/ instead.1",
+    "crumbs": [
+      "Projects",
+      "Consistency"
+    ]
+  },
+  {
+    "objectID": "projects/consistency.html#specifying-paths",
+    "href": "projects/consistency.html#specifying-paths",
+    "title": "Consistency",
+    "section": "Specifying paths",
+    "text": "Specifying paths\nWhen specifying file paths in your project, it pays to be consistent. We recommend that you always write paths relative to the root directory, and that you always run scripts out of the root directory.\nThis practice has several advantages. For one, your paths won’t break from user to user since they are relative. Also, paths will break less often if files are moved around. When paths are relative to their present location, they are fragile to both the location of the file in which you’re calling the file path, and to the location of the target file. By making paths relative to the root directory, you eliminate the case where they break because you changed the location of the source file.\nFor R, we recommend the use of the here package, which adopts this convention. You can get started with here using this guide.",
+    "crumbs": [
+      "Projects",
+      "Consistency"
+    ]
+  },
+  {
+    "objectID": "projects/consistency.html#code-style",
+    "href": "projects/consistency.html#code-style",
+    "title": "Consistency",
+    "section": "Code style",
+    "text": "Code style\nCode that is easier to read will be easier to maintain, debug, and build on in the future. Code style is the collection of conventions that govern the formatting of the code we write. For instance, code style can include decisions about\n\nusing different cases for functions versus variables (camelCase for variables, snake_case() for function names)2\nformatting style for comments, and how to denote sections of code\nhow to indent blocks of code\n\nStyle is subjective and sometimes programming-language-specific. The most important thing to remember is:\n\nThe code you write should be optimized for the average code reader and not the specific writer.\n\nChoose a set of rules and stick to them within a project. Try to choose rules that are familiar to many.\n\nLinters and Stylers\nSome conventions have been encoded in helpful “linter” tools that can crawl your code to look for convention violations. Linters can be especially helpful when you’re first adopting a popular code style, or if you’re preparing to contribute to an open-source project.\nThere are also styler tools that automatically format existing code using a specific style guide.\n\n\nRecommendations and resources\n\n\n\nLanguage\nRecommended style guide\nAssociated linter\nAssociated styler\n\n\n\n\nPython\nPEP8\npycodestyle\nautopep8\n\n\nR\ntidyverse style guide\nlintr\nstylr",
+    "crumbs": [
+      "Projects",
+      "Consistency"
+    ]
+  },
+  {
+    "objectID": "projects/consistency.html#footnotes",
+    "href": "projects/consistency.html#footnotes",
+    "title": "Consistency",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nFor Python packages, the convention is rather that you name the directory containing your module contents with the module name, but this can be confusing for scientific projects that are not specifically software packages, hence our recommendation to use py.↩︎\nYou can read more about case styles here.↩︎",
+    "crumbs": [
+      "Projects",
+      "Consistency"
+    ]
+  },
+  {
+    "objectID": "projects/pipelines.html",
+    "href": "projects/pipelines.html",
+    "title": "Pipelines",
+    "section": "",
+    "text": "Some scientific projects can grow to be very complex, involving many scripts and dependencies between pieces of code. Some projects involve routine analyses that you need to repeat on a regular bases. Both of these cases, which are not mutually exclusive benefit from the use of pipelines.\nPipelines are a way of defining complex analyses by explicitly declaring dependencies between inputs, intermediate objects, and outputs. Once defined as such, they can be executed with workflow management software to ensure analysis steps are executed in a correct order and that objects are re-computed only if there are changes to upstream dependencies, which can make work much more efficient.",
+    "crumbs": [
+      "Projects",
+      "Pipelines"
+    ]
+  },
+  {
+    "objectID": "projects/pipelines.html#snakemake",
+    "href": "projects/pipelines.html#snakemake",
+    "title": "Pipelines",
+    "section": "Snakemake",
+    "text": "Snakemake\nSnakemake is workflow management software tailored to defining and running data analysis pipelines, especially geared towards Python users. Here, a pipeline is constructed as a series of linked steps (defined as rules, which can include executing arbitrary command-line software). Some of the advantages that Snakemake provides over Make comes to the execution porition, where each rule can not only define the code to run, but also how to install the underlying software (using conda or Docker/singularity containers) as well as how to execute the software in a variety of environments (such as a local computer, or a high-performance computational cluster).",
+    "crumbs": [
+      "Projects",
+      "Pipelines"
+    ]
+  },
+  {
+    "objectID": "projects/pipelines.html#nextflow",
+    "href": "projects/pipelines.html#nextflow",
+    "title": "Pipelines",
+    "section": "Nextflow",
+    "text": "Nextflow\nNextflow shares some similarities to Snakemake, in that they are workflow management software that can be used to define a data analysis pipeline, as well as define how to install the required software and manage code execution in a variety of environments (local machines, high-performance computing clusters, or cloud environments). However, one key difference is that Snakemake is Python-based while Nextflow is Groovy-based (Groovy being built on top of Java). Additionally, Nextflow also has a community of contributed pipelines and modules, focused on bioinformatics analysis, that can be re-used in different pipelines (via the nf-core community).",
+    "crumbs": [
+      "Projects",
+      "Pipelines"
+    ]
+  },
+  {
+    "objectID": "projects/virtual-environments.html",
+    "href": "projects/virtual-environments.html",
+    "title": "Virtual environments",
+    "section": "",
+    "text": "An environment is the collection of hardware and software available to your project on a particular system. If your project relies on software beyond the code in your project folder (e.g., packages), these dependencies must be installed and loaded into the environment for your project to work correctly.\nBy default, most languages install dependencies in a shared system-wide location or library. While this improves efficiency (because each project does not need to bring its own copies of common dependencies), it can also cause conflicts between projects. What happens if two or more projects on the same system require different, incompatible dependencies? For instance, you might write code for a project today with the most recent version of a package, but you have a project developed six months ago with an earlier version of the package that breaks when you upgrade the package to the latest version. You may not even know about this breaking change until you unearth your old project, at which point you might be under a deadline (think revisions for a manuscript!)\nThis is the problem that virtual environments were designed to solve. A virtual environment helps isolate your project from the rest of the system by replacing the system-wide library with a project-specific library. When you run or build your project in a virtual environment, its dependencies are installed to, and made available from, the project-specific library, ensuring changes to your project (e.g., the addition, updating, or removal of a dependency) do not affect others on the system, and vice-versa.\nIn this way, you can ensure that you will still be able to run your code in the future. Also, since you can usually save the state of your virtual environment one or a few simple files and then distribute this ‘snapshot’ with your project, collaborators and users can reproduce your virtual environment on their own system to get your code running for themselves (ideally) seamlessly.\nVirtual environments are a great tool for reproducibility, especially where you’re not planning on taking the extra step to package your code. We encourage their regular use for all projects.",
+    "crumbs": [
+      "Projects",
+      "Virtual environments"
+    ]
+  },
+  {
+    "objectID": "projects/virtual-environments.html#recommendations-and-resources",
+    "href": "projects/virtual-environments.html#recommendations-and-resources",
+    "title": "Virtual environments",
+    "section": "Recommendations and resources",
+    "text": "Recommendations and resources\n\n\n\nLanguage\nRecommended virtual environment manager\nResources\n\n\n\n\nR\nrenv\nGet started with renv\n\n\nPython\npipenv\nGet started with pipenv",
+    "crumbs": [
+      "Projects",
+      "Virtual environments"
+    ]
+  },
+  {
+    "objectID": "projects/version-control.html",
+    "href": "projects/version-control.html",
+    "title": "Version control",
+    "section": "",
+    "text": "Managing versions of your work is one of the most important activities when it comes to working efficiently, for reproducibility, and when collaborating with others. You’re probably already familiar with the basic idea of version control through Microsoft Word or Powerpoint via OneDrive and SharePoint. Many people who develop software use a distributed version control software to manage their work, which means each developer works on their own, local copy of a given project and synchronizes through a centralized server.\nThe most common and our recommended distributed version control software for coding is Git. Unlike with OneDrive and Sharepoint, Git’s version control is not automatic. Instead, you must log your changes manually every so often and explicitly send your changes up to a Git server so that collaborators can see and retrieve them.\nGit operates on collections of files, usually grouped into a single folder, which we call a repository (or “repo”). The idea is to have one repo per project. Git is optimized to work with text-based files, such as code, csv files, and the like.1\nTo get started with Git, start by installing it.",
+    "crumbs": [
+      "Projects",
+      "Version control"
+    ]
+  },
+  {
+    "objectID": "projects/version-control.html#gitlab-and-github",
+    "href": "projects/version-control.html#gitlab-and-github",
+    "title": "Version control",
+    "section": "GitLab and GitHub",
+    "text": "GitLab and GitHub\nTo collaborate with others using Git, you must sync your repository to a Git server. A Git server offers a central “home” in the cloud that collaborators can interface with asynchronously:\n\nThere are two main “flavours” of Git server software: GitHub and GitLab. These software are largely similar, with one important exception; GitLab can be run on a private server, whereas GitHub is only offered by Microsoft at github.com.\n\nAccess control\nA repository can be public (accessible to anyone with access to the Git server), or private (accessible only to registered users who have been granted access).\nGranting repository access to individual users may work well for smaller projects, but it quickly becomes impractical at scale. To manage access for many users at once, GitHub and GitLab offer Organizations and Groups respectively. Organizations and Groups are essentially “shared accounts” or “containers” for projects that offer sophisticated security and administrative features.\nImportantly, Organizations and Groups move repos to unique project URLs. Personal repositories are located at examplegitserver.com/user-name/repo-name. Organization and Group repositories are located at examplegitserver.com/organization-name/repo-name. Organizations and Groups are particularly useful for project branding and continuity; the same URL can be used for the life of the project, even as users join or leave over time.\nTo learn more about administering organizations and groups, see the GitLab Groups and GitHub Organizations page.\n\n\nGitLab and GitHub docs\nThis guide gives an introduction to using GitHub and GitLab when developing projects, but you may wish to occasionally consult the documentation for either product for more advanced usage:\n\nGitLab docs\nGitHub docs",
+    "crumbs": [
+      "Projects",
+      "Version control"
+    ]
+  },
+  {
+    "objectID": "projects/version-control.html#git-basics",
+    "href": "projects/version-control.html#git-basics",
+    "title": "Version control",
+    "section": "Git basics",
+    "text": "Git basics\nThere are a few fundamental actions that you will use often with Git, which we outline here.\n\nCreating a new repository for your project\nWhen starting a new project, you will likely want to create a new repository to house your project files. We recommend that the project lead create the first copy of your repo in the cloud, i.e. on GitLab or GitHub via a web browser, after deciding which remote home to use for this particular project.\nInstructions for creating a new repo can be found here for GitLab and here for GitHub. We recommend that you initialize your new repository with a README and and a license file and be mindful of the visibility level for your repository.\nTo invite collaborators, follow these instructions for GitLab and these instructions for GitHub.\nOnce the cloud repository is created, the project lead and all collaborators should create a local, synchronized copy (or “clone”) of the project on their computers in order to be able to work on the project files. To clone the project, you need to first decide how you will interact with Git on your computer, which we discuss in the next section. (We discuss how to actually clone a repository in a subsequent section.)\n\n\nGit clients\nGit is fundamentally a command line program and some users simply interface with it via the command line. When you install Git, you will see a new app called Git Bash, which gives you a command line interface to Git. However, it is generally easier to interact with Git primarly via a client with a graphical user interface (GUI). These can either be standalone programs or bundled within an integrated development environment (like RStudio or VSCode).\nThe Git website includes a list of Git GUI Clients. We recommend using GitHub Desktop as a starting point. It is one of the few cross-platform open source Git GUI clients. Despite its name, GitHub Desktop works with all Git servers, including GitLab. GitHub Desktop is available on corporate machines through the Company Portal. If you have a GitHub account that you use for work, you should sign into it in the GitHub Desktop app.\nThis guide will demo instructions for basic Git use via GitHub Desktop. If you prefer to learn how to use Git via the command line, you should consult this command line guide on the official Git site.\n\n\nCloning a repository\nNow that you’ve created a new repository in the cloud, you need to clone it locally to your computer so that you can work on the repo’s files. This action copies the current files and Git history to your computer, and creates a link between your copy and the main copy in the cloud (in this case called the “origin” repository).\nWe strongly recommend against cloning code repositories to OneDrive or Sharepoint locations, as these services block the synchronization of certain code files for security reasons. Using OneDrive or Sharepoint locations for your code repositories can lead to only some files being backed up in the Microsoft cloud, along with annoying and persistent notifications from the OneDrive/Sharepoint app telling you that there is a synchronisation issue and to remove certain files. Instead, we recommend creating a folder in your local user folder (C:/Users/USERNAME) to house all Git repos. GitLab and GitHub both store a separate copy of your repository in the cloud, so you still inherently are backing up your work on an external device.\nTo clone a GitHub repo in GitHub Desktop:\n\nIn GitHub Desktop, go to File &gt; Options... &gt; Accounts and sign into your GitHub account (if you’re not already signed in).\nGo to your repository on github.com, and click the big green “Code” button. Select “Open in GitHub Desktop”.\nChoose a local path where you’d like the repository clone and click “Clone”.\n\n\n\nIgnoring files\nNot all files should be tracked by Git, including:\n\nsensitive data files that must only be stored locally\ngenerated temporary files that collaborators can (and will) be easily recreated when they run the code\nfiles over 100 MB (GitHub’s file transfer limit)\n\nWe can use .gitignore file to avoid including these files in the repository’s file history as well as pushing them up to the cloud.\nA .gitignore is a text file usually kept at the top level of your repository. Git will ignore any files that match names and patterns listed in a .gitignore file, meaning that the files will not be tracked. It is a good practice to ignore these files as soon as possible after creating your repository, to avoid accidentally synchronizing them to a Git server.\nOne way to ignore files is by right-clicking them in the “Changes” pane of GitHub Desktop and selecting one of the ignore options, either “ignore this file” or “ignore all files with the same extension”:\n \nOnce you ignore your first file, you will see the new .gitignore file in Windows Explorer:\n\nYou can open .gitignore and simply type in filenames and patterns to new lines in the file, as opposed to right-clicking files individually in GitHub Desktop. You can find rules for populating your .gitignore file here.\nAnother option is to start with a template .gitignore file with commonly-ignored file types for your project’s programming language(s), which you can generate easily using gitignore.io.\n\n\nMaking changes\nNow that your repository is available to you locally, you can start developing your code. Every time you make changes to your files (create/delete/edit a file), you will see them reflected in GitHub Desktop, under the Changes tab:\n\nChanges are shown relative to the last snapshot, i.e., relative to the last commit to the repository. The green plus to a file means a file was added, the yellow dot means a file was modified, and a red minus means a file was deleted. When a change is listed but unchecked, it is “unstaged”, and when it is checked it is “staged” in preparation for making a commit.\nIn either case, these changes have been made, but they have not been committed to the version history of the repository. You can see the changes in detail on the right-hand side, in the diff view: green lines have been added and red lines have been deleted relative to the last snapshot (commit) of the code.\n\nYou can stage entire files by checking them, or just some lines in a file by selecting/deselecting lines in the diff view.\nOnce you have selected the changes you want to bundle together for your snapshot, write a commit message to summarise the changes in the lower left of the app window and click the Commit button:\n\nThe main commit message is mandatory and should provide a short summary of your changes. The additional description is optional.\nOnce committed, you will see this latest change, and all others before it in the History pane:\n\nFor more on writing commit messages, see the Writing commit messages page.\n\n\nRemoving files from tracking\nIf you’ve accidentally committed a file that you want to ignore, just adding the file to the .gitignore will not work to ignore the file. You must first remove the file from tracking, and then adding it to the .gitignore will take effect. GitHub Desktop does not have a feature to remove files from tracking, so we must do it from the command line.\nOpen up the Git Bash program and navigate to your repository’s directory using\ncd path/to/directory\nwhere you’d fill path/to/directory in with an absolute path to your project repo.2\nNow that you are in your project’s repository, you can remove a file from tracking with\ngit rm path/to/file\nFor instance, if I wanted to remove a file called data.csv from the top level of my repository, I would do\ngit rm data.csv\nNow if you were to add this file to the .gitignore, it would actually be ignored!\nTo purge an accidentally committed file from your GitHub repository, you’ll need to follow these instructions.\n\n\nSynchronizing\nNote the little up arrow beside the latest commit from our previous example:\n\nThe arrow indicates that some changes we committed have yet to be sent up to the cloud repository. Commits only log changes to your local file history. To send your changes to the cloud repository, you must push them up:\n\nIf you are working on two computers or collaborating with others, you will want to periodically sync in the opposite direction and retrieve any changes from the cloud repository. We start with a fetch to check for any changes available online:\n\nIf changes are present, GitHub Desktop shows us how many new commits are available (just one here) and we get the option to pull them down to our local copy:\n\n\n\nBranching\n\nUnderstanding branches\nBranches are a way of working on your files in a way that is isolated from other versions of your code. The default branch is main and should be thought of as the “live” version of your code; you should avoid making changes directly to your code on main unless you are confident that your changes won’t break anything. Instead, experimentation and development should be done on another branch, especially when you are collaborating with others to avoid clashing with their changes in an uncontrolled way. Branches can be merged into one another at any point in time to reconcile changes.\nThis paradigm comes from the world of software development and it may very well be overkill for a solo research project. However, it can be very useful when collaborating with others, and we recommend a common Git workflow that uses branches below.\nWe can visualise branching to understand it better. Imagine your file history as a timeline with a series of commits denoting snapshots of your code:\n\nThis history is of a repository where some authors are collaborating on a manuscript together. One author decides to add a section on methods, but does not want to disrupt the work of others, so they make a branch:\n\nThis author branched off of main at a commit with message “completed analysis section”. The add-methods branch history starts at that change. Changes can continue to be made to main, but add-methods will not include them (unless they are explicitly pulled into add-methods). In this way, branching enables work in parallel.\nWhen work on the add-methods branch is complete, these changes can be pulled into main with a pull request (or “merge request” on GitLab).\n\nThe idea is to formally request a pull into main and allow for a review and approval process before the merge is complete. Before being able to accept a pull request from add-methods into main, any additional changes to main must be merged into the add-methods branch first. Here, that means adding commit numbers 51003d7 “added figures” and 3563aa1 “added authors” to add-methods. This is a precaution to avoid merge conflicts.\nGit will automatically attempt to resolve these changes and generally does a good job at this unless conflicting changes happen to be made to the same part of a file. If Git detects conflicting changes, it will create a merge conflict between the branches, where it will add text to the conflicted files flagging where conflicts are.\nIn the example above, imagine that we have a file called authors.qmd and we are trying to pull changes to this file from add-method into main. Someone working on main put the line “The authors of this code are unknown.” (with commit number 3563aa1 “added authors”) in this file, and in parallel someone working on add-methods put “The authors of this code are wonderful people!” (with commit number 28eb227 “edited methods section”) in the same line of this file. These are conflicting changes that Git would not know how to reconcile, so the pull request into main would be blocked. Instead, Git would flag the conflict by inserting the following text into authors.qmd:\n\nConflicts are sandwiched between the markers &lt;&lt;&lt;&lt;&lt;&lt;&lt; and &gt;&gt;&gt;&gt;&gt;&gt;&gt;. You can find them easily by searching the conflicted file for &lt; characters. Git will insert both proposed changes divided by =======, and it will label where each change came from. In the example above, the top change comes from HEAD, and the bottom change comes from the add-methods branch. HEAD is a generic term for the tip of the branch you’re currently working on. If you are merging add-methods into main, you would do that from the main branch, so here HEAD would be main.\nTo resolve the conflict, simply erase everything between and including the conflict markers except the change you want to keep. In the above example, if we were to accept the change from add-methods, the resolved conflict would just look like:\n\n\n\nWorking with branches\nTo make a branch in GitHub Desktop, start by opening the branch pane by clicking on the current branch in the top middle of the app window, and then click the “New branch” button:\n\nYou new branch will start from the tip of the branch you’re currently on so be sure to first select and synchronize the branch you want to start from before clicking “New branch”. The “New branch” button will open a pop-up where you will input a name for your new branch:\n\nIt is good practice to use a concise and descriptive name that quickly conveys the goal of the work on the new branch. Once you create the branch, it will only be created locally; you must push it up to the cloud repository yourself, by selecting the “Publish branch” button that will be available:\n\nOnce you’ve done that, you will be able to see your branch online:\n\n\n\n\nMerge/pull request\nAs suggested above, before creating a pull request (or “merge request” in GitLab), you will want to ensure your branch is up-to-date with the branch you’re merging into (usually main) and resolve any conflicts. You can do so by starting on your new branch, e.g. add-methods, opening the branch menu in GitHub Desktop, and selecting the button at the bottom that would say “Choose a branch to merge into add-methods”. Here you would select main and then resolve any merge conflicts as explained above. Finish by pushing those changes up to the origin (cloud) repository.\nOnce you’ve synchronized your new branch with the base branch of your pull request, you can open a pull request.\nFor repositories connected to GitHub, you should use these instructions for creating a pull request from GitHub Desktop. For repositories connected to GitLab, you should use these instructions for creating a merge request from the merge request list on the GitLab website.\nOnce the request is created, it can be reviewed and merged online:\n\nGitLab: reviewing and merging merge requests\n\nTo merge, simply find your request in the project repository online on GitLab, open it, and click the merge button at the bottom.\n\nGitHub: reviewing and merging pull requests\n\nBe sure to synchronize local repositories after merges. You may also want to delete the new branch that was merged if it has served its purpose (both locally and in the cloud repository), which you can do easily from GitHub Desktop for GitHub repositories:",
+    "crumbs": [
+      "Projects",
+      "Version control"
+    ]
+  },
+  {
+    "objectID": "projects/version-control.html#git-workflow",
+    "href": "projects/version-control.html#git-workflow",
+    "title": "Version control",
+    "section": "Git workflow",
+    "text": "Git workflow\n\nGitHub flow\nGit, GitLab, and GitHub are very flexible pieces of software and it’s possible to use them in many different ways. We recommend the use of GitHub flow3, which is a straightforward and simple workflow. Here is an overview:\n\nFor any new addition to your code (new feature, bug fix, etc), create a new branch locally based off of main. We will call this the “feature branch”. Pick a branch name that quickly conveys its purpose.\nPush your feature branch to the remote (cloud) repository as a back up and so that anyone you’re collaborating with on this new feature can check the branch out locally too.\nMake changes to your code and commit them into the feature branch.\nOnce you’ve completed the task you set out address with this feature branch, pull the latest version of the main branch from the remote repository into your new feature branch and resolve any merge conflicts.\nSubmit a pull request (or a merge request on GitLab) to merge your feature branch into main. Optionally request a review from a collaborator. Address reviewer comments and make further changes by pushing to the feature branch (these changes will be appended to the pull request). Ideally the review does not take long so that there are no further changes to the main branch in the meantime, but if it does, you may have to pull the main branch into the feature branch once more to resolve any merge conflicts before completing the merge into main.\nWhen the review is complete, accept the pull request and merge the changes into the main branch.\nDelete the new feature branch (on both the remote repository and your local copy).\n\nIn this workflow, you should strive to create branches that are meant to address a non-trivial issue (e.g. more than simply a typo fix), but that require work that won’t take more than a few days. This way, collaborators reviewing your work will have enough to react to without being overwhelmed, and you will not diverge so much from the default branch that when it comes time to merge your new work into main, you won’t have too much to reconcile (even if your collaborators have also merged into main since you last branched off).\nYou should be able to use GitHub Flow via GitHub Desktop and GitLab/GitHub online with the instructions in the Git basics section. To use it via a command line environment, such as in the Git Bash app, follow the instructions here.\n\n\nProject management with GitLab and GitHub\nBeyond enabling teams to collaborate in a version-controlled setting, GitHub and GitLab both offer features that make project management easy and complementary to GitHub flow. Issues (on both GitLab and GitHub) are an easy way to track tasks associated with each project. Issues can be tagged with various labels, assigned to individuals, and organized further using Issue boards (GitLab) and Projects (GitHub).\nIssues are numbered and can be referenced in discussions on GitHub and GitLab with a hashtag followed by the issue number (e.g. #5). One can use these references to close completed issues automatically by using keywords in commit messages and pull requests. For instance, if a commit message includes the text “fixes #7”, then issue #7 will automatically be closed when this commit is pulled into main in the remote repository. More information about keywords can be found here for GitLab and here for GitHub.\nTo enhance GitHub flow with these additional project management features, we recommend that the flow is amended to start with the creation of an Issue for which a feature branch is then created, and that keywords are used to close any Issues associated with a commit and/or pull request.",
+    "crumbs": [
+      "Projects",
+      "Version control"
+    ]
+  },
+  {
+    "objectID": "projects/version-control.html#git-tips-and-tricks",
+    "href": "projects/version-control.html#git-tips-and-tricks",
+    "title": "Version control",
+    "section": "Git tips and tricks",
+    "text": "Git tips and tricks\n\nCommit a (mostly) empty directory\nGit is designed to track files, not directories—directories are only added to Git as a side-effect of tracking their contents. As a result, Git cannot track and commit empty directories.\nIf your code requires the existence of such a directory (e.g., a /tmp directory for writing temporary files, or an /output directory for rendering documents), your code should check for the existence of the directory, and if it’s not present, create it.\nHowever, if you can’t create the directory programatically, you can instead commit a (mostly) empty directory to your repository.\n\nSolution 1: README.md\nAdd a README.md file as a placeholder, excluding all other files in the directory. You can use the README to document the purpose of the directory (and READMEs in the first and second levels of your project are automatically rendered by Git servers on the repo website).\nCreate the README in the directory, then append the following lines to your project’s main .gitignore file (in the main project directory):\n# To exclude the directory and its contents.\nexample-dir/*\n\n# To create an exception for the README.md.\n!example-dir/README.md\n\n\nSolution 2: More .gitignore\n.gitignore files can be nested, so you can add a .gitignore, excluding all other files in the directory.\nCreate the .gitignore file in the directory, then add the following lines to the .gitignore you just created:\n# To exclude the directory and its contents.\n*\n\n# But do not exclude the .gitignore (! means not)\n!.gitignore\n\n\n\nWorking with the repository history\nTODO Outline various options when merging:\n\ndropping repo history (snapshot approach)\nre-writing repo history\nmaintaining repo history\n\nDiscuss considerations in each case.",
+    "crumbs": [
+      "Projects",
+      "Version control"
+    ]
+  },
+  {
+    "objectID": "projects/version-control.html#footnotes",
+    "href": "projects/version-control.html#footnotes",
+    "title": "Version control",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nGit can still track more complex file types, like Word documents or Excel spreadsheets, but some features, like easily comparing file versions with diffs, will not be as easy to use.↩︎\nA simple way to find an absolute path to your repo is to select the folder in Windows Explorer (select, not open) and then in the Home ribbon, click the “Copy path” button. You would then paste the copied path into Git Bash after the cd command using Shift+Ins or by right-clicking and clicking Paste. Be sure to remove the quotes around the path before hitting enter!↩︎\nGitHub flow is very similar in spirit to trunk-based development. You can learn more about this approach and the motivation behind it here.↩︎",
+    "crumbs": [
+      "Projects",
+      "Version control"
+    ]
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Sometimes you may just need a one-off script to perform a task, but in general, we believe it is more robust to work in terms of projects.\nA coding project lives in a single directory. You may have several smaller projects that are part of a larger overarching goal, but each smaller project should have an easily-articulated focus.\nWe suggest the following best practices when developing a coding project, which are also roughly in the order that you’d want to start doing them for a new project:\n\nUse a version-controlled repository to house your project\nMaintain a project-specific README\nUse virtual environments to improve reproducibility\nUse consistent project organisation and code style\nSet up pipelines for complex and/or routine analyses",
+    "crumbs": [
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "projects/readmes.html",
+    "href": "projects/readmes.html",
+    "title": "README files",
+    "section": "",
+    "text": "You’re not having déjà vu—we’ve already discussed using README files as a day-to-day coding practice. All of these suggestions still apply within projects, though we expand upon them here.\nFor projects, we recommend maintaining a project-specific README in your project’s main (root) directory. It is the first place users and collaborators should look to get information about what your project does and possibly how to use or contribute to your code. Note that “collaborators” include you in the future, so this is relevant even for solo projects!",
+    "crumbs": [
+      "Projects",
+      "README files"
+    ]
+  },
+  {
+    "objectID": "projects/readmes.html#what-to-include",
+    "href": "projects/readmes.html#what-to-include",
+    "title": "README files",
+    "section": "What to include",
+    "text": "What to include\nA good top-level project README can include:\n\nIntroduction:\n\nA scope statement that briefly outlines the goal of the project (this can help you ensure that your projects remain focused as they’re developed)\nAuthors and contact information (especially if publishing the project online)\nWhere to learn more about the project (e.g., links to additional documentation)\n\nOne-time setup:\n\nAny one-time setup required to use and/or develop the code base (e.g., supporting software installations, cloning of sibling repositories)\n\nUsing the the code\n\nAny setup required at the start of each user session (e.g. activating virtual environments)\nAn overview of how the code is organized (e.g. main scripts and what they do, the order in which scripts should be executed)\nAny manual updates and settings that can/must be done to the code before running it (e.g. variables, data download)\nCommands for running the code\nExpected outputs of the code and where to find them (e.g. subdirectories)\nAny limitations of the code that a user should be aware of\nCommon troubleshooting tips for the code\n\nDeveloping the code\n\nAny setup required at the start of each development session\nDevelopment conventions (e.g., code style)\nOther notes for developer\n\n\nThe above are simply suggestions and may or may not apply for each of your projects: take what’s helpful and leave what isn’t!",
+    "crumbs": [
+      "Projects",
+      "README files"
+    ]
+  },
+  {
+    "objectID": "projects/readmes.html#readme-format",
+    "href": "projects/readmes.html#readme-format",
+    "title": "README files",
+    "section": "README format",
+    "text": "README format\nFor projects that are hosted on GitLab or GitHub, you may wish to use README.md as opposed to README.tex as these Git servers automatically render Markdown README files to display nicely for reading on the web.\nFor R projects, you can also use a README.Rmd file in R Markdown format to generate a README.md that includes the results of executable R code in README.Rmd, like code demonstrations and plots. The idea is to edit README.Rmd and then knit it to produce README.md, which will display nicely on the landing page for your project repository on a Git server. You can use the usethis::use_readme_rmd() to easily create this source file with the correct setup.1",
+    "crumbs": [
+      "Projects",
+      "README files"
+    ]
+  },
+  {
+    "objectID": "projects/readmes.html#readmes-in-subdirectories",
+    "href": "projects/readmes.html#readmes-in-subdirectories",
+    "title": "README files",
+    "section": "READMEs in subdirectories",
+    "text": "READMEs in subdirectories\nYou may also wish to include READMEs in subfolders, (e.g., in your data folders), if you want to make additional, specific notes about the files within that would perhaps be too detailed for the top-level project README. For instance, if there is data that must be downloaded/updated manually in the data/ subdirectory, instructions for this process could be documented in data/README.md (which could then be referenced from the top-level README.md).",
+    "crumbs": [
+      "Projects",
+      "README files"
+    ]
+  },
+  {
+    "objectID": "projects/readmes.html#footnotes",
+    "href": "projects/readmes.html#footnotes",
+    "title": "README files",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nusethis::use_readme_rmd() also adds some code to git so that it will check whether README.Rmd and README.md are in sync before allowing you to push up to the remote repository, as a safety net.↩︎",
+    "crumbs": [
+      "Projects",
+      "README files"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Best practices for scientific software development",
+    "section": "",
+    "text": "If you’re reading this guide, it’s probably because you write scientific code and want to get better at doing so. But what does it mean to be good at coding? What probably comes to mind immediately is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.\nThe goals of this guide are to teach you both how to write better code and how to get better at the process of writing code. This means adopting habits, or best practices, while writing scientific software that ensure your projects are well-documented, reproducible, and extensible. Scientists often write code, but they are not software developers in the traditional sense. However, their lives could be made easier by adopting some of the ways in which professional software developers work. This guide collects such practices and discusses them in a way that is specific to working in science.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Best practices for scientific software development",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThis guide builds on previous work by Eric Enns, Eric Marinier, Deep Sidhu, Phil Mabon, and Aaron Petkau in the National Microbiology Laboratory.↩︎",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "day-to-day/functions.html",
+    "href": "day-to-day/functions.html",
+    "title": "Functions",
+    "section": "",
+    "text": "When we first learn to code, we often start by working within a console, and experiment by writing one line, executing it, inspecting the output, then writing another, executing that, etc. We then might graduate to writing several lines of code at once in a script, and then executing the script, and inspecting the final output. This might work well for a while, but as we find ourselves writing longer and longer more complex scripts, there can be a great deal of code repetition, and perhaps even copy-pasting of similar code blocks.\nThe problem with sticking with this approach is that our scripts quickly become unreadable and inflexible. Moreover, we can easily introduce bugs during the copy-paste-replace cycle. The solution is to use functions.\nFunctions package a unit of code that can be used and reused in some sequence to get a result or produce an effect. Ideally, functions are simple (easy to understand, returns only one output), and modular. We recommend you read this book chapter about writing functions (whether or not you code in R specifically). It motivates the use of functions and outlines many basic principles about writing good ones.",
+    "crumbs": [
+      "Day-to-day coding",
+      "Functions"
+    ]
+  },
+  {
+    "objectID": "day-to-day/functions.html#recommendations-and-resources",
+    "href": "day-to-day/functions.html#recommendations-and-resources",
+    "title": "Functions",
+    "section": "Recommendations and resources",
+    "text": "Recommendations and resources\n\n\n\nLanguage\nResources\n\n\n\n\nR\nWriting functions in R\n\n\nPython\nWriting functions in Python",
+    "crumbs": [
+      "Day-to-day coding",
+      "Functions"
+    ]
+  },
+  {
+    "objectID": "day-to-day/IDEs.html",
+    "href": "day-to-day/IDEs.html",
+    "title": "Integrated development environments",
+    "section": "",
+    "text": "Integrated development environments (or IDEs) aim to make the process of developing code easier by gathering commonly used development tools into one program. We recommend working in an IDE when developing code; the more you work within an IDE, the more you’ll get used to its tools and shortcuts, and the more efficient you’ll be while working.",
+    "crumbs": [
+      "Day-to-day coding",
+      "Integrated development environments"
+    ]
+  },
+  {
+    "objectID": "day-to-day/IDEs.html#language-specific-vs-language-agnostic-ides",
+    "href": "day-to-day/IDEs.html#language-specific-vs-language-agnostic-ides",
+    "title": "Integrated development environments",
+    "section": "Language-specific vs language-agnostic IDEs",
+    "text": "Language-specific vs language-agnostic IDEs\nThere are language-specific IDEs that work readily out-of-the-box for a given language. There are also language-agnostic IDEs that enable a developer to work with multiple languages in the same program. Language-agnostic IDEs enable you to get used to a single interface across languages. This functionality is often enabled through extensions to the IDE, and it can take some research, setup, and experimentation to find the extensions that are right for you and a given coding language.\nIf you know you’ll be working with a specific language for the bulk of your work, we recommend using a language-specific IDE as it is simpler. As you get more experience coding and build up a repertoire of languages, you may want to switch to a language-agnostic IDE for the flexibility.",
+    "crumbs": [
+      "Day-to-day coding",
+      "Integrated development environments"
+    ]
+  },
+  {
+    "objectID": "day-to-day/IDEs.html#recommendations-and-resources",
+    "href": "day-to-day/IDEs.html#recommendations-and-resources",
+    "title": "Integrated development environments",
+    "section": "Recommendations and resources",
+    "text": "Recommendations and resources\n\n\n\nLanguage\nRecommended IDE\nResources\n\n\n\n\nR\nRStudio\n\nGet started with RStudio\n\n\n\nPython\nPyCharm Community Edition\n\nGet started with PyCharm\n\n\n\nLanguage-agnostic\nPositron Visual Studio Code\n\nGet started with Positron\nGet started with VSCode\n\n\n\n\nRStudio and VSCode are pre-approved for installation by corporate IT and can be installed readily via Company Portal.\nPyCharm Community Edition is free, though it is not pre-approved and so you can either request approval through Service Gateway or install it yourself on a Science Network laptop. PyCharm Professional is available by request in Service Gateway (listed as “PhyCharm”), though it must be paid for through an SAP request.",
+    "crumbs": [
+      "Day-to-day coding",
+      "Integrated development environments"
+    ]
+  },
+  {
+    "objectID": "deployment-and-maintenance/index.html",
+    "href": "deployment-and-maintenance/index.html",
+    "title": "Deployment and maintenance",
+    "section": "",
+    "text": "Once a project has matured or a package has been developed, you may want to deploy it for wider use. In this case, you will need to maintain the work, and you may also want to continue to develop it.\nThere are several practices that make project/package deployment, maintenance, and continuing development robust:\n\nInclude a license\nVersion your code\nAutomate your tests with continuous integration\n\nIf you are working with others in deploying/maintaining code, you may also want to:\n\nPerform code reviews",
+    "crumbs": [
+      "Deployment and maintenance"
+    ]
+  },
+  {
+    "objectID": "deployment-and-maintenance/versioning.html",
+    "href": "deployment-and-maintenance/versioning.html",
+    "title": "Versioning",
+    "section": "",
+    "text": "Versioning your code can help with reproducibility, especially if the code is likely to have a long lifecycle, with applications across many specific projects. Code hosted on GitLab and GitHub can be versioned easily with built-in release tools. More information can be found in these GitLab and GitHub docs.",
+    "crumbs": [
+      "Deployment and maintenance",
+      "Versioning"
+    ]
+  },
+  {
+    "objectID": "deployment-and-maintenance/continuous-integration.html",
+    "href": "deployment-and-maintenance/continuous-integration.html",
+    "title": "Continuous integration",
+    "section": "",
+    "text": "Continuous integration (CI) is the process of continually merging different feature branches into the main branch1 and automatically triggering software tests2 or the overall software build process to help ensure software stability during the development process. CI provides continual feedback on potential issues that may have been introduced during development of new features so they can be addressed before a merge into main. For more information about this process, you can read overviews from Atlassian or Wikipedia.\nContinuous integration is often paired with the code review process, where software integration test suites are run during a pull-request/merge request, and the reviewer will only sign-off on merging code into the main branch on successful execution of the test suite.\nBoth GitHub and GitLab provide the capability of triggering tests (or other code) during the initiation of a pull-request and informing reviewers if these tests have passed or failed as part of the pull-request/merge-request. This is accomplished via GitHub Actions and GitLab Pipelines.",
+    "crumbs": [
+      "Deployment and maintenance",
+      "Continuous integration"
+    ]
+  },
+  {
+    "objectID": "deployment-and-maintenance/continuous-integration.html#triggering-test-suites-in-github",
+    "href": "deployment-and-maintenance/continuous-integration.html#triggering-test-suites-in-github",
+    "title": "Continuous integration",
+    "section": "Triggering test suites in GitHub",
+    "text": "Triggering test suites in GitHub\nDepending on the programming language you are developing with, there may already be templates and guides on how to setup GitHub actions for running test suites. There are existing repositories for R actions and a guide for Python actions.",
+    "crumbs": [
+      "Deployment and maintenance",
+      "Continuous integration"
+    ]
+  },
+  {
+    "objectID": "deployment-and-maintenance/continuous-integration.html#footnotes",
+    "href": "deployment-and-maintenance/continuous-integration.html#footnotes",
+    "title": "Continuous integration",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThis technique builds upon branching and our recommended git workflow.↩︎\nLike unit tests↩︎",
+    "crumbs": [
+      "Deployment and maintenance",
+      "Continuous integration"
+    ]
+  },
+  {
+    "objectID": "extras/install-git.html",
+    "href": "extras/install-git.html",
+    "title": "Install git",
+    "section": "",
+    "text": "Installing git is the first step to using git. If you wish to use git with a graphical user interface (GUI), we recommend a simple client like GitHub Desktop, which comes bundled with the git command line interface. Otherwise, you can install git from the official website.\n\nGit for Windows\nGit for Windows includes a number of configuration options that you can set during installation:\n\nSelect Components\n\nIn addition to the default selected components, select Check daily for git for Windows updates.\n\nChoosing the default editor used by git\n\nSelect your preferred editior. Note, git may allow you to select editors that aren’t currently installed.\n\nAdjusting the name of the initial branch in new repositories\n\nSelect Overide the default branch name for new repositories, and set main as the new default.\n\nAdjusting your PATH environment.\n\n(default) Select git from the command line and also from 3rd-party software.\n\nChoosing the SSH executable\n\nNo recommendation.\n\nChoosing HTTPS transport backend\n\nNo recommendation.\n\nConfiguring the line ending conversions\n\n(default) Select Checkout Windows-style, commit Unix-style line endings.\n\nConfiguring the terminal emulator to use with git Bash\n\nNo recommendation.\n\nChoose the default behaviour of ‘git pull’\n\nSelect Default (Fast-forward or merge).\n\nChoose a credential helper\n\n(default) Select git Credential Manager.\n\nConfiguring extra options\n\n(default) Select Enable file system caching.\n\nConfiguring experimental options\n\n(default)\n\n\n\n\nConfigure git\nOnce you’ve installed git, you should set (as described in git’s First-Time git Setup guide):\n\nYour git identity (username and email)\nYour default branch name to main\n\n\n\nSet Identity\nEvery commit contains your username and email address. You can set these globally (i.e., for all your repositories) from the command line via the git Bash program that was installed with git for Windows:\ngit config --global user.name \"John Doe\"\ngit config --global user.email johndoe@example.com\n\n\nSet Default Branch Name\nYou should set main as your default branch name, if it isn’t that already.\ngit config --global init.defaultBranch main",
+    "crumbs": [
+      "Extras",
+      "Install git"
+    ]
+  },
+  {
+    "objectID": "extras/writing-commit-messages.html",
+    "href": "extras/writing-commit-messages.html",
+    "title": "Writing commit messages",
+    "section": "",
+    "text": "The purpose of a commit is to tell you what has changed, while the purpose of a commit message is to explain the why.\nA commit message consists only of plain text. The two suggested formats are traditional and Conventional Commits.",
+    "crumbs": [
+      "Extras",
+      "Writing commit messages"
+    ]
+  },
+  {
+    "objectID": "extras/writing-commit-messages.html#traditional-commit-messages",
+    "href": "extras/writing-commit-messages.html#traditional-commit-messages",
+    "title": "Writing commit messages",
+    "section": "Traditional commit messages",
+    "text": "Traditional commit messages\nThe first line of a commit message is the commit title or subject; it should:\n\nbe written in the imperative (‘remove function’ not ‘removed function’)\nbe written in sentence case, start with a capital letter, and end with no punctuation\nbe between 50 - 80 characters\n\nThe title should be followed by a blank line and a more thorough description in the message body, unless the subject is sufficiently explanatory.\nThis description may be written in the imperative or past tense, in sentence case or in point form.\nYou can also include keywords in commit messages that trigger useful automations. For instance, a commit message that includes the text “fixes #10” will automatically close issue #10 once that commit is pulled into the main branch. This feature is available in both GitHub and GitLab.\nThis keyword feature is actually enabled by the Conventional Commits standard, which we describe next.",
+    "crumbs": [
+      "Extras",
+      "Writing commit messages"
+    ]
+  },
+  {
+    "objectID": "extras/writing-commit-messages.html#conventional-commits",
+    "href": "extras/writing-commit-messages.html#conventional-commits",
+    "title": "Writing commit messages",
+    "section": "Conventional Commits",
+    "text": "Conventional Commits\nConventional Commits is a specification for commit messages, designed to be human and machine-readable:\n\nThe Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages.\n\nThis diagram is based upon the Angular project’s specification of a conventional commit header:\n&lt;type&gt;(&lt;scope&gt;): &lt;short summary&gt;\n  │       │             │\n  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.\n  │       │\n  │       └─⫸ Commit Scope: (e.g. animations|bazel|benchpress|common|compiler|compiler-cli|core|\n  │                          elements|forms|http|language-service|localize|platform-browser|\n  │                          platform-browser-dynamic|platform-server|router|service-worker|\n  │                          upgrade|zone.js|packaging|changelog|docs-infra|migrations|\n  │                          devtools)\n  │\n  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test\n\n\n[optional body]\n\n[optional footer(s)]\n\n// Note:\n// The &lt;type&gt; and &lt;summary&gt; fields are mandatory.\n// The (&lt;scope&gt;) field is optional; examples taken from the Angular project.\nSee an example here.\nAngular specifies a limited number of types:\n\nbuild: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)\nci: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)\ndocs: Documentation only changes\nfeat: A new feature\nfix: A bug fix\nperf: A code change that improves performance\nrefactor: A code change that neither fixes a bug nor adds a feature\ntest: Adding missing tests or correcting existing tests\n\nHowever, it may be useful to define others for your project.",
+    "crumbs": [
+      "Extras",
+      "Writing commit messages"
+    ]
+  },
+  {
+    "objectID": "extras/pipenv.html",
+    "href": "extras/pipenv.html",
+    "title": "Virtual environments in Python",
+    "section": "",
+    "text": "Use pipenv to manage virtual environments\nPython’s venv is the prototypical example of a virtual environment. We (and the official Python documentation) recommend the use of pipenv over venv, as it combines the functions of pip (package management) and venv (virtual environments).\n\n\nInstall pipenv\nSee pipenv’s official installation instructions.\n\n\nUnderstand Pipfile, Pipfile.lock, and requirements.txt\nThere are three files used to record the state of a Python virtual environment:\n\nPipfile\nPipfile.lock\nrequirements.txt\n\nYou should not modify these files by hand; virtual environment managers like pipenv offer tools to create and modify these files as necessary.\nYou should keep Pipfile, Pipfile.lock, and requirements.txt in version control. You should not keep Pipfile.lock in version control if you are targeting multiple versions of Python.\nTODO: clarify the difference between Pipfile and Pipefile.lock… there seems to be a difference in the commands below, but it’s not clear what it is.\n\n\nPipfile and requirements.txt\nPipfile and requirements.txt describe the dependencies that must be installed in the virtual environment to use your code. These files declare the supported version(s) of Python and the supported version(s) of each of the dependencies. Pipfile and requirements.txt serve the same purpose; the use of a Pipfile has largely replaced the use of requirements.txt. A notable exception is Microsoft’s Azure App Service.\nAn example of a Pipfile for a Django project, CEDAR.\n[[source]]\nname = \"pypi\"\nurl = \"https://pypi.org/simple\"\nverify_ssl = true\n\n[dev-packages]\npyparsing = \"*\"\npydot = \"*\"\n\n[packages]\ndjango = \"*\"\npsycopg2-binary = \"*\"\ndjango-crispy-forms = \"*\"\ndjango-extensions = \"*\"\ndjango-widget-tweaks = \"*\"\npandas = \"*\"\ncrispy-bootstrap5 = \"*\"\ndjango-autocomplete-light = \"*\"\ndjango-bootstrap5 = \"*\"\nfontawesomefree = \"*\"\nwhitenoise = \"*\"\n\n[requires]\npython_version = \"3.10\"\nThis Pipfile specifies a required version of Python (3.10.X), but no required versions of the dependencies. Notice there is a seperate section [dev-packages]; using a Pipfile, you can specify packages that are required for developers (but not end-users) of your code. See the use section below for more details.\n\n\nPipfile.lock\nPipfile.lock is like a ‘snapshot’ of the current state of the virtual environment. Pipfile.lock declares the dependencies (and sub-dependencies) of your project, and the currently installed version number and hash of each. The Pipfile.lock enables you to save and share the state of your virtual environment for reproducible analyses.\nAn example of a partial Pipfile.lock for CEDAR (the same project as above).\n{\n    \"_meta\": {\n        \"hash\": {\n            \"sha256\": \"646f9dd9ace85a9096e357475c92c9f3e16bfab0054df756ccc491652f25e64c\"\n        },\n        \"pipfile-spec\": 6,\n        \"requires\": {\n            \"python_version\": \"3.10\"\n        },\n        \"sources\": [\n            {\n                \"name\": \"pypi\",\n                \"url\": \"https://pypi.org/simple\",\n                \"verify_ssl\": true\n            }\n        ]\n    },\n    \"default\": {\n        \"asgiref\": {\n            \"hashes\": [\n                \"sha256:71e68008da809b957b7ee4b43dbccff33d1b23519fb8344e33f049897077afac\",\n                \"sha256:9567dfe7bd8d3c8c892227827c41cce860b368104c3431da67a0c5a65a949506\"\n            ],\n            \"markers\": \"python_version &gt;= '3.7'\",\n            \"version\": \"==3.6.0\"\n        },\n        \"crispy-bootstrap5\": {\n            \"hashes\": [\n                \"sha256:0745a67199619149b7feca87dab7a45664876ed50fb582b38fd2aeb3f8a8d869\",\n                \"sha256:f3ff1ef5cb379fe80b1b02e245008f276444098a4bdb8d855bed84c623798a85\"\n            ],\n            \"index\": \"pypi\",\n            \"version\": \"==0.7\"\n        },\n        \"django\": {\n            \"hashes\": [\n                \"sha256:4b214a05fe4c99476e99e2445c8b978c8369c18d4dea8e22ec412862715ad763\",\n                \"sha256:ff56ebd7ead0fd5dbe06fe157b0024a7aaea2e0593bb3785fb594cf94dad58ef\"\n            ],\n            \"index\": \"pypi\",\n            \"version\": \"==4.1.5\"\n        },\n        \"django-autocomplete-light\": {\n            \"hashes\": [\n                \"sha256:0f6da75c1c7186698b867a467a8cdb359f0513fdd8e09288a0c2fb018ae3d94e\"\n            ],\n            \"index\": \"pypi\",\n            \"version\": \"==3.9.4\"\n        },\nUnlike Pipfile and requirements.txt, Pipfile.lock is not designed to be human-readable.\n\n\nCreate or activate a virtual environment\nEach user will have to create their own virtual environment on their machine. However, the lock file can be shared and updated via Github to ensure project collaborators stay in sync.\nTo create a new virtual environment or activate an existing virtual environment:\npipenv shell\nTo check if an existing virtual environment is available:\n pipenv --venv\n\n\nInstall packages\nTo install all dependencies in the Pipfile:\npipenv install\n\n# or\n\npipenv install --skip lock\nTo install all dependencies in the Pipfile.lock:\npipenv sync\nAlternatively,\npipenv install --ignore-pipfile --deploy\n\n\nAdd or remove packages\nTo install a dependency and add it to the Pipfile and Pipfile.lock\npipenv install &lt;packagename&gt;\n\npipenv uninstall &lt;packagename&gt;\n\n\nUpdate packages\nTo update all packages: pipenv update or a specific packlage: pipenv update &lt;pkg&gt;\n\n\nDeploy (write)\nTo create a Pipfile.lock:\npipenv lock\nTo create a requirements.txt:\npipenv run pip freeze\nTo create a requirements.txt including Pipfile.lock information (e.g., hashes):\npipenv lock -r\npipenv requirements &gt; requirements.txt",
+    "crumbs": [
+      "Extras",
+      "Virtual environments in Python"
+    ]
+  },
+  {
+    "objectID": "package-development/get-started.html",
+    "href": "package-development/get-started.html",
+    "title": "Get started guides",
+    "section": "",
+    "text": "Another useful document to include with your code is a get started guide. This document should guide the user through a basic task for your code, along with some accompanying text.\nGet started guides can be as simple as a section in your README file, or single script in your main directory (perhaps called quick-start.py or getting_started.R), where you demonstrate your code, annotated with plenty of comments and text blocks to guide the reader.\nWhen writing an R package, there is a tool for such demos: vignettes. We recommend including a get started vignette with your package to help orient new users.",
+    "crumbs": [
+      "Package development",
+      "Get started guides"
+    ]
+  },
+  {
+    "objectID": "package-development/developer-docs.html",
+    "href": "package-development/developer-docs.html",
+    "title": "Developer documentation",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "package-development/unit-testing.html",
+    "href": "package-development/unit-testing.html",
+    "title": "Unit testing",
+    "section": "",
+    "text": "Software testing is an investigation in which the correctness and quality of an application are objectively determined. You are required to performing testing on your software applications.\nTesting is the process of ensuring your code works as intended. Tests should be created while you are developing your code and not as an afterthought. There are several testing methods, but we focus on unit tests as they are powerful, relatively simple, and can be built up piece-by-piece in your code, as your code grows.",
+    "crumbs": [
+      "Package development",
+      "Unit testing"
+    ]
+  },
+  {
+    "objectID": "package-development/unit-testing.html#what-is-unit-testing",
+    "href": "package-development/unit-testing.html#what-is-unit-testing",
+    "title": "Unit testing",
+    "section": "What is unit testing?",
+    "text": "What is unit testing?\nUnit testing is the process of writing small, independent tests that probe one function at a time. The idea is to provide some test input to your function, have your function process it, and compare the function’s output to the output you’d expect if your function is working correctly. You may want to test various types of inputs (whichever your function is built to handle), or provide test inputs with known quirks (edge cases) to ensure your function, well, still functions correctly.",
+    "crumbs": [
+      "Package development",
+      "Unit testing"
+    ]
+  },
+  {
+    "objectID": "package-development/unit-testing.html#why-should-you-write-unit-tests",
+    "href": "package-development/unit-testing.html#why-should-you-write-unit-tests",
+    "title": "Unit testing",
+    "section": "Why should you write unit tests?",
+    "text": "Why should you write unit tests?\nAt face value, the process of writing unit tests might seem silly: you built a function, gave it an input where you know the output, and got the output you expected… so what? And you’re right, this is underwhelming if your function definition never changes, but what if you add a feature to your function and don’t realize that it now changes the expected output in a specific case? The unit test you wrote for that case will then fail, alerting you to this change!\nA general rule of thumb is to add at least one new unit test whenever you add a new feature to your code (e.g. a new function, a new feature within an existing function, etc.).",
+    "crumbs": [
+      "Package development",
+      "Unit testing"
+    ]
+  },
+  {
+    "objectID": "package-development/unit-testing.html#code-coverage",
+    "href": "package-development/unit-testing.html#code-coverage",
+    "title": "Unit testing",
+    "section": "Code coverage",
+    "text": "Code coverage\nIf you are packaging your code, it’s a good practice to ensure that you have high code coverage. Code coverage measures the percentage of your code that actually gets executed when your tests are run. It does not mean that all possible errors are covered by your tests, but the higher the code coverage, the lower the chance that you have undetected bugs in your code.",
+    "crumbs": [
+      "Package development",
+      "Unit testing"
+    ]
+  },
+  {
+    "objectID": "package-development/unit-testing.html#recommendation-and-resources",
+    "href": "package-development/unit-testing.html#recommendation-and-resources",
+    "title": "Unit testing",
+    "section": "Recommendation and resources",
+    "text": "Recommendation and resources\n\n\n\nLanguage\nRecommended unit testing framework\nResources\n\n\n\n\nR\ntestthat\n\nWriting tests with testthat\nChecking code coverage with covr\n\n\n\nPython\npytest\n\nWriting tests with pytest\nChecking code coverage with coverage",
+    "crumbs": [
+      "Package development",
+      "Unit testing"
     ]
   }
 ]

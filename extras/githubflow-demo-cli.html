@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Best practices for scientific software development</title>
+<title>GitHub flow demo using the command line – Best practices for scientific software development</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,17 +68,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Best practices for scientific software development</span>
     </a>
   </div>
@@ -92,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../extras/index.html">Extras</a></li><li class="breadcrumb-item"><a href="../extras/githubflow-demo-cli.html">GitHub flow demo using the command line</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -106,13 +106,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./day-to-day/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../day-to-day/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Day-to-day coding</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -121,25 +121,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/IDEs.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/IDEs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Integrated development environments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/commenting.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/commenting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Commenting code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
   </div>
 </li>
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./projects/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../projects/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Projects</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -156,31 +156,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/version-control.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/version-control.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Version control</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/virtual-environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/virtual-environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Virtual environments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/consistency.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/consistency.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Consistency</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/pipelines.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/pipelines.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Pipelines</span></a>
   </div>
 </li>
@@ -188,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./package-development/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../package-development/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Package development</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -197,25 +197,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/get-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/get-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get started guides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/function-docs.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/function-docs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Function documentation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/unit-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/unit-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit testing</span></a>
   </div>
 </li>
@@ -226,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./deployment-and-maintenance/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../deployment-and-maintenance/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deployment and maintenance</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -235,25 +235,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/licenses.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/licenses.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licenses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/versioning.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/versioning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Versioning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/continuous-integration.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/continuous-integration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous integration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/code-review.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/code-review.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Code review</span></a>
   </div>
 </li>
@@ -261,40 +261,40 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./extras/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../extras/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extras</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/install-git.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/install-git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Install git</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/writing-commit-messages.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/writing-commit-messages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Writing commit messages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/admin-git-groups.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/admin-git-groups.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Administering GitLab Groups and GitHub Organizations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/githubflow-demo-cli.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/githubflow-demo-cli.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">GitHub flow demo using the command line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/pipenv.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/pipenv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Virtual environments in Python</span></a>
   </div>
 </li>
@@ -305,13 +305,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../extras/index.html">Extras</a></li><li class="breadcrumb-item"><a href="../extras/githubflow-demo-cli.html">GitHub flow demo using the command line</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Best practices for scientific software development</h1>
+<h1 class="title">GitHub flow demo using the command line</h1>
 </div>
 
 
@@ -328,27 +330,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>If you’re reading this guide, it’s probably because you write scientific code and want to get better at doing so. But what does it mean to be good at coding? What probably comes to mind immediately is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.</p>
-<p>The goals of this guide are to teach you both how to write better code <strong>and</strong> how to get better at the <em>process</em> of writing code. This means adopting habits, or <strong>best practices</strong>, while writing scientific software that ensure your projects are <strong>well-documented</strong>, <strong>reproducible</strong>, and <strong>extensible</strong>. Scientists often write code, but they are not software developers in the traditional sense. However, their lives could be made easier by adopting some of the ways in which professional software developers work. This guide collects such practices and discusses them in a way that is specific to working in science.</p>
-<section id="guide-organization" class="level1">
-<h1>Guide organization</h1>
-<p>Adopting best practices for scientific software development can be a daunting task. Depending on how experienced you are with programming, there can be a lot to take in at once. To make the learning process less intimidating, this guide is organized in a cumulative way. We start with best practices that we consider to be absolutely fundamental, and thus important to assimilate into your <a href="./day-to-day/index.html">day-to-day coding</a> practice. Once these practices become second nature, we encourage you to continue building out your skills by explore the best practices for developing <a href="./projects/index.html">projects</a>. While working on a project, you may realize that you want to re-use some project code, or that it might be of use to others, so you decide to <a href="./package-development/index.html">package it</a>. As a project or package matures, you may consider <a href="./deployment-and-maintenance/index.html">deploying it and maintaining it in the longer term</a>. We include a section of <a href="./extras/index.html">extras</a> to collect additional content linked to throughout the main guide. Use the sidebar to navigate the guide and choose your own adventure!</p>
-<p>Wherever possible, we have tried to make recommendations that reduce friction if and when your coding projects evolve.</p>
-</section>
-<section id="acknowledgements" class="level1">
-<h1>Acknowledgements</h1>
-<p>This guide was written for scientific software developers and scientists in the Public Health Agency of Canada, though its advice may be of use more widely. This project was led by <a href="irena-papst">Irena Papst</a> (<a href="modelling-hub">Modelling Hub</a>). The guide was authored by <a href="irena-papst">Irena Papst</a>, <a href="brennan-chapman">Brennan Chapman</a> (<a href="modelling-hub">Modelling Hub</a>) and <a href="aaron-petkau">Aaron Petkau</a> (National Microbiology Laboratory). <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-
-
-</section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>This guide builds on previous work by Eric Enns, Eric Marinier, Deep Sidhu, Phil Mabon, and <a href="aaron-petkau">Aaron Petkau</a> in the National Microbiology Laboratory.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<ol type="1">
+<li><strong>Create a new branch</strong> with <code>git checkout -b branch-name</code>.</li>
+<li><strong>Push your feature branch to the remote (cloud) repository</strong> with <code>git push origin branch-name</code>.</li>
+<li><strong>Make changes</strong> with <code>git add modified-file</code> and <code>git commit -m "commit message"</code>.</li>
+<li><strong>Resolve any merge conflicts</strong> by following the instructions <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line">here</a>.</li>
+<li><strong>Submit a merge/pull request</strong> by following <a href="https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html">these instructions</a> for GitLab and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">these instructions</a> for GitHub.</li>
+<li>When the review is complete, <strong>accept the pull request</strong> (on <a href="https://docs.gitlab.com/ee/user/project/merge_requests/approvals/">GitLab</a> or <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request">GitHub</a> and merge the changes into the main branch.</li>
+<li><strong>Delete the new feature branch</strong> (on both the remote reposotory and your local copy) with <code>git push -d remote-name branch-name</code> followed by <code>git branch -d branch-name</code>. <code>remote-name</code> is the name of the remote (cloud) repository and will usually be <code>origin</code> by default.</li>
 </ol>
-</section></div></main> <!-- /main -->
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

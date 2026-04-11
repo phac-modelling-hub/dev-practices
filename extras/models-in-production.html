@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Best practices for scientific software development</title>
+<title>Guidelines for models in production – Best practices for scientific software development</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,17 +68,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Best practices for scientific software development</span>
     </a>
   </div>
@@ -92,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Guidelines for models in production</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -106,13 +106,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./day-to-day/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../day-to-day/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Day-to-day coding</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -121,25 +121,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/IDEs.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/IDEs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Integrated development environments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/commenting.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/commenting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Commenting code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
   </div>
 </li>
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./projects/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../projects/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Projects</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -156,31 +156,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/version-control.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/version-control.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Version control</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/virtual-environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/virtual-environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Virtual environments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/consistency.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/consistency.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Consistency</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/pipelines.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/pipelines.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Pipelines</span></a>
   </div>
 </li>
@@ -188,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./package-development/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../package-development/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Package development</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -197,25 +197,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/get-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/get-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get started guides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/function-docs.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/function-docs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Function documentation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/unit-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/unit-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit testing</span></a>
   </div>
 </li>
@@ -226,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./deployment-and-maintenance/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../deployment-and-maintenance/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deployment and maintenance</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -235,25 +235,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/licenses.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/licenses.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licenses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/versioning.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/versioning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Versioning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/continuous-integration.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/continuous-integration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous integration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/code-review.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/code-review.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Code review</span></a>
   </div>
 </li>
@@ -261,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./extras/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../extras/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extras</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -270,31 +270,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/install-git.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/install-git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Install git</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/writing-commit-messages.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/writing-commit-messages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Writing commit messages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/admin-git-groups.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/admin-git-groups.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Administering GitLab Groups and GitHub Organizations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/githubflow-demo-cli.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/githubflow-demo-cli.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub flow demo using the command line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/pipenv.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/pipenv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Virtual environments in Python</span></a>
   </div>
 </li>
@@ -305,13 +305,34 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#model-code-organisation" id="toc-model-code-organisation" class="nav-link active" data-scroll-target="#model-code-organisation">Model code organisation</a></li>
+  <li><a href="#model-package" id="toc-model-package" class="nav-link" data-scroll-target="#model-package">Model package</a>
+  <ul class="collapse">
+  <li><a href="#model-package-development" id="toc-model-package-development" class="nav-link" data-scroll-target="#model-package-development">Model package development</a></li>
+  <li><a href="#prototyping" id="toc-prototyping" class="nav-link" data-scroll-target="#prototyping">Prototyping</a></li>
+  <li><a href="#packaging" id="toc-packaging" class="nav-link" data-scroll-target="#packaging">Packaging</a></li>
+  <li><a href="#minimum-documentation-standards-for-model-packages" id="toc-minimum-documentation-standards-for-model-packages" class="nav-link" data-scroll-target="#minimum-documentation-standards-for-model-packages">Minimum documentation standards for model packages</a></li>
+  <li><a href="#default-values" id="toc-default-values" class="nav-link" data-scroll-target="#default-values">Default values</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">Deployment</a></li>
+  </ul></li>
+  <li><a href="#modelling-pipelines" id="toc-modelling-pipelines" class="nav-link" data-scroll-target="#modelling-pipelines">Modelling pipelines</a>
+  <ul class="collapse">
+  <li><a href="#minimum-documentation-standards-for-modelling-pipelines" id="toc-minimum-documentation-standards-for-modelling-pipelines" class="nav-link" data-scroll-target="#minimum-documentation-standards-for-modelling-pipelines">Minimum documentation standards for modelling pipelines</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Best practices for scientific software development</h1>
+<h1 class="title">Guidelines for models in production</h1>
 </div>
 
 
@@ -328,25 +349,111 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>If you’re reading this guide, it’s probably because you write scientific code and want to get better at doing so. But what does it mean to be good at coding? What probably comes to mind immediately is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.</p>
-<p>The goals of this guide are to teach you both how to write better code <strong>and</strong> how to get better at the <em>process</em> of writing code. This means adopting habits, or <strong>best practices</strong>, while writing scientific software that ensure your projects are <strong>well-documented</strong>, <strong>reproducible</strong>, and <strong>extensible</strong>. Scientists often write code, but they are not software developers in the traditional sense. However, their lives could be made easier by adopting some of the ways in which professional software developers work. This guide collects such practices and discusses them in a way that is specific to working in science.</p>
-<section id="guide-organization" class="level1">
-<h1>Guide organization</h1>
-<p>Adopting best practices for scientific software development can be a daunting task. Depending on how experienced you are with programming, there can be a lot to take in at once. To make the learning process less intimidating, this guide is organized in a cumulative way. We start with best practices that we consider to be absolutely fundamental, and thus important to assimilate into your <a href="./day-to-day/index.html">day-to-day coding</a> practice. Once these practices become second nature, we encourage you to continue building out your skills by explore the best practices for developing <a href="./projects/index.html">projects</a>. While working on a project, you may realize that you want to re-use some project code, or that it might be of use to others, so you decide to <a href="./package-development/index.html">package it</a>. As a project or package matures, you may consider <a href="./deployment-and-maintenance/index.html">deploying it and maintaining it in the longer term</a>. We include a section of <a href="./extras/index.html">extras</a> to collect additional content linked to throughout the main guide. Use the sidebar to navigate the guide and choose your own adventure!</p>
-<p>Wherever possible, we have tried to make recommendations that reduce friction if and when your coding projects evolve.</p>
+<p><em>These guidelines are primarily meant for modellers within the PHAC Modelling Hub, but may be of use to others more widely.</em></p>
+<p>A model “in production” is a model <strong>upon which we rely to regularly produce modelling outputs</strong>. Such a model can be one that accepts requests on-demand, or a model that is brought back into production regularly based on business need.</p>
+<p>For models in production, it is important that the model code is:</p>
+<ul>
+<li><strong>reliable</strong></li>
+<li><strong>robust</strong></li>
+<li><strong>sufficiently documented</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ul>
+<p>The best practices outlined here are meant to ensure that models in productions have the above properties.</p>
+<section id="model-code-organisation" class="level2">
+<h2 class="anchored" data-anchor-id="model-code-organisation">Model code organisation</h2>
+<p>We suggest using two main types of codebases for models in production:</p>
+<ol type="1">
+<li>A <a href="#model-package"><strong>model package</strong></a> that includes code to simulate the model</li>
+<li>A <a href="#modelling-pipelines"><strong>modelling pipeline</strong></a> (one per modelling request) that includes code to generate the required modelling products</li>
+</ol>
 </section>
-<section id="acknowledgements" class="level1">
-<h1>Acknowledgements</h1>
-<p>This guide was written for scientific software developers and scientists in the Public Health Agency of Canada, though its advice may be of use more widely. This project was led by <a href="irena-papst">Irena Papst</a> (<a href="modelling-hub">Modelling Hub</a>). The guide was authored by <a href="irena-papst">Irena Papst</a>, <a href="brennan-chapman">Brennan Chapman</a> (<a href="modelling-hub">Modelling Hub</a>) and <a href="aaron-petkau">Aaron Petkau</a> (National Microbiology Laboratory). <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<section id="model-package" class="level2">
+<h2 class="anchored" data-anchor-id="model-package">Model package</h2>
+<p>A <strong>model package</strong> is a <a href="../package-development/index.html">software package</a> that includes the code required to run a model’s simulator.</p>
+<section id="model-package-development" class="level3">
+<h3 class="anchored" data-anchor-id="model-package-development">Model package development</h3>
+<p>The development of model packages occurs in two phases:</p>
+<ol type="1">
+<li><strong>Prototyping</strong>: developing the initial code base that enables the simulation of a model, lightweight function documentation and testing</li>
+<li><strong>Packaging</strong>: cleaning up the prototype code base, developing the documentation, and packaging the software in a standardized format</li>
+</ol>
+<p>One may oscillate back and for between these phases as further development of the same core model occurs.</p>
+<p>In both phases, consistent use of the best practices recommended throughout this guide is encouraged. The prototyping phase benefits most from the practices recommended for <a href="../day-to-day/index.html">day-to-day coding</a> and <a href="../projects/index.html">projects</a>, while packaging benefits most from practices recommended for <a href="../package-development/index.html">package development</a> and code <a href="../deployment-and-maintenance/index.html">deployment and maintenance</a>.</p>
+</section>
+<section id="prototyping" class="level3">
+<h3 class="anchored" data-anchor-id="prototyping">Prototyping</h3>
+<p>The prototyping phase involves building the initial code base that enables one to simulate a specific model. In this phase, you are encouraged to continually document, test, and style your code in <a href="../package-development/index.html">the suggested ways</a> as this will help you package down the line, but packaging is not the main focus here. The goal is simply to <strong>produce a working version of your model simulator</strong>.</p>
+</section>
+<section id="packaging" class="level3">
+<h3 class="anchored" data-anchor-id="packaging">Packaging</h3>
+<p>Once an iteration of the prototype code is sufficiently advanced to be useful and/or is being used to produce a modelling output, it should be packaged and archived. The term “packaging” is deliberate: here it literally means <strong>bundled into a software package</strong>.</p>
+<p>Archiving should be achieved through <a href="../deployment-and-maintenance/versioning.html">package versioning</a> so that model simulation code from a specific era can easily be called into a <a href="#modelling-pipelines">request-specific modelling pipelines</a> to produce outputs (<em>e.g.</em> through the use of a <a href="../projects/virtual-environments.html">virtual environment</a>).</p>
+<p>There is a start-up cost associated with packaging, but the benefits of using a universal framework to package your code can be immense for models in production. It can help you ensure your models are reliable, robust, and sufficiently documented.</p>
+<p>Packaging may sound daunting at first, but there are many resources and utilities that can help you get through this task efficiently, relatively painlessly, and in a manner that is consistent with the best practices in our guide:</p>
+<ul>
+<li>For R users, the best place to get started is to use the <a href="https://r-pkgs.org/">R Packages book</a> by Hadley Wickham and Jennifer Bryan. If you’ve never developed a package before, start with the first chapter, <a href="https://r-pkgs.org/whole-game.html">The Whole Game</a>, which outlines the process of developing an R package from start to finish.</li>
+<li>For Python users, the <a href="https://www.pyopensci.org/python-package-guide/index.html">pyOpenSci Package Guide</a> is an excellent resource.</li>
+</ul>
+</section>
+<section id="minimum-documentation-standards-for-model-packages" class="level3">
+<h3 class="anchored" data-anchor-id="minimum-documentation-standards-for-model-packages">Minimum documentation standards for model packages</h3>
+<p>All packages for models in production must comply with minimum documentation standards to ensure that the codebase is accessible to others in the Modelling Hub.</p>
+<p>The minimum package documentation standards are:</p>
+<ol type="1">
+<li>A <a href="../package-development/readmes.html"><strong>README</strong> file</a> in the main directory of the project repository with:
+<ul>
+<li>the authors of the code;</li>
+<li>package installation instructions + the installation of any dependencies (if not automatic);</li>
+<li>information on where to find the getting started guide for the package code.</li>
+</ul></li>
+<li>A <a href="../package-development/get-started.html"><strong>get started guide</strong></a> that runs through a basic example of using the code</li>
+<li><a href="../package-development/function-docs.html"><strong>Function documentation</strong></a>, such that:
+<ul>
+<li>all input arguments are stated with the expected type, default values, and a description;</li>
+<li>all output objects are stated with the type and a description;</li>
+<li>any side-effects of the function are described.</li>
+</ul></li>
+<li><strong><a href="#default-values">Default value</a> documentation</strong>, including:
+<ul>
+<li>An explanation of each value’s function in the model, with units.</li>
+<li>Citations for any values that come from literature.</li>
+</ul></li>
+</ol>
+<p>Setting up a package site that displays your package documentation in an easy-to-use format is entirely optional, but encouraged. For R users, <a href="https://pkgdown.r-lib.org/"><code>pkgdown</code></a> provides a quick and easy way to generate a package website using existing <a href="https://roxygen2.r-lib.org/"><code>roxygen2</code></a> documentation and other information. For python users, <a href="https://machow.github.io/quartodoc/get-started/overview.html"><code>quartodoc</code></a> does a similar task, building off of <a href="https://numpydoc.readthedocs.io/en/latest/format.html#sections">numpy-stype docstrings</a>. Package sites can then be deployed via the <a href="https://github.com/phac-modelling-hub">PHAC Modelling Hub GitHub organization</a> using <a href="https://docs.gitlab.com/ee/user/project/pages/">GitLab Pages</a> or <a href="https://pages.github.com/">GitHub Pages</a>, depending on the Git server being used.</p>
+<p>For creating, building, and deploying a package site, R users can use the <a href="https://usethis.r-lib.org/reference/use_pkgdown.html"><code>usethis</code> package</a>, which automates much of the process.</p>
+</section>
+<section id="default-values" class="level3">
+<h3 class="anchored" data-anchor-id="default-values">Default values</h3>
+<p>Default values must be included for all variables that need to be specified with a numeric value for the model to be simulated, such as parameter values, initial conditions, etc. In this way, a model simulator is ready to be used straight out of the package.</p>
+<p>It is suggested that the package include features to:</p>
+<ol type="1">
+<li>quickly retrieve default values for the user</li>
+<li>update (select) default values in the model simulator</li>
+</ol>
+<p>These features are meant to lower the overhead for getting started with the model.</p>
+</section>
+<section id="deployment" class="level3">
+<h3 class="anchored" data-anchor-id="deployment">Deployment</h3>
+<p>Once packaged, the public-facing model code should be hosted within the <a href="https://github.com/phac-modelling-hub">PHAC Modelling Hub GitHub organization</a>. Hosting your generic models package on one of our organisational Git servers ensures that the code is available to all those on the team and not inadvertently stuck in a specific team member’s Git server account.</p>
+</section>
+</section>
+<section id="modelling-pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-pipelines">Modelling pipelines</h2>
+<p>A <strong>model pipeline</strong> is a separate <a href="../projects/index.html">project</a> that puts a <a href="#model-packages">model package</a> into use by scaffolding it with supplementary code that reads in data and parameters required to run a model simulator and produces modelling outputs in a format that is useful for clients (<em>e.g.</em>, plots, reports, slide decks).</p>
+<p>It is recommended to have one modelling pipeline per request that depends on a specific version of the model package, to ensure reproducibility of modelling products.</p>
+<p>Modelling pipelines, as the name suggests, benefit from being set up as <a href="../projects/pipelines.html">actual pipelines</a>, which are self-documenting to a degree and make efficient use of computational resources.</p>
+<section id="minimum-documentation-standards-for-modelling-pipelines" class="level3">
+<h3 class="anchored" data-anchor-id="minimum-documentation-standards-for-modelling-pipelines">Minimum documentation standards for modelling pipelines</h3>
+<p><strong>TODO</strong></p>
 
 
+</section>
 </section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>This guide builds on previous work by Eric Enns, Eric Marinier, Deep Sidhu, Phil Mabon, and <a href="aaron-petkau">Aaron Petkau</a> in the National Microbiology Laboratory.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>“Sufficiently” documented means that team members other than the primary modeller(s) can step in to run the model and respond to modelling requests without too much overhead or difficulty.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

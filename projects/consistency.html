@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Best practices for scientific software development</title>
+<title>Consistency – Best practices for scientific software development</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,17 +68,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Best practices for scientific software development</span>
     </a>
   </div>
@@ -92,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects/index.html">Projects</a></li><li class="breadcrumb-item"><a href="../projects/consistency.html">Consistency</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -106,13 +106,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./day-to-day/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../day-to-day/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Day-to-day coding</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -121,25 +121,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/IDEs.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/IDEs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Integrated development environments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/commenting.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/commenting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Commenting code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./day-to-day/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../day-to-day/functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
   </div>
 </li>
@@ -147,40 +147,40 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./projects/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../projects/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/version-control.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/version-control.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Version control</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/virtual-environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/virtual-environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Virtual environments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/consistency.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/consistency.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Consistency</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects/pipelines.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/pipelines.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Pipelines</span></a>
   </div>
 </li>
@@ -188,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./package-development/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../package-development/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Package development</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -197,25 +197,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/readmes.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/readmes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">README files</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/get-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/get-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Get started guides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/function-docs.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/function-docs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Function documentation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./package-development/unit-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../package-development/unit-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit testing</span></a>
   </div>
 </li>
@@ -226,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./deployment-and-maintenance/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../deployment-and-maintenance/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deployment and maintenance</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -235,25 +235,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/licenses.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/licenses.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licenses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/versioning.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/versioning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Versioning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/continuous-integration.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/continuous-integration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous integration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deployment-and-maintenance/code-review.html" class="sidebar-item-text sidebar-link">
+  <a href="../deployment-and-maintenance/code-review.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Code review</span></a>
   </div>
 </li>
@@ -261,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./extras/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../extras/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extras</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -270,31 +270,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/install-git.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/install-git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Install git</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/writing-commit-messages.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/writing-commit-messages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Writing commit messages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/admin-git-groups.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/admin-git-groups.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Administering GitLab Groups and GitHub Organizations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/githubflow-demo-cli.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/githubflow-demo-cli.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub flow demo using the command line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/pipenv.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/pipenv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Virtual environments in Python</span></a>
   </div>
 </li>
@@ -305,13 +305,34 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#project-directory-organisation" id="toc-project-directory-organisation" class="nav-link active" data-scroll-target="#project-directory-organisation">Project directory organisation</a>
+  <ul class="collapse">
+  <li><a href="#directory-structure" id="toc-directory-structure" class="nav-link" data-scroll-target="#directory-structure">Directory structure</a></li>
+  <li><a href="#git-and-.gitignore" id="toc-git-and-.gitignore" class="nav-link" data-scroll-target="#git-and-.gitignore"><code>.git/</code> and <code>.gitignore</code></a></li>
+  <li><a href="#license-and-notice" id="toc-license-and-notice" class="nav-link" data-scroll-target="#license-and-notice">LICENSE and NOTICE</a></li>
+  <li><a href="#readme" id="toc-readme" class="nav-link" data-scroll-target="#readme">README</a></li>
+  <li><a href="#directory-structure-for-r-and-python" id="toc-directory-structure-for-r-and-python" class="nav-link" data-scroll-target="#directory-structure-for-r-and-python">Directory structure for R and Python</a></li>
+  </ul></li>
+  <li><a href="#specifying-paths" id="toc-specifying-paths" class="nav-link" data-scroll-target="#specifying-paths">Specifying paths</a></li>
+  <li><a href="#code-style" id="toc-code-style" class="nav-link" data-scroll-target="#code-style">Code style</a>
+  <ul class="collapse">
+  <li><a href="#linters-and-stylers" id="toc-linters-and-stylers" class="nav-link" data-scroll-target="#linters-and-stylers">Linters and Stylers</a></li>
+  <li><a href="#recommendations-and-resources" id="toc-recommendations-and-resources" class="nav-link" data-scroll-target="#recommendations-and-resources">Recommendations and resources</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects/index.html">Projects</a></li><li class="breadcrumb-item"><a href="../projects/consistency.html">Consistency</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Best practices for scientific software development</h1>
+<h1 class="title">Consistency</h1>
 </div>
 
 
@@ -328,25 +349,132 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>If you’re reading this guide, it’s probably because you write scientific code and want to get better at doing so. But what does it mean to be good at coding? What probably comes to mind immediately is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.</p>
-<p>The goals of this guide are to teach you both how to write better code <strong>and</strong> how to get better at the <em>process</em> of writing code. This means adopting habits, or <strong>best practices</strong>, while writing scientific software that ensure your projects are <strong>well-documented</strong>, <strong>reproducible</strong>, and <strong>extensible</strong>. Scientists often write code, but they are not software developers in the traditional sense. However, their lives could be made easier by adopting some of the ways in which professional software developers work. This guide collects such practices and discusses them in a way that is specific to working in science.</p>
-<section id="guide-organization" class="level1">
-<h1>Guide organization</h1>
-<p>Adopting best practices for scientific software development can be a daunting task. Depending on how experienced you are with programming, there can be a lot to take in at once. To make the learning process less intimidating, this guide is organized in a cumulative way. We start with best practices that we consider to be absolutely fundamental, and thus important to assimilate into your <a href="./day-to-day/index.html">day-to-day coding</a> practice. Once these practices become second nature, we encourage you to continue building out your skills by explore the best practices for developing <a href="./projects/index.html">projects</a>. While working on a project, you may realize that you want to re-use some project code, or that it might be of use to others, so you decide to <a href="./package-development/index.html">package it</a>. As a project or package matures, you may consider <a href="./deployment-and-maintenance/index.html">deploying it and maintaining it in the longer term</a>. We include a section of <a href="./extras/index.html">extras</a> to collect additional content linked to throughout the main guide. Use the sidebar to navigate the guide and choose your own adventure!</p>
-<p>Wherever possible, we have tried to make recommendations that reduce friction if and when your coding projects evolve.</p>
+<p>There are a few <strong>consistency</strong> conventions that make your projects more widely-understandable and robust.</p>
+<p>We suggest documenting any project conventions in your project’s main <a href="../projects/readmes.html">README file</a> (or <a href="../package-development/developer-docs.html">developer guide</a>).</p>
+<section id="project-directory-organisation" class="level2">
+<h2 class="anchored" data-anchor-id="project-directory-organisation">Project directory organisation</h2>
+<p>It can be helpful to use a standardised way to organise your project directory (also referred to here as the <strong>root directory</strong>). We recommend the following when setting up a directory for a new project:</p>
+<ul>
+<li>You should start your project in an empty, project-specific directory
+<ul>
+<li>Ideally, you would <a href="../projects/version-control.html#creating-a-new-repository-for-your-project">set up a git repository on GitLab or GitHub first</a>, and then <a href="../projects/version-control.html#cloning-a-repository">clone it locally</a>.</li>
+</ul></li>
+<li>You should not use spaces or special characters in directory or file names.
+<ul>
+<li>Spaces can be a pain when using the command line as spaces usually need to be escaped with a <code>\</code> in this case.</li>
+</ul></li>
+<li>You should not sync Git repositories using cloud storage providers (<em>e.g.</em>, OneDrive, Dropbox, Google Drive, NextCloud).
+<ul>
+<li>Using Git (like many development activities) results in the creation, modification, and deletion a large number of small and/or temporary files. These changes can overwhelm file-storage providers, leading to synchronization conflicts and excess CPU usage.</li>
+<li>In some cases, cloud storage providers may block certain file types for security reasons. For instance, OneDrive blocks <code>.js</code> files, which are used by <a href="../projects/virtual-environments.html"><code>renv</code> for virtual environment management</a>. When files are blocked, they are not uploaded, so you’re not actually backing up a complete copy of your project files, and you will regularly get annoying notifications from OneDrive telling you to remove files that cannot be synced.</li>
+</ul></li>
+</ul>
+<section id="directory-structure" class="level3">
+<h3 class="anchored" data-anchor-id="directory-structure">Directory structure</h3>
+<p>Projects using Git and a Git server, as recommended in the <a href="../projects/version-control.html">version control section</a> of this guide, should have a few key files at the root level, no matter the language(s) being used:</p>
+<pre><code>project_directory/
+  .git/
+  .gitignore
+  LICENSE
+  NOTICE
+  README</code></pre>
 </section>
-<section id="acknowledgements" class="level1">
-<h1>Acknowledgements</h1>
-<p>This guide was written for scientific software developers and scientists in the Public Health Agency of Canada, though its advice may be of use more widely. This project was led by <a href="irena-papst">Irena Papst</a> (<a href="modelling-hub">Modelling Hub</a>). The guide was authored by <a href="irena-papst">Irena Papst</a>, <a href="brennan-chapman">Brennan Chapman</a> (<a href="modelling-hub">Modelling Hub</a>) and <a href="aaron-petkau">Aaron Petkau</a> (National Microbiology Laboratory). <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<section id="git-and-.gitignore" class="level3">
+<h3 class="anchored" data-anchor-id="git-and-.gitignore"><code>.git/</code> and <code>.gitignore</code></h3>
+<p><code>.git/</code> and <code>.gitignore</code> (as their names suggest) control how Git works with your project.</p>
+<p>The <code>.git/</code> folder is the ‘thing’ that makes your project directory a Git repository. It is created automatically when you enable Git (<em>e.g.</em>, by cloning a remote repository or through <code>git init</code>). It contains both the local Git configuration and your project’s version control data.</p>
+<p><code>.gitignore</code> controls which files are ignored by Git (<em>i.e.</em> are never added to version control). Unlike <code>.git/</code>, <code>.gitignore</code> is not created automatically. Learn more about using a <code>.gitignore</code> file <a href="version-control.html#ignoring-files">here</a>.</p>
+</section>
+<section id="license-and-notice" class="level3">
+<h3 class="anchored" data-anchor-id="license-and-notice">LICENSE and NOTICE</h3>
+<p>These files are only required if you are publishing your project online. See <a href="../deployment-and-maintenance/licenses.html">Licenses</a> for more information.</p>
+</section>
+<section id="readme" class="level3">
+<h3 class="anchored" data-anchor-id="readme">README</h3>
+<p>Every project repository should contain a README file, which serves as the most basic project-level documentation for your work. See <a href="../projects/readmes.html">README files</a> for more information.</p>
+</section>
+<section id="directory-structure-for-r-and-python" class="level3">
+<h3 class="anchored" data-anchor-id="directory-structure-for-r-and-python">Directory structure for R and Python</h3>
+<p>We recommended the following components in addition to the <a href="#directory-structure">general directory structure above</a>:</p>
+<pre><code>project_directory
+  data/
+  notes/
+  scripts/
+  tests/
+  R/ **or** py/</code></pre>
+<ul>
+<li><code>data/</code> should contain any data used in your analyses, unless you must not commit it to a Git server and need to keep it in a shared location like OneDrive or SharePoint. In this case, be sure to <a href="../projects/version-control.html#ignoring-files">add these files to your <code>.gitignore</code></a> file.</li>
+<li><code>notes/</code> should contain your project notes.
+<ul>
+<li>We recommend using Quarto for notes so that you can weave executed code and text together. Note that Quarto is a separate program that you would ordinarily need to install in addition to R (or Python), but it now comes bundled with RStudio, our <a href="../day-to-day/IDEs.html">preferred IDE for R</a>, so no additional installation is required if you already have RStudio.</li>
+</ul></li>
+<li><code>scripts/</code> should contain any scripts for your project.</li>
+<li><code>tests/</code> should contain code tests. We recommend spending a few minutes writing at least one <a href="../package-development/unit-testing.html">unit test</a> every time you write a function, and running these tests after major changes to your code, to be proactive about code bugs.</li>
+<li>For R, <code>R/</code> should contain your functions, ideally one main function per <code>.R</code> file, with specific helper functions below. This is also where functions must life if you go on to <a href="../package-development/index.html">package your code</a>. For Python, you could use <code>py/</code> instead.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ul>
+</section>
+</section>
+<section id="specifying-paths" class="level2">
+<h2 class="anchored" data-anchor-id="specifying-paths">Specifying paths</h2>
+<p>When specifying file paths in your project, it pays to be consistent. We recommend that you always write paths <strong>relative to the root directory</strong>, and that you always run scripts out of the root directory.</p>
+<p>This practice has several advantages. For one, your paths won’t break from user to user since they are relative. Also, paths will break less often if files are moved around. When paths are relative to their present location, they are fragile to both the location of the file in which you’re calling the file path, and to the location of the target file. By making paths relative to the root directory, you eliminate the case where they break because you changed the location of the source file.</p>
+<p>For R, we recommend the use of the <a href="https://here.r-lib.org/index.html"><code>here</code></a> package, which adopts this convention. You can get started with <code>here</code> using <a href="https://here.r-lib.org/articles/here.html">this guide</a>.</p>
+</section>
+<section id="code-style" class="level2">
+<h2 class="anchored" data-anchor-id="code-style">Code style</h2>
+<p>Code that is easier to read will be easier to maintain, debug, and build on in the future. <a href="https://en.wikipedia.org/wiki/Programming_style">Code style</a> is the collection of conventions that govern the formatting of the code we write. For instance, code style can include decisions about</p>
+<ul>
+<li>using different cases for functions versus variables (<code>camelCase</code> for variables, <code>snake_case()</code> for function names)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>formatting style for comments, and how to denote sections of code</li>
+<li>how to indent blocks of code</li>
+</ul>
+<p>Style is subjective and sometimes programming-language-specific. The most important thing to remember is:</p>
+<blockquote class="blockquote">
+<p>The code you write should be optimized for the average code reader and not the specific writer.</p>
+</blockquote>
+<p>Choose a set of rules and stick to them within a project. Try to choose rules that are familiar to many.</p>
+<section id="linters-and-stylers" class="level3">
+<h3 class="anchored" data-anchor-id="linters-and-stylers">Linters and Stylers</h3>
+<p>Some conventions have been encoded in helpful <a href="https://www.testim.io/blog/what-is-a-linter-heres-a-definition-and-quick-start-guide/#:~:text=The%20use%20of%20linters%20helps,the%20enforcement%20of%20its%20rules.">“<strong>linter</strong>” tools</a> that can crawl your code to look for convention violations. Linters can be especially helpful when you’re first adopting a popular code style, or if you’re preparing to contribute to an open-source project.</p>
+<p>There are also <strong>styler</strong> tools that automatically format existing code using a specific style guide.</p>
+</section>
+<section id="recommendations-and-resources" class="level3">
+<h3 class="anchored" data-anchor-id="recommendations-and-resources">Recommendations and resources</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Language</th>
+<th>Recommended style guide</th>
+<th>Associated linter</th>
+<th>Associated styler</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python</td>
+<td><a href="https://pep8.org/">PEP8</a></td>
+<td><a href="https://pycodestyle.pycqa.org/en/latest/"><code>pycodestyle</code></a></td>
+<td><a href="https://pypi.org/project/autopep8/"><code>autopep8</code></a></td>
+</tr>
+<tr class="even">
+<td>R</td>
+<td><a href="https://style.tidyverse.org/">tidyverse style guide</a></td>
+<td><a href="https://lintr.r-lib.org/"><code>lintr</code></a></td>
+<td><a href="https://styler.r-lib.org/"><code>stylr</code></a></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 </section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>This guide builds on previous work by Eric Enns, Eric Marinier, Deep Sidhu, Phil Mabon, and <a href="aaron-petkau">Aaron Petkau</a> in the National Microbiology Laboratory.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>For Python packages, the convention is rather that <a href="https://docs.python-guide.org/writing/structure/#sample-repository">you name the directory containing your module contents with the module name</a>, but this can be confusing for scientific projects that are not specifically software packages, hence our recommendation to use <code>py</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>You can read more about case styles <a href="https://systemweakness.com/case-styles-in-programming-b4ee6012fd5f">here</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
