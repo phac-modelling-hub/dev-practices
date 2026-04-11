@@ -44,13 +44,14 @@ website:
           - docs/package-development/get-started.qmd
           - docs/package-development/function-docs.qmd
           - docs/package-development/unit-testing.qmd
+          - docs/deployment-and-maintenance/developer-docs.qmd
       - section: "Deployment and maintenance"
         href: docs/deployment-and-maintenance/index.qmd
         contents:
           - docs/deployment-and-maintenance/licenses.qmd
           - docs/deployment-and-maintenance/versioning.qmd
-          - docs/deployment-and-maintenance/developer-docs.qmd
           - docs/deployment-and-maintenance/continuous-integration.qmd
+          - docs/deployment-and-maintenance/code-review.qmd
       - section: "Extras"
         href: docs/extras/index.qmd
         contents:

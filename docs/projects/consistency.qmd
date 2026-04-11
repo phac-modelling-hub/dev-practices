@@ -4,7 +4,7 @@ title: Consistency
 
 There are a few **consistency** conventions that make your projects more widely-understandable and robust. 
 
-We suggest documenting any project conventions in your project's main [README file](readmes.qmd) (or [developer guide](../deployment-and-maintenance/developer-docs.qmd)).
+We suggest documenting any project conventions in your project's main [README file](readmes.qmd) (or [developer guide](../package-development/developer-docs.qmd)).
 
 ## Project directory organisation
 
