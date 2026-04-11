@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Version control – Best practices for scientific software development</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Best practices for scientific software development</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/projects/index.html">Projects</a></li><li class="breadcrumb-item"><a href="../../docs/projects/version-control.html">Version control</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../docs/day-to-day/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day-to-day coding</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/day-to-day/IDEs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integrated development environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/day-to-day/readmes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">README files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/day-to-day/commenting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commenting code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/day-to-day/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../docs/projects/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/projects/version-control.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Version control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/projects/readmes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">README files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/projects/virtual-environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Virtual environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/projects/consistency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Consistency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/projects/pipelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pipelines</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../docs/package-development/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Package development</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/package-development/readmes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">README files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/package-development/get-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get started guides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/package-development/function-docs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function documentation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/package-development/unit-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unit testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../docs/deployment-and-maintenance/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deployment and maintenance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/deployment-and-maintenance/licenses.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licenses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/deployment-and-maintenance/versioning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Versioning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">docs/deployment-and-maintenance/developer-docs.qmd</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/deployment-and-maintenance/continuous-integration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous integration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../docs/extras/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/extras/install-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/extras/writing-commit-messages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing commit messages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/extras/admin-git-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Administering GitLab Groups and GitHub Organizations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/extras/githubflow-demo-cli.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub flow demo using the command line</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/extras/pipenv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Virtual environments in Python</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gitlab-and-github" id="toc-gitlab-and-github" class="nav-link active" data-scroll-target="#gitlab-and-github">GitLab and GitHub</a>
+  <ul class="collapse">
+  <li><a href="#access-control" id="toc-access-control" class="nav-link" data-scroll-target="#access-control">Access control</a></li>
+  <li><a href="#gitlab-and-github-docs" id="toc-gitlab-and-github-docs" class="nav-link" data-scroll-target="#gitlab-and-github-docs">GitLab and GitHub docs</a></li>
+  </ul></li>
+  <li><a href="#git-basics" id="toc-git-basics" class="nav-link" data-scroll-target="#git-basics">Git basics</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-new-repository-for-your-project" id="toc-creating-a-new-repository-for-your-project" class="nav-link" data-scroll-target="#creating-a-new-repository-for-your-project">Creating a new repository for your project</a></li>
+  <li><a href="#git-clients" id="toc-git-clients" class="nav-link" data-scroll-target="#git-clients">Git clients</a></li>
+  <li><a href="#cloning-a-repository" id="toc-cloning-a-repository" class="nav-link" data-scroll-target="#cloning-a-repository">Cloning a repository</a></li>
+  <li><a href="#ignoring-files" id="toc-ignoring-files" class="nav-link" data-scroll-target="#ignoring-files">Ignoring files</a></li>
+  <li><a href="#making-changes" id="toc-making-changes" class="nav-link" data-scroll-target="#making-changes">Making changes</a></li>
+  <li><a href="#removing-files-from-tracking" id="toc-removing-files-from-tracking" class="nav-link" data-scroll-target="#removing-files-from-tracking">Removing files from tracking</a></li>
+  <li><a href="#synchronizing" id="toc-synchronizing" class="nav-link" data-scroll-target="#synchronizing">Synchronizing</a></li>
+  <li><a href="#branching" id="toc-branching" class="nav-link" data-scroll-target="#branching">Branching</a></li>
+  <li><a href="#mergepull-request" id="toc-mergepull-request" class="nav-link" data-scroll-target="#mergepull-request">Merge/pull request</a></li>
+  </ul></li>
+  <li><a href="#git-workflow" id="toc-git-workflow" class="nav-link" data-scroll-target="#git-workflow">Git workflow</a>
+  <ul class="collapse">
+  <li><a href="#github-flow" id="toc-github-flow" class="nav-link" data-scroll-target="#github-flow">GitHub flow</a></li>
+  <li><a href="#project-management-with-gitlab-and-github" id="toc-project-management-with-gitlab-and-github" class="nav-link" data-scroll-target="#project-management-with-gitlab-and-github">Project management with GitLab and GitHub</a></li>
+  </ul></li>
+  <li><a href="#git-tips-and-tricks" id="toc-git-tips-and-tricks" class="nav-link" data-scroll-target="#git-tips-and-tricks">Git tips and tricks</a>
+  <ul class="collapse">
+  <li><a href="#commit-a-mostly-empty-directory" id="toc-commit-a-mostly-empty-directory" class="nav-link" data-scroll-target="#commit-a-mostly-empty-directory">Commit a (mostly) empty directory</a></li>
+  <li><a href="#working-with-the-repository-history" id="toc-working-with-the-repository-history" class="nav-link" data-scroll-target="#working-with-the-repository-history">Working with the repository history</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/projects/index.html">Projects</a></li><li class="breadcrumb-item"><a href="../../docs/projects/version-control.html">Version control</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Version control</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Managing versions of your work is one of the most important activities when it comes to working efficiently, for reproducibility, and when collaborating with others. You’re probably already familiar with the basic idea of version control through Microsoft Word or Powerpoint via OneDrive and SharePoint. Many people who develop software use a <em>distributed version control software</em> to manage their work, which means each developer works on their own, local copy of a given project and synchronizes through a centralized server.</p>
+<p>The most common and our recommended distributed version control software for coding is <a href="https://en.wikipedia.org/wiki/Git"><strong>Git</strong></a>. Unlike with OneDrive and Sharepoint, Git’s version control is not automatic. Instead, you must log your changes manually every so often and explicitly send your changes up to a Git server so that collaborators can see and retrieve them.</p>
+<p>Git operates on collections of files, usually grouped into a single folder, which we call a <strong>repository</strong> (or “repo”). The idea is to have one repo per project. Git is optimized to work with text-based files, such as code, csv files, and the like.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>To get started with Git, start by <a href="../../docs/extras/install-git.html">installing it</a>.</p>
+<section id="gitlab-and-github" class="level2">
+<h2 class="anchored" data-anchor-id="gitlab-and-github">GitLab and GitHub</h2>
+<p>To collaborate with others using Git, you must sync your repository to a <em>Git server</em>. A Git server offers a central “home” in the cloud that collaborators can interface with asynchronously:</p>
+<p><img src="../assets/repo-locations.png" class="img-fluid"></p>
+<p>There are two main “flavours” of Git server software: GitHub and GitLab. These software are largely similar, with one important exception; GitLab can be run on a private server, whereas GitHub is only offered by Microsoft at <a href="https://github.com">github.com</a>.</p>
+<section id="access-control" class="level3">
+<h3 class="anchored" data-anchor-id="access-control">Access control</h3>
+<p>A repository can be <em>public</em> (accessible to anyone with access to the Git server), or <em>private</em> (accessible only to registered users who have been granted access).</p>
+<p>Granting repository access to individual users may work well for smaller projects, but it quickly becomes impractical at scale. To manage access for many users at once, GitHub and GitLab offer <a href="https://docs.Github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations">Organizations</a> and <a href="https://docs.gitlab.com/ee/topics/set_up_organization.html">Groups</a> respectively. Organizations and Groups are essentially “shared accounts” or “containers” for projects that offer sophisticated security and administrative features.</p>
+<p>Importantly, Organizations and Groups move repos to unique project URLs. Personal repositories are located at <code>examplegitserver.com/user-name/repo-name</code>. Organization and Group repositories are located at <code>examplegitserver.com/organization-name/repo-name</code>. Organizations and Groups are particularly useful for project branding and continuity; the same URL can be used for the life of the project, even as users join or leave over time.</p>
+<p>To learn more about administering organizations and groups, see the <a href="../../docs/extras/admin-git-groups.html">GitLab Groups and GitHub Organizations</a> page.</p>
+</section>
+<section id="gitlab-and-github-docs" class="level3">
+<h3 class="anchored" data-anchor-id="gitlab-and-github-docs">GitLab and GitHub docs</h3>
+<p>This guide gives an introduction to using GitHub and GitLab when developing projects, but you may wish to occasionally consult the documentation for either product for more advanced usage:</p>
+<ul>
+<li><a href="https://docs.gitlab.com/">GitLab docs</a></li>
+<li><a href="https://docs.github.com/en">GitHub docs</a></li>
+</ul>
+</section>
+</section>
+<section id="git-basics" class="level2">
+<h2 class="anchored" data-anchor-id="git-basics">Git basics</h2>
+<p>There are a few fundamental actions that you will use often with Git, which we outline here.</p>
+<section id="creating-a-new-repository-for-your-project" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-new-repository-for-your-project">Creating a new repository for your project</h3>
+<p>When starting a new project, you will likely want to <strong>create a new repository</strong> to house your project files. We recommend that the project lead create the first copy of your repo <strong>in the cloud</strong>, <em>i.e.</em> on GitLab or GitHub via a web browser, after deciding which remote home to use for this particular project.</p>
+<p>Instructions for creating a new repo can be found <a href="https://docs.gitlab.com/ee/user/project/">here for GitLab</a> and <a href="https://docs.Github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository">here for GitHub</a>. We recommend that you initialize your new repository with a <a href="../../docs/projects/readmes.html">README</a> and and a <a href="../../docs/deployment-and-maintenance/licenses.html">license file</a> and be mindful of the visibility level for your repository.</p>
+<p>To invite collaborators, follow <a href="https://docs.gitlab.com/ee/user/project/members/">these instructions for GitLab</a> and <a href="https://docs.Github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-Github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository">these instructions for GitHub</a>.</p>
+<p>Once the cloud repository is created, the project lead and all collaborators should create a local, synchronized copy (or “clone”) of the project on their computers in order to be able to work on the project files. To clone the project, you need to first decide how you will interact with Git on your computer, which we discuss in the next section. (We discuss how to actually clone a repository in a subsequent section.)</p>
+</section>
+<section id="git-clients" class="level3">
+<h3 class="anchored" data-anchor-id="git-clients">Git clients</h3>
+<p>Git is fundamentally a command line program and some users simply interface with it via the command line. When you install Git, you will see a new app called Git Bash, which gives you a command line interface to Git. However, it is generally easier to interact with Git primarly via a client with a graphical user interface (GUI). These can either be standalone programs or bundled within an integrated development environment (like RStudio or VSCode).</p>
+<p>The Git website includes a list of <a href="https://Git-scm.com/downloads/guis">Git GUI Clients</a>. We recommend using <a href="https://desktop.Github.com/">GitHub Desktop</a> as a starting point. It is one of the few cross-platform open source Git GUI clients. Despite its name, GitHub Desktop works with all Git servers, including GitLab. GitHub Desktop is available on corporate machines through the Company Portal. If you have a GitHub account that you use for work, you should sign into it in the GitHub Desktop app.</p>
+<p>This guide will demo instructions for basic Git use via GitHub Desktop. If you prefer to learn how to use Git via the command line, you should consult <a href="https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line">this command line guide on the official Git site</a>.</p>
+</section>
+<section id="cloning-a-repository" class="level3">
+<h3 class="anchored" data-anchor-id="cloning-a-repository">Cloning a repository</h3>
+<p>Now that you’ve created a new repository in the cloud, you need to <strong>clone it locally</strong> to your computer so that you can work on the repo’s files. This action copies the current files and Git history to your computer, and creates a link between your copy and the main copy in the cloud (in this case called the “origin” repository).</p>
+<p><strong>We strongly recommend against cloning code repositories to OneDrive or Sharepoint locations</strong>, as these services block the synchronization of certain code files for security reasons. Using OneDrive or Sharepoint locations for your code repositories can lead to only some files being backed up in the Microsoft cloud, along with annoying and persistent notifications from the OneDrive/Sharepoint app telling you that there is a synchronisation issue and to remove certain files. Instead, we recommend creating a folder in your local user folder (<code>C:/Users/USERNAME</code>) to house all Git repos. GitLab and GitHub both store a separate copy of your repository in the cloud, so you still inherently are backing up your work on an external device.</p>
+<p>To clone a <strong>GitHub</strong> repo in GitHub Desktop:</p>
+<ol type="1">
+<li>In GitHub Desktop, go to <code>File &gt; Options... &gt; Accounts</code> and sign into your GitHub account (if you’re not already signed in).</li>
+<li>Go to your repository on github.com, and click the big green “Code” button. Select “Open in GitHub Desktop”.</li>
+<li>Choose a local path where you’d like the repository clone and click “Clone”.</li>
+</ol>
+</section>
+<section id="ignoring-files" class="level3">
+<h3 class="anchored" data-anchor-id="ignoring-files">Ignoring files</h3>
+<p>Not all files should be tracked by Git, including:</p>
+<ul>
+<li>sensitive data files that must only be stored locally</li>
+<li>generated temporary files that collaborators can (and will) be easily recreated when they run the code</li>
+<li>files over 100 MB (GitHub’s file transfer limit)</li>
+</ul>
+<p>We can use <code>.gitignore</code> file to avoid including these files in the repository’s file history as well as pushing them up to the cloud.</p>
+<p>A <code>.gitignore</code> is a text file usually kept at the top level of your repository. Git will ignore any files that match names and patterns listed in a <code>.gitignore</code> file, meaning that the files will not be tracked. It is a good practice to ignore these files as soon as possible after creating your repository, to avoid accidentally synchronizing them to a Git server.</p>
+<p>One way to ignore files is by right-clicking them in the “Changes” pane of GitHub Desktop and selecting one of the ignore options, either “ignore this file” or “ignore all files with the same extension”:</p>
+<p><img src="../assets/ignore.png" class="img-fluid"> <img src="../assets/ignore2.png" class="img-fluid"></p>
+<p>Once you ignore your first file, you will see the new <code>.gitignore</code> file in Windows Explorer:</p>
+<p><img src="../assets/ignore3.png" class="img-fluid"></p>
+<p>You can open <code>.gitignore</code> and simply type in filenames and patterns to new lines in the file, as opposed to right-clicking files individually in GitHub Desktop. You can find rules for populating your <code>.gitignore</code> file <a href="https://Git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_ignoring">here</a>.</p>
+<p>Another option is to start with a template <code>.gitignore</code> file with commonly-ignored file types for your project’s programming language(s), which you can generate easily using <a href="https://www.toptal.com/developers/gitignore">gitignore.io</a>.</p>
+</section>
+<section id="making-changes" class="level3">
+<h3 class="anchored" data-anchor-id="making-changes">Making changes</h3>
+<p>Now that your repository is available to you locally, you can start developing your code. Every time you make changes to your files (create/delete/edit a file), you will see them reflected in GitHub Desktop, under the Changes tab:</p>
+<p><img src="../assets/changes.png" class="img-fluid"></p>
+<p>Changes are shown relative to the last snapshot, <em>i.e.</em>, relative to the last <strong>commit</strong> to the repository. The green plus to a file means a file was added, the yellow dot means a file was modified, and a red minus means a file was deleted. When a change is listed but unchecked, it is “unstaged”, and when it is checked it is “staged” in preparation for making a commit.</p>
+<p>In either case, these changes have been made, but they have not been committed to the version history of the repository. You can see the changes in detail on the right-hand side, in the <strong>diff</strong> view: green lines have been added and red lines have been deleted relative to the last snapshot (commit) of the code.</p>
+<p><img src="../assets/diff.png" class="img-fluid"></p>
+<p>You can stage entire files by checking them, or just some lines in a file by selecting/deselecting lines in the diff view.</p>
+<p>Once you have selected the changes you want to bundle together for your snapshot, write a commit message to summarise the changes in the lower left of the app window and click the Commit button:</p>
+<p><img src="../assets/commit.png" class="img-fluid"></p>
+<p>The main commit message is mandatory and should provide a short summary of your changes. The additional description is optional.</p>
+<p>Once committed, you will see this latest change, and all others before it in the History pane:</p>
+<p><img src="../assets/commit2.png" class="img-fluid"></p>
+<p>For more on writing commit messages, see the <a href="../../docs/extras/writing-commit-messages.html">Writing commit messages</a> page.</p>
+</section>
+<section id="removing-files-from-tracking" class="level3">
+<h3 class="anchored" data-anchor-id="removing-files-from-tracking">Removing files from tracking</h3>
+<p>If you’ve accidentally committed a file that you want to ignore, just adding the file to the <code>.gitignore</code> will not work to ignore the file. You must first <strong>remove the file from tracking</strong>, and then adding it to the <code>.gitignore</code> will take effect. GitHub Desktop does not have a feature to remove files from tracking, so we must do it from the command line.</p>
+<p>Open up the Git Bash program and navigate to your repository’s directory using</p>
+<pre><code>cd path/to/directory</code></pre>
+<p>where you’d fill <code>path/to/directory</code> in with an absolute path to your project repo.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Now that you are in your project’s repository, you can remove a file from tracking with</p>
+<pre><code>git rm path/to/file</code></pre>
+<p>For instance, if I wanted to remove a file called <code>data.csv</code> from the top level of my repository, I would do</p>
+<pre><code>git rm data.csv</code></pre>
+<p>Now if you were to add this file to the <code>.gitignore</code>, it would actually be ignored!</p>
+<p>To purge an accidentally committed file from your GitHub repository, you’ll need to follow <a href="https://docs.Github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository">these instructions</a>.</p>
+</section>
+<section id="synchronizing" class="level3">
+<h3 class="anchored" data-anchor-id="synchronizing">Synchronizing</h3>
+<p>Note the little up arrow beside the latest commit from our previous example:</p>
+<p><img src="../assets/commit3.png" class="img-fluid"></p>
+<p>The arrow indicates that some changes we committed have yet to be sent up to the cloud repository. Commits only log changes to your <em>local</em> file history. To send your changes to the cloud repository, you must <strong>push</strong> them up:</p>
+<p><img src="../assets/push.png" class="img-fluid"></p>
+<p>If you are working on two computers or collaborating with others, you will want to periodically sync in the opposite direction and retrieve any changes from the cloud repository. We start with a <strong>fetch</strong> to check for any changes available online:</p>
+<p><img src="../assets/fetch.png" class="img-fluid"></p>
+<p>If changes are present, GitHub Desktop shows us how many new commits are available (just one here) and we get the option to <strong>pull</strong> them down to our local copy:</p>
+<p><img src="../assets/pull.png" class="img-fluid"></p>
+</section>
+<section id="branching" class="level3">
+<h3 class="anchored" data-anchor-id="branching">Branching</h3>
+<section id="understanding-branches" class="level4">
+<h4 class="anchored" data-anchor-id="understanding-branches">Understanding branches</h4>
+<p>Branches are a way of working on your files in a way that is isolated from other versions of your code. The default branch is <code>main</code> and should be thought of as the “live” version of your code; you should avoid making changes directly to your code on <code>main</code> unless you are confident that your changes won’t break anything. Instead, experimentation and development should be done on another branch, especially when you are collaborating with others to avoid clashing with their changes in an uncontrolled way. Branches can be merged into one another at any point in time to reconcile changes.</p>
+<p>This paradigm comes from the world of software development and it may very well be overkill for a solo research project. However, it can be very useful when collaborating with others, and we recommend a common Git workflow that uses branches <a href="#Github-flow">below</a>.</p>
+<p>We can visualise branching to understand it better. Imagine your file history as a timeline with a series of commits denoting snapshots of your code:</p>
+<p><img src="../assets/branch-main.png" class="img-fluid"></p>
+<p>This history is of a repository where some authors are collaborating on a manuscript together. One author decides to add a section on methods, but does not want to disrupt the work of others, so they make a branch:</p>
+<p><img src="../assets/branch-methods.png" class="img-fluid"></p>
+<p>This author branched off of <code>main</code> at a commit with message “completed analysis section”. The <code>add-methods</code> branch history starts at that change. Changes can continue to be made to <code>main</code>, but <code>add-methods</code> will not include them (unless they are explicitly pulled into <code>add-methods</code>). In this way, branching enables work in parallel.</p>
+<p>When work on the <code>add-methods</code> branch is complete, these changes can be pulled into <code>main</code> with a <strong>pull request</strong> (or “<strong>merge request</strong>” on GitLab).</p>
+<p><img src="../assets/branch-pull-request.png" class="img-fluid"></p>
+<p>The idea is to formally request a pull into <code>main</code> and allow for a review and approval process before the merge is complete. Before being able to accept a pull request from <code>add-methods</code> into <code>main</code>, any additional changes to <code>main</code> must be merged into the <code>add-methods</code> branch first. Here, that means adding commit numbers <code>51003d7</code> “added figures” and <code>3563aa1</code> “added authors” to <code>add-methods</code>. This is a precaution to avoid <strong>merge conflicts</strong>.</p>
+<p>Git will automatically attempt to resolve these changes and generally does a good job at this unless conflicting changes happen to be made to the same part of a file. If Git detects conflicting changes, it will create a merge conflict between the branches, where it will add text to the conflicted files flagging where conflicts are.</p>
+<p>In the example above, imagine that we have a file called <code>authors.qmd</code> and we are trying to pull changes to this file from <code>add-method</code> into <code>main</code>. Someone working on <code>main</code> put the line “The authors of this code are unknown.” (with commit number <code>3563aa1</code> “added authors”) in this file, and in parallel someone working on <code>add-methods</code> put “The authors of this code are wonderful people!” (with commit number <code>28eb227</code> “edited methods section”) in the same line of this file. These are conflicting changes that Git would not know how to reconcile, so the pull request into <code>main</code> would be blocked. Instead, Git would flag the conflict by inserting the following text into <code>authors.qmd</code>:</p>
+<p><img src="../assets/merge-conflict.png" class="img-fluid"></p>
+<p>Conflicts are sandwiched between the markers <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>. You can find them easily by searching the conflicted file for <code>&lt;</code> characters. Git will insert both proposed changes divided by <code>=======</code>, and it will label where each change came from. In the example above, the top change comes from <code>HEAD</code>, and the bottom change comes from the <code>add-methods</code> branch. <code>HEAD</code> is a generic term for the tip of the branch you’re currently working on. If you are merging <code>add-methods</code> into <code>main</code>, you would do that from the <code>main</code> branch, so here <code>HEAD</code> would be <code>main</code>.</p>
+<p>To resolve the conflict, simply erase everything between and including the conflict markers except the change you want to keep. In the above example, if we were to accept the change from <code>add-methods</code>, the resolved conflict would just look like:</p>
+<p><img src="../assets/merge-conflict2.png" class="img-fluid"></p>
+</section>
+<section id="working-with-branches" class="level4">
+<h4 class="anchored" data-anchor-id="working-with-branches">Working with branches</h4>
+<p>To make a branch in GitHub Desktop, start by opening the branch pane by clicking on the current branch in the top middle of the app window, and then click the “New branch” button:</p>
+<p><img src="../assets/branching.png" class="img-fluid"></p>
+<p>You new branch will start from the tip of the branch you’re currently on so be sure to first select and synchronize the branch you want to start from before clicking “New branch”. The “New branch” button will open a pop-up where you will input a name for your new branch:</p>
+<p><img src="../assets/branching2.png" class="img-fluid"></p>
+<p>It is good practice to use a concise and descriptive name that quickly conveys the goal of the work on the new branch. Once you create the branch, it will only be created locally; you must push it up to the cloud repository yourself, by selecting the “Publish branch” button that will be available:</p>
+<p><img src="../assets/branching3.png" class="img-fluid"></p>
+<p>Once you’ve done that, you will be able to see your branch online:</p>
+<p><img src="../assets/branching4.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="mergepull-request" class="level3">
+<h3 class="anchored" data-anchor-id="mergepull-request">Merge/pull request</h3>
+<p>As suggested above, before creating a pull request (or “merge request” in GitLab), you will want to ensure your branch is up-to-date with the branch you’re merging into (usually <code>main</code>) and resolve any conflicts. You can do so by starting on your new branch, <em>e.g.</em> <code>add-methods</code>, opening the branch menu in GitHub Desktop, and selecting the button at the bottom that would say “Choose a branch to merge into <strong><code>add-methods</code></strong>”. Here you would select <code>main</code> and then resolve any merge conflicts as explained above. Finish by pushing those changes up to the origin (cloud) repository.</p>
+<p>Once you’ve synchronized your new branch with the base branch of your pull request, you can open a pull request.</p>
+<p>For repositories connected to GitHub, you should use <a href="https://docs.Github.com/en/desktop/working-with-your-remote-repository-on-Github-or-Github-enterprise/creating-an-issue-or-pull-request-from-Github-desktop#creating-a-pull-request">these instructions for creating a pull request from GitHub Desktop</a>. For repositories connected to GitLab, you should use <a href="https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#from-the-merge-request-list">these instructions for creating a merge request from the merge request list on the GitLab website</a>.</p>
+<p>Once the request is created, it can be reviewed and merged online:</p>
+<ul>
+<li>GitLab: <a href="https://docs.gitlab.com/ee/user/project/merge_requests/reviews/">reviewing</a> and merging merge requests
+<ul>
+<li>To merge, simply <a href="https://docs.gitlab.com/ee/user/project/merge_requests/index.html#view-merge-requests">find your request</a> in the project repository online on GitLab, open it, and click the merge button at the bottom.</li>
+</ul></li>
+<li>GitHub: <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews">reviewing</a> and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request?tool=webui#merging-a-pull-request">merging</a> pull requests</li>
+</ul>
+<p>Be sure to synchronize local repositories after merges. You may also want to delete the new branch that was merged if it has served its purpose (both locally and in the cloud repository), which you can do easily from GitHub Desktop for GitHub repositories:</p>
+<p><img src="../assets/delete-branch.png" class="img-fluid"> <img src="../assets/delete-branch2.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="git-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="git-workflow">Git workflow</h2>
+<section id="github-flow" class="level3">
+<h3 class="anchored" data-anchor-id="github-flow">GitHub flow</h3>
+<p>Git, GitLab, and GitHub are very flexible pieces of software and it’s possible to use them in many different ways. We recommend the use of <a href="https://docs.Github.com/en/get-started/quickstart/Github-flow">GitHub flow</a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, which is a straightforward and simple workflow. Here is an overview:</p>
+<ol type="1">
+<li>For any new addition to your code (new feature, bug fix, etc), <strong>create a new branch</strong> locally based off of <code>main</code>. We will call this the “feature branch”. Pick a branch name that quickly conveys its purpose.</li>
+<li><strong>Push your feature branch to the remote (cloud) repository</strong> as a back up and so that anyone you’re collaborating with on this new feature can check the branch out locally too.</li>
+<li><strong>Make changes</strong> to your code and commit them into the feature branch.</li>
+<li>Once you’ve completed the task you set out address with this feature branch, pull the latest version of the <code>main</code> branch from the remote repository into your new feature branch and <strong>resolve any merge conflicts</strong>.</li>
+<li><strong>Submit a pull request</strong> (or a merge request on GitLab) to merge your feature branch into <code>main</code>. Optionally request a review from a collaborator. Address reviewer comments and make further changes by pushing to the feature branch (these changes will be appended to the pull request). Ideally the review does not take long so that there are no further changes to the main branch in the meantime, but if it does, you may have to pull the <code>main</code> branch into the feature branch once more to resolve any merge conflicts before completing the merge into <code>main</code>.</li>
+<li>When the review is complete, <strong>accept the pull request</strong> and merge the changes into the main branch.</li>
+<li><strong>Delete the new feature branch</strong> (on both the remote repository and your local copy).</li>
+</ol>
+<p>In this workflow, you should strive to create branches that are meant to address a non-trivial issue (<em>e.g.</em> more than simply a typo fix), but that require work that won’t take more than a few days. This way, collaborators reviewing your work will have enough to react to without being overwhelmed, and you will not diverge so much from the default branch that when it comes time to merge your new work into <code>main</code>, you won’t have too much to reconcile (even if your collaborators have also merged into <code>main</code> since you last branched off).</p>
+<p>You should be able to use GitHub Flow via GitHub Desktop and GitLab/GitHub online with the instructions in the <a href="#git-basics">Git basics</a> section. To use it via a command line environment, such as in the Git Bash app, follow the instructions <a href="../../docs/extras/githubflow-demo-cli.html">here</a>.</p>
+</section>
+<section id="project-management-with-gitlab-and-github" class="level3">
+<h3 class="anchored" data-anchor-id="project-management-with-gitlab-and-github">Project management with GitLab and GitHub</h3>
+<p>Beyond enabling teams to collaborate in a version-controlled setting, GitHub and GitLab both offer features that make project management easy and complementary to GitHub flow. Issues (on both <a href="https://docs.gitlab.com/ee/user/project/issues/">GitLab</a> and <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues">GitHub</a>) are an easy way to track tasks associated with each project. Issues can be tagged with various labels, assigned to individuals, and organized further using Issue boards (<a href="https://docs.gitlab.com/ee/user/project/issue_board.html">GitLab</a>) and Projects (<a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects">GitHub</a>).</p>
+<p>Issues are numbered and can be referenced in discussions on GitHub and GitLab with a hashtag followed by the issue number (<em>e.g.</em> #5). One can use these references to close completed issues automatically by using keywords in commit messages and pull requests. For instance, if a commit message includes the text “fixes #7”, then issue #7 will automatically be closed when this commit is pulled into <code>main</code> in the remote repository. More information about keywords can be found <a href="https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically">here for GitLab</a> and <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword">here for GitHub</a>.</p>
+<p>To enhance GitHub flow with these additional project management features, we recommend that the flow is amended to start with the creation of an Issue for which a feature branch is then created, and that keywords are used to close any Issues associated with a commit and/or pull request.</p>
+</section>
+</section>
+<section id="git-tips-and-tricks" class="level2">
+<h2 class="anchored" data-anchor-id="git-tips-and-tricks">Git tips and tricks</h2>
+<section id="commit-a-mostly-empty-directory" class="level3">
+<h3 class="anchored" data-anchor-id="commit-a-mostly-empty-directory">Commit a (mostly) empty directory</h3>
+<p>Git is designed to track files, not directories—directories are only added to Git as a side-effect of tracking their contents. As a result, Git <strong>cannot track and commit empty directories</strong>.</p>
+<p>If your code requires the existence of such a directory (e.g., a <code>/tmp</code> directory for writing temporary files, or an <code>/output</code> directory for rendering documents), your code should check for the existence of the directory, and if it’s not present, create it.</p>
+<p>However, if you can’t create the directory programatically, you can instead commit a (mostly) empty directory to your repository.</p>
+<section id="solution-1-readme.md" class="level4">
+<h4 class="anchored" data-anchor-id="solution-1-readme.md">Solution 1: README.md</h4>
+<p>Add a README.md file as a placeholder, excluding all other files in the directory. You can use the README to document the purpose of the directory (and READMEs in the first and second levels of your project are automatically rendered by Git servers on the repo website).</p>
+<p>Create the README in the directory, then append the following lines to your project’s main <code>.gitignore</code> file (in the main project directory):</p>
+<pre><code># To exclude the directory and its contents.
+example-dir/*
+
+# To create an exception for the README.md.
+!example-dir/README.md</code></pre>
+</section>
+<section id="solution-2-more-.gitignore" class="level4">
+<h4 class="anchored" data-anchor-id="solution-2-more-.gitignore">Solution 2: More .gitignore</h4>
+<p><code>.gitignore</code> files can be nested, so you can add a <code>.gitignore</code>, excluding all other files in the directory.</p>
+<p>Create the <code>.gitignore</code> file in the directory, then add the following lines <strong>to the <code>.gitignore</code> you just created</strong>:</p>
+<pre><code># To exclude the directory and its contents.
+*
+
+# But do not exclude the .gitignore (! means not)
+!.gitignore</code></pre>
+</section>
+</section>
+<section id="working-with-the-repository-history" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-the-repository-history">Working with the repository history</h3>
+<p><strong>TODO</strong> Outline various options when merging:</p>
+<ul>
+<li>dropping repo history (snapshot approach)</li>
+<li>re-writing repo history</li>
+<li>maintaining repo history</li>
+</ul>
+<p>Discuss considerations in each case.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Git can still track more complex file types, like Word documents or Excel spreadsheets, but some features, like easily comparing file versions with <a href="#making-changes"><code>diffs</code></a>, will not be as easy to use.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A simple way to find an absolute path to your repo is to select the folder in Windows Explorer (select, not open) and then in the Home ribbon, click the “Copy path” button. You would then paste the copied path into Git Bash after the <code>cd</code> command using <code>Shift+Ins</code> or by right-clicking and clicking Paste. Be sure to remove the quotes around the path before hitting enter!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>GitHub flow is very similar in spirit to trunk-based development. You can learn more about this approach and the motivation behind it <a href="https://trunkbaseddevelopment.com/">here</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/phac-modelling-hub\.github\.io\/dev-practices\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
