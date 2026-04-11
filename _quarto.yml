@@ -1,17 +1,8 @@
 project:
   type: website
 
-  # index.qmd MUST be in the root directory.
-  # Other than index.qmd, all other files must be in the docs/ directory to be rendered.
-  render:
-    - index.qmd
-    - docs/*
-
 website:
   title: "Best practices for scientific software development"
-
-  # Ensure that where a Git server link is generated, it correctly links to docs/example.*md.
-  repo-subdir: docs/
 
   navbar:
     search: true
@@ -21,45 +12,45 @@ website:
     collapse-level: 1
     contents:
       - text: "Introduction"
-        href: docs/index.qmd
+        href: index.qmd
       - section: "Day-to-day coding"
-        href: docs/day-to-day/index.qmd
+        href: day-to-day/index.qmd
         contents:
-          - docs/day-to-day/IDEs.qmd
-          - docs/day-to-day/readmes.qmd
-          - docs/day-to-day/commenting.qmd
-          - docs/day-to-day/functions.qmd
+          - day-to-day/IDEs.qmd
+          - day-to-day/readmes.qmd
+          - day-to-day/commenting.qmd
+          - day-to-day/functions.qmd
       - section: "Projects"
-        href: docs/projects/index.qmd
+        href: projects/index.qmd
         contents:
-          - docs/projects/version-control.qmd
-          - docs/projects/readmes.qmd
-          - docs/projects/virtual-environments.qmd
-          - docs/projects/consistency.qmd
-          - docs/projects/pipelines.qmd
+          - projects/version-control.qmd
+          - projects/readmes.qmd
+          - projects/virtual-environments.qmd
+          - projects/consistency.qmd
+          - projects/pipelines.qmd
       - section: "Package development"
-        href: docs/package-development/index.qmd
+        href: package-development/index.qmd
         contents:
-          - docs/package-development/readmes.qmd
-          - docs/package-development/get-started.qmd
-          - docs/package-development/function-docs.qmd
-          - docs/package-development/unit-testing.qmd
-          - docs/deployment-and-maintenance/developer-docs.qmd
+          - package-development/readmes.qmd
+          - package-development/get-started.qmd
+          - package-development/function-docs.qmd
+          - package-development/unit-testing.qmd
+          - deployment-and-maintenance/developer-docs.qmd
       - section: "Deployment and maintenance"
-        href: docs/deployment-and-maintenance/index.qmd
+        href: deployment-and-maintenance/index.qmd
         contents:
-          - docs/deployment-and-maintenance/licenses.qmd
-          - docs/deployment-and-maintenance/versioning.qmd
-          - docs/deployment-and-maintenance/continuous-integration.qmd
-          - docs/deployment-and-maintenance/code-review.qmd
+          - deployment-and-maintenance/licenses.qmd
+          - deployment-and-maintenance/versioning.qmd
+          - deployment-and-maintenance/continuous-integration.qmd
+          - deployment-and-maintenance/code-review.qmd
       - section: "Extras"
-        href: docs/extras/index.qmd
+        href: extras/index.qmd
         contents:
-          - docs/extras/install-git.qmd
-          - docs/extras/writing-commit-messages.qmd
-          - docs/extras/admin-git-groups.qmd
-          - docs/extras/githubflow-demo-cli.qmd
-          - docs/extras/pipenv.qmd
+          - extras/install-git.qmd
+          - extras/writing-commit-messages.qmd
+          - extras/admin-git-groups.qmd
+          - extras/githubflow-demo-cli.qmd
+          - extras/pipenv.qmd
 
 format:
   html:
