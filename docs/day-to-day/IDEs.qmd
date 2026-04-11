@@ -1,0 +1,28 @@
+---
+title: Integrated development environments
+---
+
+Integrated development environments (or IDEs) aim to make the process of developing code easier by gathering commonly used development tools into one program. **We recommend working in an IDE when developing code**; the more you work within an IDE, the more you'll get used to its tools and shortcuts, and the more efficient you'll be while working.
+
+## Language-specific vs language-agnostic IDEs
+
+There are **language-specific IDEs** that work readily out-of-the-box for a given language. There are also language-agnostic IDEs that enable a developer to work with multiple languages in the same program. **Language-agnostic IDEs** enable you to get used to a single interface across languages. This functionality is often enabled through extensions to the IDE, and it can take some research, setup, and experimentation to find the extensions that are right for you and a given coding language.
+
+If you know you'll be working with a specific language for the bulk of your work, we recommend using a language-specific IDE as it is simpler. As you get more experience coding and build up a repertoire of languages, you may want to switch to a language-agnostic IDE for the flexibility.
+
+## Recommendations and resources
+
++-------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Language          | Recommended IDE                                                                          | Resources                                                                                            |
++===================+==========================================================================================+======================================================================================================+
+| R                 | [RStudio](https://posit.co/products/open-source/rstudio/)                                | -   [Get started with RStudio](https://docs.posit.co/ide/user/ide/get-started/)                      |
++-------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Python            | [PyCharm Community Edition](https://www.jetbrains.com/pycharm/download/?section=windows) | -   [Get started with PyCharm](https://www.jetbrains.com/help/pycharm/quick-start-guide.html)        |
++-------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Language-agnostic | [Positron](https://posit.co/products/ide/positron/)                                      | -   [Get started with Positron](https://positron.posit.co/welcome.html)                              |
+|                   | [Visual Studio Code](https://code.visualstudio.com/)                                     | -   [Get started with VSCode](https://code.visualstudio.com/docs/introvideos/basics)                 |
++-------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+
+**RStudio** and **VSCode** are pre-approved for installation by corporate IT and can be installed readily via Company Portal.
+
+**PyCharm Community Edition** is free, though it is not pre-approved and so you can either [request approval through Service Gateway](https://servicegateway-passerelledeservice.hc-sc.gc.ca/en/s-not-pre-appr.html) or install it yourself on a Science Network laptop. **PyCharm Professional** is available by request in Service Gateway (listed as "PhyCharm"), though it must be paid for through an SAP request.

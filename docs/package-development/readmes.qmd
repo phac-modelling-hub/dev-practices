@@ -1,0 +1,15 @@
+---
+title: README files
+---
+
+(Yes, again! READMEs are really useful.)
+
+Recommendations for READMEs from the [day-to-day coding](../day-to-day/readmes.qmd) and [projects](../projects/readmes.qmd) sections still apply when developing a package, though there are a few additional items you may want to consider adding:
+
+-   A short description of the software and the problem it solves
+-   Installation instructions
+-   The location of a guide to get started with the package
+-   References in the scientific literature that support methods implemented in the package
+-   Authors and contact info
+-   How users can report issues with the package or suggestions for improvement
+-   How to cite the package

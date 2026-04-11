@@ -1,0 +1,20 @@
+---
+title: Package development
+---
+
+For some projects, you may get to a point where you want to reuse your one project's code within other projects or you may want to distribute your code so that others can use it easily. For distribution, the combined best practices suggested in the [day-to-day](../day-to-day/index.qmd) and [projects](../projects/index.qmd) sections will certainly get you much of the way, though they don't offer as much when reusing you code in other projects. In this case, it may make sense to **develop a package** with your code.[^1]
+
+[^1]: Thankfully, modern tools and resources make package development much less daunting than it used to be, and we will point to many such helpers as we go through the best practices for package development. 
+
+We suggest the following best practices when developing a software package:
+
+1. [Use a README file](readmes.qmd)
+1. [Write a simple "get started" guide for new users](get-started.qmd)
+1. [Document your functions](function-docs.qmd)
+1. [Test your functions](unit-testing.qmd)
+
+If you are working with others on your package, you may also want to:
+
+1. [Create a developer guide](developer-docs.qmd)
+
+Once you package your code, it is important to think about how you will deploy, maintain, and continue to develop your package, especially if you want to released it to others (colleagues, the public) for ongoing use. We discuss [best practices for package deployment](../deployment-and-maintenance/index.qmd) in the next section.

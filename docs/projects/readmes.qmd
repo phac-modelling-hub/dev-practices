@@ -1,0 +1,44 @@
+---
+title: README files
+---
+
+You're not having déjà vu---we've already discussed using README files as a [day-to-day coding practice](../day-to-day/readmes.qmd). All of these suggestions still apply within projects, though we expand upon them here.
+
+For projects, we recommend maintaining a **project-specific README** in your project's main (root) directory. It is the first place users and collaborators should look to get information about what your project does and possibly how to use or contribute to your code. Note that "collaborators" include you in the future, so this is relevant even for solo projects!
+
+## What to include
+
+A good top-level project README can include:
+
+-   **Introduction**: 
+    -   A scope statement that briefly outlines the goal of the project (this can help you ensure that your projects remain focused as they're developed)
+    -   Authors and contact information (especially if publishing the project online)
+    -   Where to learn more about the project (e.g., links to additional documentation)
+-   **One-time setup**:
+    -   Any one-time setup required to use and/or develop the code base (_e.g._, supporting software installations, cloning of sibling repositories)
+-   **Using the the code**
+    -   Any setup required at the start of each user session (_e.g._ activating [virtual environments](virtual-environments.qmd))
+    -   An overview of how the code is organized (_e.g._ main scripts and what they do, the order in which scripts should be executed)
+    -   Any manual updates and settings that can/must be done to the code before running it (_e.g._ variables, data download)
+    -   Commands for running the code
+    -   Expected outputs of the code and where to find them (_e.g._ subdirectories)
+    -   Any limitations of the code that a user should be aware of
+    -   Common troubleshooting tips for the code
+-   **Developing the code**
+    -   Any setup required at the start of each development session
+    -   Development conventions (_e.g._, code style)
+    -   Other notes for developer
+
+The above are simply suggestions and may or may not apply for each of your projects: take what's helpful and leave what isn't!
+
+## README format
+
+For projects that are hosted on GitLab or GitHub, you may wish to use `README.md` as opposed to `README.tex` as these Git servers automatically render Markdown README files to display nicely for reading on the web.
+
+For R projects, you can also use a `README.Rmd` file in [R Markdown](https://rmarkdown.rstudio.com/) format to generate a `README.md` that includes the results of executable R code in `README.Rmd`, like code demonstrations and plots. The idea is to edit `README.Rmd` and then knit it to produce `README.md`, which will display nicely on the landing page for your project repository on a Git server. You can use the [`usethis::use_readme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html) to easily create this source file with the correct setup.[^1]
+
+[^1]: `usethis::use_readme_rmd()` also adds some code to git so that it will check whether `README.Rmd` and `README.md` are in sync before allowing you to push up to the remote repository, as a safety net.
+
+## READMEs in subdirectories
+
+You may also wish to include READMEs in subfolders, (*e.g.*, in your data folders), if you want to make additional, specific notes about the files within that would perhaps be too detailed for the top-level project README. For instance, if there is data that must be downloaded/updated manually in the `data/` subdirectory, instructions for this process could be documented in `data/README.md` (which could then be referenced from the top-level `README.md`).

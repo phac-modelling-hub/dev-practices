@@ -1,0 +1,58 @@
+---
+title: Install git
+---
+
+Installing git is the first step to using git. If you wish to use git with a graphical user interface (GUI), we recommend a simple client like [GitHub Desktop](https://desktop.github.com/download/), which comes bundled with the git command line interface. Otherwise, you can install git from the [official website](https://git-scm.com/install/windows).
+
+# Git for Windows
+
+Git for Windows includes a number of configuration options that you can set during installation:
+
+- Select Components
+    - In addition to the default selected components, select `Check daily for git for Windows updates`.
+- Choosing the default editor used by git
+    - Select your preferred editior. Note, git may allow you to select editors that aren't currently installed.
+- Adjusting the name of the initial branch in new repositories
+    - Select `Overide the default branch name for new repositories`, and set `main` as the new default.
+- Adjusting your PATH environment.
+  - (default) Select `git from the command line and also from 3rd-party software`.
+- Choosing the SSH executable
+  - No recommendation.
+- Choosing HTTPS transport backend
+  - No recommendation.
+- Configuring the line ending conversions
+  - (default) Select `Checkout Windows-style, commit Unix-style line endings`.
+- Configuring the terminal emulator to use with git Bash
+    - No recommendation.
+- Choose the default behaviour of 'git pull'
+  - Select `Default (Fast-forward or merge)`.
+- Choose a credential helper
+  - (default) Select `git Credential Manager`.
+- Configuring extra options
+  - (default) Select `Enable file system caching`. 
+- Configuring experimental options
+  - (default) 
+
+# Configure git
+
+Once you've installed git, you should set (as described in git's [First-Time git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-git-Setup) guide):
+
+- Your git identity (username and email)
+- Your default branch name to `main`
+
+# Set Identity
+
+Every commit contains your username and email address. You can set these globally (i.e., for all your repositories) from the command line via the git Bash program that was installed with git for Windows: 
+
+```
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+```
+
+# Set Default Branch Name
+
+You should set `main` as your default branch name, if it isn't that already.
+
+```
+git config --global init.defaultBranch main
+```

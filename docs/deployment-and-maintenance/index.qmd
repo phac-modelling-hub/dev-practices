@@ -1,0 +1,15 @@
+--- 
+title: Deployment and maintenance
+---
+
+Once a project has matured or a package has been developed, you may want to **deploy** it for wider use. In this case, you will need to **maintain** the work, and you may also want to **continue to develop** it. 
+
+There are several practices that make project/package deployment, maintenance, and continuing development robust:
+
+1. [Include a license](licenses.qmd)
+1. [Version your code](versioning.qmd)
+1. [Automate your tests with continuous integration](continuous-integration.qmd)
+
+If you are working with others in deploying/maintaining code, you may also want to:
+
+1. [Perform code reviews](code-review.qmd)

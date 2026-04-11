@@ -1,0 +1,25 @@
+---
+title: Code review
+---
+
+For projects with multiple developers, code review is an important step during the development and code maintenance process. It provides an opportunity to gain feedback on the changes you've made within a branch and to help catch potential issues. It is important when writing a pull request to provide a description of the changes and, if applicable, ways to test the changes.
+
+Once a pull request (or merge request) is created, you can request a review from another person. This requires having another person available who has the time to review the code. If no such person is available, it is still possible to use the code review process yourself as a way to take a second look at all the changes prior to integrating them in with the final project.
+
+# Addressing reviewers comments
+
+The reviewer can make comments or suggestions in-line, referencing particular lines of code. Addressing these comments involves making changes and committing these on the same branch. These comments can be pushed to GitHub/GitLab.
+
+# Code reviewer guidelines
+
+A useful document for performing code reviews is [Google's code review practices][google-review-practices]. Here, the term **Changelist (CL)** is equivalent to a pull-request/merge-request. An important general principle when reviewing code from this guide would be:
+
+> In general, reviewers should favor approving a CL once it is in a state where it definitely improves the overall code health of the system being worked on, even if the CL isn’t perfect. - https://google.github.io/eng-practices/review/reviewer/standard.html
+
+That is to say, it is important to provide just the right amount of feedback. Enough to address any major issues without getting too caught up in requesting changes for every minor issue (these could be included in the pull-request as suggestions for later rather than required changes).
+
+# Finishing the review process
+
+Once all changes are approved by the reviewer, the changes may be merged into the `main` project branch in GitHub/GitLab, which will close the pull/merge request.
+
+[google-review-practices]: https://google.github.io/eng-practices/review/

@@ -1,0 +1,75 @@
+---
+title: Pipelines
+---
+
+Some scientific projects can grow to be very complex, involving many scripts and dependencies between pieces of code. Some projects involve routine analyses that you need to repeat on a regular bases. Both of these cases, which are not mutually exclusive benefit from the use of **pipelines**. 
+
+Pipelines are a way of defining complex analyses by explicitly declaring dependencies between inputs, intermediate objects, and outputs. Once defined as such, they can be executed with workflow management software to ensure analysis steps are executed in a correct order and that objects are re-computed only if there are changes to upstream dependencies, which can make work much more efficient.
+
+# Language-agnostic solutions
+
+[Make](make) is a general, command-line-based software that can be used to define and link together computing tasks into a single work flow. The tasks do not have to be written using a single coding language, and can integrate multiple command line programs, making it a very powerful and flexible tool. While Make was originally developed to manage building software from source code, it can be used with great effect in running simulation and analysis pipelines
+
+# Language-specific solutions
+
+# `{targets}`
+
+[`{targets}`](targets-pkg) is a workflow manager that improves reproducibility and efficiency in R workflows. Instead of having a script that defines a series of variables so that you can source from top to bottom to make your outputs, objects are instead defined as "targets" so that dependencies between objects are clear and can be created, cached, and re-created _as needed_. 
+
+Take, for instance, this short script:
+
+```{r}
+#| eval: false
+
+x <- 2
+y <- 4
+my_sum <- x + y
+
+y <-  6
+my_product <- x * y
+```
+
+If we saved this calculation to a script, we have two ways to execute it. We could source the whole thing (execute all lines in order), or we can interactively source it line-by-line into our R console. There are a few problems that can arise with these two workflows:
+
+1. **Reproducibility can be compromised**: Based on the recipe above, I want `my_product` to be `2*6`, but maybe I'm working interactively and I forgot to execute the 5th line to redefine `y <- 6` so I get `2*4 = 8`. If this is instead a complicated operation I may not even know I have the wrong value!
+2. **Efficiency is compromised**: Say I instead source the script from top to bottom to ensure reproducibility is maintained. This means _every_ line of code is executed again. If I just want `my_product`, I only technically need to execute lines 1, 5, 6 (half the script!) If `my_sum` takes long to calculate, I'm wasting time for no good reason re-making an object I don't even need currently.
+
+We can instead cast the script above into a `targets` pipeline:
+
+```{r}
+#| eval: false
+
+calc_my_sum <- function(x,y){x+y}
+calc_my_product <- function(x,y){x*y}
+
+list(
+    tar_target(name = x, command = 2)
+    tar_target(name = my_sum, command = calc_my_sum(x, y=4)),
+    tar_target(name = my_product, command = calc_my_product(x, y=6))
+)
+```
+
+Here we have clearly delineated what else each object depends on:
+
+- `my_sum` and `my_product` *both* depend on `x`
+- `my_sum` depends on the value `y=4` while `my_product` depends on the value `y=6`
+
+This way, if we change the value of `x`, `{targets}` will re-run both downstream targets, but if we change `y` to `8` in the `my_product` target, _`{targets}` will only re-run the `my_product` target as nothing as changed for the other object!.
+
+If you want to learn more about how `{targets}` works, consult the package's [user manual](targets-book). You can also watch [this talk][targets-talk] for an intro to the package.
+
+## Snakemake
+
+[Snakemake][snakemake] is workflow management software tailored to defining and running data analysis pipelines, especially geared towards Python users. Here, a pipeline is constructed as a series of linked steps (defined as **rules**, which can include executing arbitrary command-line software). Some of the advantages that Snakemake provides over Make comes to the execution porition, where each rule can not only define the code to run, but also how to install the underlying software (using conda or Docker/singularity containers) as well as how to execute the software in a variety of environments (such as a local computer, or a high-performance computational cluster).
+
+## Nextflow
+
+[Nextflow][nextflow] shares some similarities to Snakemake, in that they are workflow management software that can be used to define a data analysis pipeline, as well as define how to install the required software and manage code execution in a variety of environments (local machines, high-performance computing clusters, or cloud environments). However, one key difference is that Snakemake is Python-based while Nextflow is Groovy-based (Groovy being built on top of Java). Additionally, Nextflow also has a community of contributed pipelines and modules, focused on bioinformatics analysis, that can be re-used in different pipelines (via the [nf-core community][nf-core]).
+
+[make]: https://en.wikipedia.org/wiki/Make_(software)
+[targets-pkg]: https://github.com/ropensci/targets
+[targets-book]: https://books.ropensci.org/targets/
+[targets-talk]: https://www.youtube.com/watch?si=uKjxZosDLUVcayxg&v=OCFAYFeOQ7w&feature=youtu.be
+[snakemake]: https://snakemake.github.io/
+[nextflow]: https://www.nextflow.io/
+[nf-core]: https://nf-co.re/

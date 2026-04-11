@@ -1,0 +1,15 @@
+---
+title: Projects
+---
+
+Sometimes you may just need a one-off script to perform a task, but in general, we believe it is more robust to work in terms of **projects**. 
+
+A coding project lives in a single directory. You may have several smaller projects that are part of a larger overarching goal, but each smaller project should have an easily-articulated focus.
+
+We suggest the following best practices when developing a coding project, which are also roughly in the order that you'd want to start doing them for a new project:
+
+1. [Use a version-controlled repository to house your project](version-control.qmd)
+1. [Maintain a project-specific README](readmes.qmd)
+1. [Use virtual environments to improve reproducibility](virtual-environments.qmd)
+1. [Use consistent project organisation and code style](consistency.qmd)
+1. [Set up pipelines for complex and/or routine analyses](pipelines.qmd)

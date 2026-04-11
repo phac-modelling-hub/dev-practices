@@ -1,0 +1,198 @@
+---
+title: Virtual environments in Python
+---
+
+# Use `pipenv` to manage virtual environments
+
+Python's `venv` is the prototypical example of a virtual environment. We (and the [official Python documentation](https://packaging.python.org/en/latest/tutorials/managing-dependencies/#managing-dependencies)) recommend the use of [`pipenv`](https://pipenv.pypa.io/en/latest/) over `venv`, as it combines the functions of `pip` (package management) and `venv` (virtual environments).
+
+# Install `pipenv`
+
+See [`pipenv`'s official installation instructions](https://pipenv.pypa.io/en/latest/installation/).
+
+# Understand `Pipfile`, `Pipfile.lock`, and requirements.txt
+
+There are three files used to record the state of a Python virtual environment:
+
+1.  `Pipfile`
+2.  `Pipfile.lock`
+3.  `requirements.txt`
+
+You should not modify these files by hand; virtual environment managers like `pipenv` offer tools to create and modify these files as necessary.
+
+You should keep `Pipfile`, `Pipfile.lock`, and `requirements.txt` in version control. You should not keep `Pipfile.lock` in version control if you are targeting multiple versions of Python.
+
+**TODO**: clarify the difference between `Pipfile` and `Pipefile.lock`... there seems to be a difference in the commands [below](#install-packages), but it's not clear what it is.
+
+# `Pipfile` and `requirements.txt`
+
+`Pipfile` and `requirements.txt` describe the dependencies that must be installed in the virtual environment to use your code. These files declare the supported version(s) of Python and the supported version(s) of each of the dependencies. `Pipfile` and `requirements.txt` serve the same purpose; the use of a `Pipfile` has largely replaced the use of `requirements.txt`. A notable exception is Microsoft's Azure App Service.
+
+An example of a `Pipfile` for a Django project, CEDAR.
+
+```         
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pyparsing = "*"
+pydot = "*"
+
+[packages]
+django = "*"
+psycopg2-binary = "*"
+django-crispy-forms = "*"
+django-extensions = "*"
+django-widget-tweaks = "*"
+pandas = "*"
+crispy-bootstrap5 = "*"
+django-autocomplete-light = "*"
+django-bootstrap5 = "*"
+fontawesomefree = "*"
+whitenoise = "*"
+
+[requires]
+python_version = "3.10"
+```
+
+This `Pipfile` specifies a required version of Python (3.10.X), but no required versions of the dependencies. Notice there is a seperate section `[dev-packages]`; using a `Pipfile`, you can specify packages that are required for developers (but not end-users) of your code. See the use section below for more details.
+
+# `Pipfile.lock`
+
+`Pipfile.lock` is like a 'snapshot' of the current state of the virtual environment. `Pipfile.lock` declares the dependencies (and sub-dependencies) of your project, and the currently installed version number and hash of each. The `Pipfile.lock` enables you to save and share the state of your virtual environment for reproducible analyses.
+
+An example of a partial `Pipfile.lock` for CEDAR (the same project as above).
+
+```         
+{
+    "_meta": {
+        "hash": {
+            "sha256": "646f9dd9ace85a9096e357475c92c9f3e16bfab0054df756ccc491652f25e64c"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.10"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "asgiref": {
+            "hashes": [
+                "sha256:71e68008da809b957b7ee4b43dbccff33d1b23519fb8344e33f049897077afac",
+                "sha256:9567dfe7bd8d3c8c892227827c41cce860b368104c3431da67a0c5a65a949506"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==3.6.0"
+        },
+        "crispy-bootstrap5": {
+            "hashes": [
+                "sha256:0745a67199619149b7feca87dab7a45664876ed50fb582b38fd2aeb3f8a8d869",
+                "sha256:f3ff1ef5cb379fe80b1b02e245008f276444098a4bdb8d855bed84c623798a85"
+            ],
+            "index": "pypi",
+            "version": "==0.7"
+        },
+        "django": {
+            "hashes": [
+                "sha256:4b214a05fe4c99476e99e2445c8b978c8369c18d4dea8e22ec412862715ad763",
+                "sha256:ff56ebd7ead0fd5dbe06fe157b0024a7aaea2e0593bb3785fb594cf94dad58ef"
+            ],
+            "index": "pypi",
+            "version": "==4.1.5"
+        },
+        "django-autocomplete-light": {
+            "hashes": [
+                "sha256:0f6da75c1c7186698b867a467a8cdb359f0513fdd8e09288a0c2fb018ae3d94e"
+            ],
+            "index": "pypi",
+            "version": "==3.9.4"
+        },
+```
+
+Unlike `Pipfile` and `requirements.txt`, `Pipfile.lock` is not designed to be human-readable.
+
+# Create or activate a virtual environment
+
+Each user will have to create their own virtual environment on their machine. However, the lock file can be shared and updated via Github to ensure project collaborators stay in sync.
+
+To create a new virtual environment or activate an existing virtual environment:
+
+```         
+pipenv shell
+```
+
+To check if an existing virtual environment is available:
+
+```         
+ pipenv --venv
+```
+
+# Install packages {#install-packages}
+
+To install all dependencies in the `Pipfile`:
+
+```         
+pipenv install
+
+# or
+
+pipenv install --skip lock
+```
+
+To install all dependencies in the `Pipfile.lock`:
+
+```         
+pipenv sync
+```
+
+Alternatively,
+
+```         
+pipenv install --ignore-pipfile --deploy
+```
+
+# Add or remove packages
+
+To install a dependency and add it to the `Pipfile` and `Pipfile.lock`
+
+```         
+pipenv install <packagename>
+
+pipenv uninstall <packagename>
+```
+
+# Update packages
+
+To update all packages: `pipenv update` or a specific packlage: `pipenv update <pkg>`
+
+# Deploy (write)
+
+To create a `Pipfile.lock`:
+
+```         
+pipenv lock
+```
+
+To create a `requirements.txt`:
+
+```         
+pipenv run pip freeze
+```
+
+To create a `requirements.txt` including `Pipfile.lock` information (e.g., hashes):
+
+```         
+pipenv lock -r
+```
+
+```         
+pipenv requirements > requirements.txt
+```

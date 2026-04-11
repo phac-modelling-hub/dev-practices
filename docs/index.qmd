@@ -1,0 +1,25 @@
+---
+title: Best practices for scientific software development
+toc: false
+---
+
+If you're reading this guide, it's probably because you write scientific code and want to get better at doing so. But what does it mean to be good at coding? What probably comes to mind immediately is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.
+
+The goals of this guide are to teach you both how to write better code **and** how to get better at the _process_ of writing code. This means adopting habits, or **best practices**, while writing scientific software that ensure your projects are **well-documented**, **reproducible**, and **extensible**. Scientists often write code, but they are not software developers in the traditional sense. However, their lives could be made easier by adopting some of the ways in which professional software developers work. This guide collects such practices and discusses them in a way that is specific to working in science. 
+
+# Guide organization
+
+Adopting best practices for scientific software development can be a daunting task. Depending on how experienced you are with programming, there can be a lot to take in at once. To make the learning process less intimidating, this guide is organized in a cumulative way. We start with best practices that we consider to be absolutely fundamental, and thus important to assimilate into your [day-to-day coding](day-to-day/index.qmd) practice. Once these practices become second nature, we encourage you to continue building out your skills by explore the best practices for developing [projects](projects/index.qmd). While working on a project, you may realize that you want to re-use some project code, or that it might be of use to others, so you decide to [package it](package-development/index.qmd). As a project or package matures, you may consider [deploying it and maintaining it in the longer term](deployment-and-maintenance/index.qmd). We include a section of [extras](extras/index.qmd) to collect additional content linked to throughout the main guide. Use the sidebar to navigate the guide and choose your own adventure!
+
+Wherever possible, we have tried to make recommendations that reduce friction if and when your coding projects evolve. 
+
+# Acknowledgements
+
+This guide was written for scientific software developers and scientists in the Public Health Agency of Canada, though its advice may be of use more widely. This project was led by [Irena Papst](irena-papst) ([Modelling Hub](modelling-hub)). The guide was authored by [Irena Papst](irena-papst), [Brennan Chapman](brennan-chapman) ([Modelling Hub](modelling-hub)) and [Aaron Petkau](aaron-petkau) (National Microbiology Laboratory). [^1]
+
+[irena-papst]: https://github.com/papsti
+[modelling-hub]: https://github.com/phac-modelling-hub
+[brennan-chapman]: https://github.com/chapb
+[aaron-petkau]: https://github.com/apetkau
+
+[^1]: This guide builds on previous work by Eric Enns, Eric Marinier, Deep Sidhu, Phil Mabon, and [Aaron Petkau](aaron-petkau) in the National Microbiology Laboratory.

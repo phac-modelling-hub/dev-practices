@@ -1,0 +1,20 @@
+---
+title: Virtual environments
+---
+
+An **environment** is the collection of hardware and software available to your project on a particular system. If your project relies on software beyond the code in your project folder (*e.g.*, packages), these **dependencies** must be installed and loaded into the environment for your project to work correctly.
+
+By default, most languages install dependencies in a shared system-wide location or **library**. While this improves efficiency (because each project does not need to bring its own copies of common dependencies), it can also cause conflicts between projects. What happens if two or more projects on the same system require different, incompatible dependencies? For instance, you might write code for a project today with the most recent version of a package, but you have a project developed six months ago with an earlier version of the package that breaks when you upgrade the package to the latest version. You may not even know about this breaking change until you unearth your old project, at which point you might be under a deadline (think revisions for a manuscript!)
+
+This is the problem that **virtual environments** were designed to solve. A virtual environment helps isolate your project from the rest of the system by replacing the system-wide library with a *project-specific* library. When you run or build your project in a virtual environment, its dependencies are installed to, and made available from, the project-specific library, ensuring changes to your project (*e.g.*, the addition, updating, or removal of a dependency) do not affect others on the system, and vice-versa.
+
+In this way, you can ensure that you will still be able to run your code in the future. Also, since you can usually save the state of your virtual environment one or a few simple files and then distribute this 'snapshot' with your project, collaborators and users can reproduce your virtual environment on their own system to get your code running for themselves (ideally) seamlessly.
+
+Virtual environments are a great tool for reproducibility, especially where you're not planning on taking the extra step to [package your code](../deployment-and-maintenance/index.qmd). We encourage their regular use for all projects.
+
+## Recommendations and resources
+
+| Language | Recommended virtual environment manager             | Resources                                                                    |
+|--------------|-----------------------|-----------------------------------|
+| R        | [`renv`](https://rstudio.github.io/renv/index.html) | [Get started with `renv`](https://rstudio.github.io/renv/articles/renv.html) |
+| Python   | [`pipenv`](https://pipenv.pypa.io/en/latest/)       | [Get started with `pipenv`](../extras/pipenv.qmd)                            |

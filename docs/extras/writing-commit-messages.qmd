@@ -1,0 +1,69 @@
+---
+title: Writing commit messages
+---
+
+The purpose of a *commit* is to tell you **what** has changed, while the purpose of a *commit message* is to explain the **why**.
+
+A commit message consists only of plain text. The two suggested formats are *traditional* and [Conventional Commits](https://www.conventionalcommits.org/).
+
+## Traditional commit messages
+
+The first line of a commit message is the commit *title* or *subject*; it should:
+
+- be written in the imperative ('remove function' not 'remove**d** function')
+- be written in sentence case, start with a capital letter, and end with no punctuation
+- be between 50 - 80 characters
+
+The title should be followed by a blank line and a more thorough description in the message *body*, unless the subject is sufficiently explanatory.
+
+This description may be written in the imperative or past tense, in sentence case or in point form.
+
+You can also include [keywords](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests) in commit messages that trigger useful automations. For instance, a commit message that includes the text "fixes #10" will automatically close issue #10 once that commit is pulled into the `main` branch. This feature is available in both GitHub and GitLab.
+
+This keyword feature is actually enabled by the Conventional Commits standard, which we describe next.
+
+## Conventional Commits
+
+[Conventional Commits](https://www.conventionalcommits.org) is a specification for commit messages, designed to be human and [machine-readable](https://www.conventionalcommits.org/en/about/#tooling-for-conventional-commits):
+
+> The Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with [SemVer](https://semver.org/), by describing the features, fixes, and breaking changes made in commit messages.
+
+This diagram is based upon the [Angular](https://angular.io/) project's specification of a [conventional commit header](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit-message-header):
+
+```
+<type>(<scope>): <short summary>
+  │       │             │
+  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+  │       │
+  │       └─⫸ Commit Scope: (e.g. animations|bazel|benchpress|common|compiler|compiler-cli|core|
+  │                          elements|forms|http|language-service|localize|platform-browser|
+  │                          platform-browser-dynamic|platform-server|router|service-worker|
+  │                          upgrade|zone.js|packaging|changelog|docs-infra|migrations|
+  │                          devtools)
+  │
+  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
+
+
+[optional body]
+
+[optional footer(s)]
+
+// Note:
+// The <type> and <summary> fields are mandatory.
+// The (<scope>) field is optional; examples taken from the Angular project.
+```
+
+See an example [here](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-multi-paragraph-body-and-multiple-footers).
+
+Angular specifies a limited number of [types](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#type):
+
+* **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+* **ci**: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)
+* **docs**: Documentation only changes
+* **feat**: A new feature
+* **fix**: A bug fix
+* **perf**: A code change that improves performance
+* **refactor**: A code change that neither fixes a bug nor adds a feature
+* **test**: Adding missing tests or correcting existing tests
+
+However, it may be useful to define others for your project.

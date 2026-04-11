@@ -1,0 +1,68 @@
+---
+title: Function documentation
+---
+
+If you're [using functions](../day-to-day/functions.qmd), they should form the bulk of your code, and as such, they should be documented properly. When documenting your functions, be sure to answer the following questions:
+
+- What does this function do (in one or two sentences)?
+- What are the arguments of this function (argument name, accepted data type, and description)?
+- What does this function output (description and type)?
+- Are there any side-effects to this function (i.e. will the function do something while executing that isn't directly tied to its output)?
+- What is an example of how to use the function?
+
+## Documentation formatting
+
+We recommend documenting your functions where the functions themselves are defined with specific comment syntax, and then using a utility to convert those notes into a standardized documentation format. 
+
+For the special comment syntax, we recommend following the `numpydoc` style of docstrings for Python and the `roxygen2` format for R. Although these tools are meant primarily for package development, we recommend you use these formats whether or not you think you will eventually turn your code into a package. Not only will you be using a standard, commonly understood formats to document function inputs, outputs, etc., but if you do choose to turn your code into a package down the line, you can make use of automated documentation tools without having to go back and re-write old documentation.
+
+### Examples
+
+Here is an example of the `roxygen2` documentation format:
+
+```
+#' Add together two numbers
+#'
+#' @param x A number.
+#' @param y A number, defaults to 2.
+#' @return A number.
+#' @examples
+#' add(1, 1)
+#' add(10, 1)
+
+add <- function(x, y = 2) {
+  x + y
+}
+```
+
+Here is an example of the `numpydoc` docstrings format:
+
+```
+def add(x,y):
+    """Add together two numbers.
+
+    Parameters
+    ----------
+    x : num
+        A number.
+    y : num
+        A number, defaults to 2.
+
+    Returns
+    ----------
+    num
+        A number with the sum of x and y.
+
+    Examples
+    ----------
+    >>> add(1,1)
+    """
+    return x + y
+```
+
+## Recommendations and resources
+
+| Language      | Recommended documentation format | Associated automatic documentation tool | Tutorial |
+| ----------- | ----------- | ----------- | ------------ |
+| R | [`roxygen2` format](https://roxygen2.r-lib.org/articles/rd.html) | [`roxygen2`](https://roxygen2.r-lib.org/) |  [Writing function documentation using `roxygen2`](https://r-pkgs.org/man.html) |
+| Python | [`numpydoc` docstring standard](https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard) | [`sphynx`](https://pypi.org/project/Sphinx/) | [Writing documentation for python packages](https://py-pkgs.org/06-documentation)

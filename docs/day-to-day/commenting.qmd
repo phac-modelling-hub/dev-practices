@@ -1,0 +1,70 @@
+---
+title: Commenting code
+output:
+    html:
+        code-overflow: wrap
+---
+
+There is a balance to strike when it comes to **commenting code**: you want to comment just enough to guide a reader of your code (including possibly future you in a few months time!) without commenting every single thing. Your code should, to some degree, stand for itself: choosing descriptive variable and function names, and keeping the sequence of commands as straight-forward as possible will go a long way. However, comments still have their place, Hadley Wickham puts in his [Advanced R](http://adv-r.had.co.nz/Style.html) textbook:
+
+> Comments should explain the why, not the what.
+
+The code itself will explain a lot of the what; the key to understanding it will lie in the **why**. Use the comments to document your thought process as you were developing the code. Be sure to comment as you're writing your code to ensure you remember all the key details. Using comments to section and label long bits of code is a great idea too, to help readers understand the outline of your code.
+
+## Script headers
+
+When writing a script, it's a good idea to include some basic information in a **block comment** before the code begins, such as:
+
+- a description of the file's contents and purpose
+- author name(s) and contact information
+
+If the script is stand-alone (not part of a folder with a [README](readmes.qmd) containing the following information), be sure to also include: 
+
+- notes on script usage
+- (if you are publishing this script online) any necessary legal information, such as a [license](../deployment-and-maintenance/licenses.qmd)
+
+Here is an example of a descriptive header for a stand-alone Python script being published online:
+
+```
+# = = = = = = = = = = = = = = =
+#
+# PURPOSE: This script takes input and produces output.
+# AUTHOR: Jane Doe <jane.doe@canada.ca>
+#
+# COMMAND LINE USAGE:
+#
+# script.py --help
+# script.py --input [INPUT] --output [OUTPUT]
+#
+# EXAMPLE:
+#
+# script.py --input input.txt --output output.txt
+#
+# LICENSE: MIT
+#
+# Copyright 2024 Government of Canada
+#
+# Permission is hereby granted, free of charge, to any
+# person obtaining a copy of this software and associated
+# documentation files (the “Software”), to deal in the
+# Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the
+# Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice
+# shall be included in all copies or substantial portions of
+# the Software.
+#
+# THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY
+# KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+# PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+# OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# = = = = = = = = = = = = = = =
+```

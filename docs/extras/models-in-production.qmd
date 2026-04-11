@@ -1,0 +1,106 @@
+---
+title: Guidelines for models in production
+---
+
+_These guidelines are primarily meant for modellers within the PHAC Modelling Hub, but may be of use to others more widely._
+
+A model "in production" is a model **upon which we rely to regularly produce modelling outputs**. Such a model can be one that accepts requests on-demand, or a model that is brought back into production regularly based on business need. 
+
+For models in production, it is important that the model code is:
+
+- **reliable**
+- **robust**
+- **sufficiently documented**[^1]
+
+[^1]: "Sufficiently" documented means that team members other than the primary modeller(s) can step in to run the model and respond to modelling requests without too much overhead or difficulty.
+
+The best practices outlined here are meant to ensure that models in productions have the above properties.
+
+## Model code organisation
+
+We suggest using two main types of codebases for models in production:
+
+1. A [**model package**](#model-package) that includes code to simulate the model
+1. A [**modelling pipeline**](#modelling-pipelines) (one per modelling request) that includes code to generate the required modelling products
+
+## Model package
+
+A **model package** is a [software package](../package-development/index.qmd) that includes the code required to run a model's simulator.
+
+### Model package development
+
+The development of model packages occurs in two phases:
+
+1. **Prototyping**: developing the initial code base that enables the simulation of a model, lightweight function documentation and testing
+2. **Packaging**: cleaning up the prototype code base, developing the documentation, and packaging the software in a standardized format
+
+One may oscillate back and for between these phases as further development of the same core model occurs.
+
+In both phases, consistent use of the best practices recommended throughout this guide is encouraged. The prototyping phase benefits most from the practices recommended for [day-to-day coding](../day-to-day/index.qmd) and [projects](../projects/index.qmd), while packaging benefits most from practices recommended for [package development](../package-development/index.qmd) and code [deployment and maintenance](../deployment-and-maintenance/index.qmd).
+ 
+### Prototyping
+
+The prototyping phase involves building the initial code base that enables one to simulate a specific model. In this phase, you are encouraged to continually document, test, and style your code in [the suggested ways](../package-development/index.qmd) as this will help you package down the line, but packaging is not the main focus here. The goal is simply to **produce a working version of your model simulator**.
+
+### Packaging 
+
+Once an iteration of the prototype code is sufficiently advanced to be useful and/or is being used to produce a modelling output, it should be packaged and archived. The term "packaging" is deliberate: here it literally means **bundled into a software package**. 
+
+Archiving should be achieved through [package versioning](../deployment-and-maintenance/versioning.qmd) so that model simulation code from a specific era can easily be called into a [request-specific modelling pipelines](#modelling-pipelines) to produce outputs (_e.g._ through the use of a [virtual environment](../projects/virtual-environments.qmd)).
+
+There is a start-up cost associated with packaging, but the benefits of using a universal framework to package your code can be immense for models in production. It can help you ensure your models are reliable, robust, and sufficiently documented.
+
+Packaging may sound daunting at first, but there are many resources and utilities that can help you get through this task efficiently, relatively painlessly, and in a manner that is consistent with the best practices in our guide:
+
+- For R users, the best place to get started is to use the [R Packages book](https://r-pkgs.org/) by Hadley Wickham and Jennifer Bryan. If you've never developed a package before, start with the first chapter, [The Whole Game](https://r-pkgs.org/whole-game.html), which outlines the process of developing an R package from start to finish.
+- For Python users, the [pyOpenSci Package Guide](https://www.pyopensci.org/python-package-guide/index.html) is an excellent resource.
+
+### Minimum documentation standards for model packages
+
+All packages for models in production must comply with minimum documentation standards to ensure that the codebase is accessible to others in the Modelling Hub.
+
+The minimum package documentation standards are:
+
+1. A [**README** file](../package-development/readmes.qmd) in the main directory of the project repository with:
+    - the authors of the code;
+    - package installation instructions + the installation of any dependencies (if not automatic);
+    - information on where to find the getting started guide for the package code.
+2. A [**get started guide**](../package-development/get-started.qmd) that runs through a basic example of using the code
+3. [**Function documentation**](../package-development/function-docs.qmd), such that:
+    - all input arguments are stated with the expected type, default values, and a description;
+    - all output objects are stated with the type and a description;
+    - any side-effects of the function are described.
+4. **[Default value](#default-values) documentation**, including:
+    - An explanation of each value's function in the model, with units.
+    - Citations for any values that come from literature.
+  
+Setting up a package site that displays your package documentation in an easy-to-use format is entirely optional, but encouraged. For R users, [`pkgdown`](https://pkgdown.r-lib.org/) provides a quick and easy way to generate a package website using existing [`roxygen2`](https://roxygen2.r-lib.org/) documentation and other information. For python users, [`quartodoc`](https://machow.github.io/quartodoc/get-started/overview.html) does a similar task, building off of [numpy-stype docstrings](https://numpydoc.readthedocs.io/en/latest/format.html#sections). Package sites can then be deployed via the [PHAC Modelling Hub GitHub organization](https://github.com/phac-modelling-hub) using [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) or [GitHub Pages](https://pages.github.com/), depending on the Git server being used. 
+
+For creating, building, and deploying a package site, R users can use the [`usethis` package](https://usethis.r-lib.org/reference/use_pkgdown.html), which automates much of the process.
+  
+### Default values
+
+Default values must be included for all variables that need to be specified with a numeric value for the model to be simulated, such as parameter values, initial conditions, etc. In this way, a model simulator is ready to be used straight out of the package.
+
+It is suggested that the package include features to:
+
+1. quickly retrieve default values for the user
+2. update (select) default values in the model simulator
+
+These features are meant to lower the overhead for getting started with the model.
+
+### Deployment
+
+Once packaged, the public-facing model code should be hosted within the [PHAC Modelling Hub GitHub organization](https://github.com/phac-modelling-hub). Hosting your generic models package on one of our organisational Git servers ensures that the code is available to all those on the team and not inadvertently stuck in a specific team member's Git server account. 
+
+## Modelling pipelines
+
+A **model pipeline** is a separate [project](../projects/index.qmd) that puts a [model package](#model-packages) into use by scaffolding it with supplementary code that reads in data and parameters required to run a model simulator and produces modelling outputs in a format that is useful for clients (_e.g._, plots, reports, slide decks). 
+
+It is recommended to have one modelling pipeline per request that depends on a specific version of the model package, to ensure reproducibility of modelling products.
+
+Modelling pipelines, as the name suggests, benefit from being set up as [actual pipelines](../projects/pipelines.qmd), which are self-documenting to a degree and make efficient use of computational resources.
+
+### Minimum documentation standards for modelling pipelines
+
+**TODO**

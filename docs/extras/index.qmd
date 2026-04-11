@@ -1,0 +1,12 @@
+---
+title: Extras
+---
+
+The following pages are referenced and linked throughout the main guide. We collect them here to make them easier to find:
+
+- [Install git](install-git.qmd)
+- [Writing commit messages](writing-commit-messages.qmd)
+- [Administering GitLab Groups and GitHub Organizations](admin-git-groups.qmd)
+- [GitHub flow demo using the command line](githubflow-demo-cli.qmd)
+- [Virtual environments in Python](pipenv.qmd)
+- 

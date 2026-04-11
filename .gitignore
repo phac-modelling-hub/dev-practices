@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+/.quarto/
+
+# Locally rendered HTML
+/_site/
+**/*.quarto_ipynb

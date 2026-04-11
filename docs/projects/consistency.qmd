@@ -1,0 +1,107 @@
+---
+title: Consistency
+---
+
+There are a few **consistency** conventions that make your projects more widely-understandable and robust. 
+
+We suggest documenting any project conventions in your project's main [README file](readmes.qmd) (or [developer guide](../deployment-and-maintenance/developer-docs.qmd)).
+
+## Project directory organisation
+
+It can be helpful to use a standardised way to organise your project directory (also referred to here as the **root directory**). We recommend the following when setting up a directory for a new project:
+
+- You should start your project in an empty, project-specific directory
+    - Ideally, you would [set up a git repository on GitLab or GitHub first](version-control.qmd#creating-a-new-repository-for-your-project), and then [clone it locally](version-control.qmd#cloning-a-repository).
+- You should not use spaces or special characters in directory or file names. 
+    - Spaces can be a pain when using the command line as spaces usually need to be escaped with a `\` in this case.
+- You should not sync Git repositories using cloud storage providers (_e.g._, OneDrive, Dropbox, Google Drive, NextCloud).
+    - Using Git (like many development activities) results in the creation, modification, and deletion a large number of small and/or temporary files. These changes can overwhelm file-storage providers, leading to synchronization conflicts and excess CPU usage.
+    - In some cases, cloud storage providers may block certain file types for security reasons. For instance, OneDrive blocks `.js` files, which are used by [`renv` for virtual environment management](virtual-environments.qmd). When files are blocked, they are not uploaded, so you're not actually backing up a complete copy of your project files, and you will regularly get annoying notifications from OneDrive telling you to remove files that cannot be synced.
+
+### Directory structure
+
+Projects using Git and a Git server, as recommended in the [version control section](version-control.qmd) of this guide, should have a few key files at the root level, no matter the language(s) being used:
+
+```
+project_directory/
+  .git/
+  .gitignore
+  LICENSE
+  NOTICE
+  README
+```
+
+### `.git/` and `.gitignore`
+
+`.git/` and `.gitignore` (as their names suggest) control how Git works with your project. 
+
+The `.git/` folder is the 'thing' that makes your project directory a Git repository. It is created automatically when you enable Git (_e.g._, by cloning a remote repository or through `git init`). It contains both the local Git configuration and your project's version control data. 
+
+`.gitignore` controls which files are ignored by Git (_i.e._ are never added to version control). Unlike `.git/`, `.gitignore` is not created automatically. Learn more about using a `.gitignore` file [here](version-control.html#ignoring-files).
+
+### LICENSE and NOTICE
+
+These files are only required if you are publishing your project online. See [Licenses](../deployment-and-maintenance/licenses.qmd) for more information. 
+
+### README
+
+Every project repository should contain a README file, which serves as the most basic project-level documentation for your work. See [README files](readmes.qmd) for more information.
+
+### Directory structure for R and Python
+
+We recommended the following components in addition to the [general directory structure above](#directory-structure):
+
+```
+project_directory
+  data/
+  notes/
+  scripts/
+  tests/
+  R/ **or** py/
+```
+
+- `data/` should contain any data used in your analyses, unless you must not commit it to a Git server and need to keep it in a shared location like OneDrive or SharePoint. In this case, be sure to [add these files to your `.gitignore`](version-control.qmd#ignoring-files) file.
+- `notes/` should contain your project notes. 
+    - We recommend using Quarto for notes so that you can weave executed code and text together. Note that Quarto is a separate program that you would ordinarily need to install in addition to R (or Python), but it now comes bundled with RStudio, our [preferred IDE for R](../day-to-day/IDEs.qmd), so no additional installation is required if you already have RStudio.
+- `scripts/` should contain any scripts for your project.
+- `tests/` should contain code tests. We recommend spending a few minutes writing at least one [unit test](../package-development/unit-testing.qmd) every time you write a function, and running these tests after major changes to your code, to be proactive about code bugs.
+- For R, `R/` should contain your functions, ideally one main function per `.R` file, with specific helper functions below. This is also where functions must life if you go on to [package your code](../package-development/index.qmd). For Python, you could use `py/` instead.[^1]
+
+[^1]: For Python packages, the convention is rather that [you name the directory containing your module contents with the module name](https://docs.python-guide.org/writing/structure/#sample-repository), but this can be confusing for scientific projects that are not specifically software packages, hence our recommendation to use `py`.
+
+## Specifying paths
+
+When specifying file paths in your project, it pays to be consistent. We recommend that you always write paths **relative to the root directory**, and that you always run scripts out of the root directory. 
+
+This practice has several advantages. For one, your paths won't break from user to user since they are relative. Also, paths will break less often if files are moved around. When paths are relative to their present location, they are fragile to both the location of the file in which you're calling the file path, and to the location of the target file. By making paths relative to the root directory, you eliminate the case where they break because you changed the location of the source file.
+
+For R, we recommend the use of the [`here`](https://here.r-lib.org/index.html) package, which adopts this convention. You can get started with `here` using [this guide](https://here.r-lib.org/articles/here.html).
+
+## Code style
+
+Code that is easier to read will be easier to maintain, debug, and build on in the future. [Code style](https://en.wikipedia.org/wiki/Programming_style) is the collection of conventions that govern the formatting of the code we write. For instance, code style can include decisions about
+
+- using different cases for functions versus variables (`camelCase` for variables, `snake_case()` for function names)[^2]
+- formatting style for comments, and how to denote sections of code
+- how to indent blocks of code
+
+[^2]: You can read more about case styles [here](https://systemweakness.com/case-styles-in-programming-b4ee6012fd5f).
+
+Style is subjective and sometimes programming-language-specific. The most important thing to remember is:
+
+> The code you write should be optimized for the average code reader and not the specific writer.
+
+Choose a set of rules and stick to them within a project. Try to choose rules that are familiar to many.
+
+### Linters and Stylers
+
+Some conventions have been encoded in helpful ["**linter**" tools](https://www.testim.io/blog/what-is-a-linter-heres-a-definition-and-quick-start-guide/#:~:text=The%20use%20of%20linters%20helps,the%20enforcement%20of%20its%20rules.) that can crawl your code to look for convention violations. Linters can be especially helpful when you're first adopting a popular code style, or if you're preparing to contribute to an open-source project.
+
+There are also **styler** tools that automatically format existing code using a specific style guide.
+
+### Recommendations and resources
+
+| Language      | Recommended style guide | Associated linter | Associated styler
+| ----------- | ----------- | ----------- | ----------- |
+| Python | [PEP8](https://pep8.org/) | [`pycodestyle`](https://pycodestyle.pycqa.org/en/latest/) | [`autopep8`](https://pypi.org/project/autopep8/)
+| R | [tidyverse style guide](https://style.tidyverse.org/) | [`lintr`](https://lintr.r-lib.org/) | [`stylr`](https://styler.r-lib.org/)

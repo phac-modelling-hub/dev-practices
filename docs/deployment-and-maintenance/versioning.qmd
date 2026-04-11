@@ -1,0 +1,5 @@
+---
+title: Versioning
+---
+
+Versioning your code can help with reproducibility, especially if the code is likely to have a long lifecycle, with applications across many specific projects. Code hosted on GitLab and GitHub can be versioned easily with built-in release tools. More information can be found in these [GitLab](https://docs.gitlab.com/user/project/releases/) and [GitHub](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) docs.

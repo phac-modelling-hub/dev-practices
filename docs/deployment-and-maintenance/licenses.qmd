@@ -1,0 +1,25 @@
+---
+title: Licenses
+---
+
+You may want to choose a license for _every_ project, whether or not you intend on publishing it at the outset. The idea is to set yourself up well if and when you decide to publish a project. It's important to remember that simply making your work available to others does not mean they can (legally) use it:
+
+> When you make a creative work (which includes code), the work is under exclusive copyright by default. Unless you include a license that specifies otherwise, nobody else can copy, distribute, or modify your work without being at risk of take-downs, shake-downs, or litigation. Once the work has other contributors (each a copyright holder), “nobody” starts including you.
+> 
+> https://choosealicense.com/no-permission/
+
+If you're going to share your project, you must [choose a license](https://choosealicense.com/). Consult [the Government of Canada Guide for Publishing Open Source Code](https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/open-source-software/guide-for-publishing-open-source-code.html) for detailed advice on how to choose the right license for your open source software.
+
+## Add license files to the project repository
+
+### `LICENSE`
+
+Once you've chosen a license, create a `LICENSE` file (`LICENSE.txt` or `LICENSE.md`) at the root level of your project repository and save within it the selected license text. License text can be found in the [Recommended permissive licenses section](https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/open-source-software/guide-for-publishing-open-source-code.html#toc04) of the Government of Canada Guide for Publishing Open Source Code.
+
+### `NOTICE`
+
+> The NOTICE file is reserved for a certain subset of legally required notifications which are not satisfied by either the text of LICENSE or the presence of licensing information embedded within the bundled dependency.
+>
+> https://infra.apache.org/licensing-howto.html
+
+A NOTICE file (`NOTICE.txt` or `LICENSE.md`) is an optional supplement to a LICENSE file that describes---when there are multiple copyright holders---the portion of the work for which they hold copyright, and under what license they have made that portion the work available. The NOTICE file may also contain copyright notifications as demanded by dependencies.

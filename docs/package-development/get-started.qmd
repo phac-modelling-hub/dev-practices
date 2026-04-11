@@ -1,0 +1,9 @@
+---
+title: Get started guides
+---
+
+Another useful document to include with your code is a **get started guide**. This document should guide the user through a basic task for your code, along with some accompanying text.
+
+Get started guides can be as simple as a section in your README file, or single script in your main directory (perhaps called `quick-start.py` or `getting_started.R`), where you demonstrate your code, annotated with plenty of comments and text blocks to guide the reader. 
+
+When writing an R package, there is a tool for such demos: [vignettes](https://r-pkgs.org/vignettes.html). We recommend including a get started vignette with your package to help orient new users. 

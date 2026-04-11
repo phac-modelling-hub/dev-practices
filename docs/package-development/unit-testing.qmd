@@ -1,0 +1,35 @@
+---
+title: Unit testing
+---
+
+Software testing is an investigation in which the correctness and quality of an application are objectively determined. You are required to performing testing on your software applications.
+
+Testing is the process of ensuring your code works as intended. Tests should be created while you are developing your code and not as an afterthought. There are several testing methods, but we focus on [**unit tests**](https://en.wikipedia.org/wiki/Software_testing#Unit_testing) as they are powerful, relatively simple, and can be built up piece-by-piece in your code, as your code grows.
+
+## What is unit testing?
+
+Unit testing is the process of writing small, independent tests that probe one function at a time. The idea is to provide some test input to your function, have your function process it, and compare the function's output to the output you'd expect if your function is working correctly. You may want to test various types of inputs (whichever your function is built to handle), or provide test inputs with known quirks ([edge cases](https://en.wikipedia.org/wiki/Edge_case)) to ensure your function, well, still functions correctly.
+
+## Why should you write unit tests?
+
+At face value, the process of writing unit tests might seem silly: you built a function, gave it an input where you know the output, and got the output you expected... so what? And you're right, this is underwhelming if your function definition never changes, but what if you add a feature to your function and don't realize that it now changes the expected output in a specific case? The unit test you wrote for that case will then fail, alerting you to this change!
+
+A general rule of thumb is to add at least one new unit test whenever you add a new feature to your code (*e.g.* a new function, a new feature within an existing function, etc.).
+
+## Code coverage
+
+If you are packaging your code, it's a good practice to ensure that you have high code coverage. Code coverage measures the percentage of your code that actually gets executed when your tests are run. It does not mean that all possible errors are covered by your tests, but the higher the code coverage, the lower the chance that you have undetected bugs in your code.
+
+## Recommendation and resources
+
++----------------------+-----------------------------------------------+-----------------------------------------------------------------------------------------+
+| Language             | Recommended unit testing framework            | Resources                                                                               |
++======================+===============================================+=========================================================================================+
+| R                    | [`testthat`](https://testthat.r-lib.org/)     | -   [Writing tests with `testthat`](https://r-pkgs.org/testing-basics.html)             |
+|                      |                                               |                                                                                         |
+|                      |                                               | -   [Checking code coverage with `covr`](https://covr.r-lib.org/)                       |
++----------------------+-----------------------------------------------+-----------------------------------------------------------------------------------------+
+| Python               | [`pytest`](https://peps.python.org/pep-0257/) | -   [Writing tests with `pytest`](https://py-pkgs.org/05-testing)                       |
+|                      |                                               |                                                                                         |
+|                      |                                               | -   [Checking code coverage with `coverage`](https://coverage.readthedocs.io/en/6.5.0/) |
++----------------------+-----------------------------------------------+-----------------------------------------------------------------------------------------+

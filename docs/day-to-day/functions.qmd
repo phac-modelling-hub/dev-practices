@@ -1,0 +1,16 @@
+---
+title: Functions
+---
+
+When we first learn to code, we often start by working within a console, and experiment by writing one line, executing it, inspecting the output, then writing another, executing that, etc. We then might graduate to writing several lines of code at once in a script, and then executing the script, and inspecting the final output. This might work well for a while, but as we find ourselves writing longer and longer more complex scripts, there can be a great deal of code repetition, and perhaps even copy-pasting of similar code blocks.
+
+The problem with sticking with this approach is that our scripts quickly become unreadable and inflexible. Moreover, we can easily introduce bugs during the copy-paste-replace cycle. The solution is to use **functions**.
+
+Functions package a unit of code that can be used and reused in some sequence to get a result or produce an effect. Ideally, functions are simple (easy to understand, returns only one output), and modular. We recommend you read [this book chapter](https://r4ds.hadley.nz/functions.html) about writing functions (whether or not you code in R specifically). It motivates the use of functions and outlines many basic principles about writing good ones.
+
+## Recommendations and resources
+
+| Language | Resources                                                               |
+|----------|-------------------------------------------------------------------------|
+| R        | [Writing functions in R](https://r4ds.hadley.nz/functions.html)         |
+| Python   | [Writing functions in Python](https://www.learnpython.org/en/Functions) |

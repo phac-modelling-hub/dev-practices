@@ -1,0 +1,11 @@
+---
+title: GitHub flow demo using the command line
+---
+
+1. **Create a new branch** with `git checkout -b branch-name`.
+1. **Push your feature branch to the remote (cloud) repository** with `git push origin branch-name`.
+1. **Make changes** with  `git add modified-file` and `git commit -m "commit message"`.
+1. **Resolve any merge conflicts** by following the instructions [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line).
+1. **Submit a merge/pull request** by following [these instructions](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html) for GitLab and [these instructions](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) for GitHub.
+1. When the review is complete, **accept the pull request** (on [GitLab](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/) or [GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request) and merge the changes into the main branch. 
+1. **Delete the new feature branch** (on both the remote reposotory and your local copy) with `git push -d remote-name branch-name` followed by `git branch -d branch-name`. `remote-name` is the name of the remote (cloud) repository and will usually be `origin` by default.

@@ -1,0 +1,12 @@
+---
+title: Day-to-day coding
+---
+
+There are a few fundamental best practices that we suggest you implement in your **day-to-day coding** workflow:
+
+1. [Use an integrated development environment](IDEs.qmd)
+1. [Document your work with README files](readmes.qmd)
+1. [Comment your code](commenting.qmd)
+1. [Use functions](functions.qmd)
+
+These practices will eventually support more complex efforts, like [developing projects](../projects/index.qmd) or [developing](../package-development/index.qmd) and [maintaining](../deployment-and-maintenance/index.qmd) software packages. These day-to-day practices also give you the greatest 'bang-for-your-buck' in terms of the return on your time and learning investment.

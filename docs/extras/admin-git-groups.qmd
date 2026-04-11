@@ -1,0 +1,11 @@
+---
+title: Administering GitLab Groups and GitHub Organizations
+---
+
+More than one person should be an owner of an organization at a time. Group/organization owners should enable two-factor authorization, and enforce it on the team.
+
+Access to groups and organizations as well as their repositories is controlled by permissions. A permission is the ability to perform a specific action. For example, the ability to view a repository is a permission. The ability to write to a repository is a permission. The ability to grant others permissions is itself a permission.
+
+A role is a set of permissions grouped together (often logically by task). Roles can be assigned to individuals or teams (groups of individuals). For example, a 'write' role permits a contributor to both view and change the contents of a repository. An 'admin' role allows a contributer to view, change, or even delete a repository.
+
+Repository-level roles give organization members, outside collaborators and teams of people varying levels of access to repositories. Organization-level roles are sets of permissions that can be assigned to individuals or teams to manage an organization and the organization's repositories, teams, and settings.
