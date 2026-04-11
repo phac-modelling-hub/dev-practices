@@ -9,4 +9,3 @@ The following pages are referenced and linked throughout the main guide. We coll
 - [Administering GitLab Groups and GitHub Organizations](admin-git-groups.qmd)
 - [GitHub flow demo using the command line](githubflow-demo-cli.qmd)
 - [Virtual environments in Python](pipenv.qmd)
-- 

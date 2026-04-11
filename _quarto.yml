@@ -12,8 +12,11 @@ website:
     collapse-level: 1
     contents:
       - text: "Introduction"
+        icon: fast-forward-fill
         href: index.qmd
+      - text: "---"
       - section: "Day-to-day coding"
+        icon: 1-circle-fill
         href: day-to-day/index.qmd
         contents:
           - day-to-day/IDEs.qmd
@@ -21,6 +24,7 @@ website:
           - day-to-day/commenting.qmd
           - day-to-day/functions.qmd
       - section: "Projects"
+        icon: 2-circle-fill
         href: projects/index.qmd
         contents:
           - projects/version-control.qmd
@@ -29,6 +33,7 @@ website:
           - projects/consistency.qmd
           - projects/pipelines.qmd
       - section: "Package development"
+        icon: 3-circle-fill
         href: package-development/index.qmd
         contents:
           - package-development/readmes.qmd
@@ -37,6 +42,7 @@ website:
           - package-development/unit-testing.qmd
           - deployment-and-maintenance/developer-docs.qmd
       - section: "Deployment and maintenance"
+        icon: 4-circle-fill
         href: deployment-and-maintenance/index.qmd
         contents:
           - deployment-and-maintenance/licenses.qmd
@@ -44,6 +50,7 @@ website:
           - deployment-and-maintenance/continuous-integration.qmd
           - deployment-and-maintenance/code-review.qmd
       - section: "Extras"
+        icon: stars
         href: extras/index.qmd
         contents:
           - extras/install-git.qmd
@@ -51,6 +58,13 @@ website:
           - extras/admin-git-groups.qmd
           - extras/githubflow-demo-cli.qmd
           - extras/pipenv.qmd
+      - text: "---"
+      - text: "View on GitHub"
+        icon: github
+        href: https://github.com/phac-modelling-hub/dev-practices
+      - text: "Report an issue"
+        icon: bug-fill
+        href: https://github.com/phac-modelling-hub/dev-practices/issues/new/choose
 
 format:
   html:
