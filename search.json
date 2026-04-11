@@ -287,7 +287,11 @@
     "href": "docs/deployment-and-maintenance/code-review.html",
     "title": "Code review",
     "section": "",
-    "text": "For projects with multiple developers, code review is an important step during the development and code maintenance process. It provides an opportunity to gain feedback on the changes you’ve made within a branch and to help catch potential issues. It is important when writing a pull request to provide a description of the changes and, if applicable, ways to test the changes.\nOnce a pull request (or merge request) is created, you can request a review from another person. This requires having another person available who has the time to review the code. If no such person is available, it is still possible to use the code review process yourself as a way to take a second look at all the changes prior to integrating them in with the final project.\n\nAddressing reviewers comments\nThe reviewer can make comments or suggestions in-line, referencing particular lines of code. Addressing these comments involves making changes and committing these on the same branch. These comments can be pushed to GitHub/GitLab.\n\n\nCode reviewer guidelines\nA useful document for performing code reviews is Google’s code review practices. Here, the term Changelist (CL) is equivalent to a pull-request/merge-request. An important general principle when reviewing code from this guide would be:\n\nIn general, reviewers should favor approving a CL once it is in a state where it definitely improves the overall code health of the system being worked on, even if the CL isn’t perfect. - https://google.github.io/eng-practices/review/reviewer/standard.html\n\nThat is to say, it is important to provide just the right amount of feedback. Enough to address any major issues without getting too caught up in requesting changes for every minor issue (these could be included in the pull-request as suggestions for later rather than required changes).\n\n\nFinishing the review process\nOnce all changes are approved by the reviewer, the changes may be merged into the main project branch in GitHub/GitLab, which will close the pull/merge request."
+    "text": "For projects with multiple developers, code review is an important step during the development and code maintenance process. It provides an opportunity to gain feedback on the changes you’ve made within a branch and to help catch potential issues. It is important when writing a pull request to provide a description of the changes and, if applicable, ways to test the changes.\nOnce a pull request (or merge request) is created, you can request a review from another person. This requires having another person available who has the time to review the code. If no such person is available, it is still possible to use the code review process yourself as a way to take a second look at all the changes prior to integrating them in with the final project.\n\nAddressing reviewers comments\nThe reviewer can make comments or suggestions in-line, referencing particular lines of code. Addressing these comments involves making changes and committing these on the same branch. These comments can be pushed to GitHub/GitLab.\n\n\nCode reviewer guidelines\nA useful document for performing code reviews is Google’s code review practices. Here, the term Changelist (CL) is equivalent to a pull-request/merge-request. An important general principle when reviewing code from this guide would be:\n\nIn general, reviewers should favor approving a CL once it is in a state where it definitely improves the overall code health of the system being worked on, even if the CL isn’t perfect. - https://google.github.io/eng-practices/review/reviewer/standard.html\n\nThat is to say, it is important to provide just the right amount of feedback. Enough to address any major issues without getting too caught up in requesting changes for every minor issue (these could be included in the pull-request as suggestions for later rather than required changes).\n\n\nFinishing the review process\nOnce all changes are approved by the reviewer, the changes may be merged into the main project branch in GitHub/GitLab, which will close the pull/merge request.",
+    "crumbs": [
+      "Deployment and maintenance",
+      "Code review"
+    ]
   },
   {
     "objectID": "docs/projects/version-control.html",
@@ -356,33 +360,14 @@
     ]
   },
   {
-    "objectID": "docs/index.html",
-    "href": "docs/index.html",
-    "title": "Best practices for scientific software development",
+    "objectID": "docs/extras/admin-git-groups.html",
+    "href": "docs/extras/admin-git-groups.html",
+    "title": "Administering GitLab Groups and GitHub Organizations",
     "section": "",
-    "text": "If you’re reading this guide, it’s probably because you write scientific code and want to get better at doing so. But what does it mean to be good at coding? What probably comes to mind immediately is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.\nThe goals of this guide are to teach you both how to write better code and how to get better at the process of writing code. This means adopting habits, or best practices, while writing scientific software that ensure your projects are well-documented, reproducible, and extensible. Scientists often write code, but they are not software developers in the traditional sense. However, their lives could be made easier by adopting some of the ways in which professional software developers work. This guide collects such practices and discusses them in a way that is specific to working in science.",
+    "text": "More than one person should be an owner of an organization at a time. Group/organization owners should enable two-factor authorization, and enforce it on the team.\nAccess to groups and organizations as well as their repositories is controlled by permissions. A permission is the ability to perform a specific action. For example, the ability to view a repository is a permission. The ability to write to a repository is a permission. The ability to grant others permissions is itself a permission.\nA role is a set of permissions grouped together (often logically by task). Roles can be assigned to individuals or teams (groups of individuals). For example, a ‘write’ role permits a contributor to both view and change the contents of a repository. An ‘admin’ role allows a contributer to view, change, or even delete a repository.\nRepository-level roles give organization members, outside collaborators and teams of people varying levels of access to repositories. Organization-level roles are sets of permissions that can be assigned to individuals or teams to manage an organization and the organization’s repositories, teams, and settings.",
     "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "docs/index.html#footnotes",
-    "href": "docs/index.html#footnotes",
-    "title": "Best practices for scientific software development",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis guide builds on previous work by Eric Enns, Eric Marinier, Deep Sidhu, Phil Mabon, and Aaron Petkau in the National Microbiology Laboratory.↩︎",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "docs/deployment-and-maintenance/index.html",
-    "href": "docs/deployment-and-maintenance/index.html",
-    "title": "Deployment and maintenance",
-    "section": "",
-    "text": "Once a project has matured or a package has been developed, you may want to deploy it for wider use. In this case, you will need to maintain the work, and you may also want to continue to develop it.\nThere are several practices that make project/package deployment, maintenance, and continuing development robust:\n\nInclude a license\nVersion your code\nAutomate your tests with continuous integration\n\nIf you are working with others in deploying/maintaining code, you may also want to:\n\nPerform code reviews",
-    "crumbs": [
-      "Deployment and maintenance"
+      "Extras",
+      "Administering GitLab Groups and GitHub Organizations"
     ]
   },
   {
@@ -408,14 +393,27 @@
     ]
   },
   {
-    "objectID": "docs/extras/admin-git-groups.html",
-    "href": "docs/extras/admin-git-groups.html",
-    "title": "Administering GitLab Groups and GitHub Organizations",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Best practices for scientific software development",
     "section": "",
-    "text": "More than one person should be an owner of an organization at a time. Group/organization owners should enable two-factor authorization, and enforce it on the team.\nAccess to groups and organizations as well as their repositories is controlled by permissions. A permission is the ability to perform a specific action. For example, the ability to view a repository is a permission. The ability to write to a repository is a permission. The ability to grant others permissions is itself a permission.\nA role is a set of permissions grouped together (often logically by task). Roles can be assigned to individuals or teams (groups of individuals). For example, a ‘write’ role permits a contributor to both view and change the contents of a repository. An ‘admin’ role allows a contributer to view, change, or even delete a repository.\nRepository-level roles give organization members, outside collaborators and teams of people varying levels of access to repositories. Organization-level roles are sets of permissions that can be assigned to individuals or teams to manage an organization and the organization’s repositories, teams, and settings.",
+    "text": "If you’re reading this guide, it’s probably because you write scientific code and want to get better at doing so. But what does it mean to be good at coding? What probably comes to mind immediately is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.\nThe goals of this guide are to teach you both how to write better code and how to get better at the process of writing code. This means adopting habits, or best practices, while writing scientific software that ensure your projects are well-documented, reproducible, and extensible. Scientists often write code, but they are not software developers in the traditional sense. However, their lives could be made easier by adopting some of the ways in which professional software developers work. This guide collects such practices and discusses them in a way that is specific to working in science."
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Best practices for scientific software development",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThis guide builds on previous work by Eric Enns, Eric Marinier, Deep Sidhu, Phil Mabon, and Aaron Petkau in the National Microbiology Laboratory.↩︎"
+  },
+  {
+    "objectID": "docs/deployment-and-maintenance/index.html",
+    "href": "docs/deployment-and-maintenance/index.html",
+    "title": "Deployment and maintenance",
+    "section": "",
+    "text": "Once a project has matured or a package has been developed, you may want to deploy it for wider use. In this case, you will need to maintain the work, and you may also want to continue to develop it.\nThere are several practices that make project/package deployment, maintenance, and continuing development robust:\n\nInclude a license\nVersion your code\nAutomate your tests with continuous integration\n\nIf you are working with others in deploying/maintaining code, you may also want to:\n\nPerform code reviews",
     "crumbs": [
-      "Extras",
-      "Administering GitLab Groups and GitHub Organizations"
+      "Deployment and maintenance"
     ]
   },
   {

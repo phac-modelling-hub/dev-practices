@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/docs/projects/consistency.html</loc>
-    <lastmod>2026-04-11T22:21:44.322Z</lastmod>
+    <lastmod>2026-04-11T22:30:41.736Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/docs/projects/readmes.html</loc>
@@ -53,11 +53,7 @@
     <lastmod>2026-04-11T22:21:44.323Z</lastmod>
   </url>
   <url>
-    <loc>https://phac-modelling-hub.github.io/dev-practices/docs/index.html</loc>
-    <lastmod>2026-04-11T22:21:44.322Z</lastmod>
-  </url>
-  <url>
-    <loc>https://phac-modelling-hub.github.io/dev-practices/docs/deployment-and-maintenance/index.html</loc>
+    <loc>https://phac-modelling-hub.github.io/dev-practices/docs/extras/admin-git-groups.html</loc>
     <lastmod>2026-04-11T22:21:44.321Z</lastmod>
   </url>
   <url>
@@ -65,7 +61,11 @@
     <lastmod>2026-04-11T22:21:44.320Z</lastmod>
   </url>
   <url>
-    <loc>https://phac-modelling-hub.github.io/dev-practices/docs/extras/admin-git-groups.html</loc>
+    <loc>https://phac-modelling-hub.github.io/dev-practices/index.html</loc>
+    <lastmod>2026-04-11T22:21:44.322Z</lastmod>
+  </url>
+  <url>
+    <loc>https://phac-modelling-hub.github.io/dev-practices/docs/deployment-and-maintenance/index.html</loc>
     <lastmod>2026-04-11T22:21:44.321Z</lastmod>
   </url>
   <url>
