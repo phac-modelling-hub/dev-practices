@@ -1,6 +1,6 @@
 ---
-name: New idea
-about: I have a new idea for guide content
+name: Suggestion
+about: I have a new idea for guide content or a suggestion for existing content
 title: ''
 labels: new idea
 assignees: ''
