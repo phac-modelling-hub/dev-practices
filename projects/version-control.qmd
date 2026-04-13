@@ -55,7 +55,7 @@ Once the cloud repository is created, the project lead and all collaborators sho
 
 Git is fundamentally a command line program and some users simply interface with it via the command line. When you install Git, you will see a new app called Git Bash, which gives you a command line interface to Git. However, it is generally easier to interact with Git primarly via a client with a graphical user interface (GUI). These can either be standalone programs or bundled within an integrated development environment (like RStudio or VSCode).
 
-The Git website includes a list of [Git GUI Clients](https://Git-scm.com/downloads/guis). We recommend using [GitHub Desktop](https://desktop.Github.com/) as a starting point. It is one of the few cross-platform open source Git GUI clients. Despite its name, GitHub Desktop works with all Git servers, including GitLab. GitHub Desktop is available on corporate machines through the Company Portal. If you have a GitHub account that you use for work, you should sign into it in the GitHub Desktop app.
+The Git website includes a list of [Git GUI Clients](https://Git-scm.com/downloads/guis). We recommend using [GitHub Desktop](https://desktop.Github.com/) as a starting point. It is one of the few cross-platform open source Git GUI clients. Despite its name, GitHub Desktop works with all Git servers, including GitLab.
 
 This guide will demo instructions for basic Git use via GitHub Desktop. If you prefer to learn how to use Git via the command line, you should consult [this command line guide on the official Git site](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line).
 

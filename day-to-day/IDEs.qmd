@@ -22,7 +22,3 @@ If you know you'll be working with a specific language for the bulk of your work
 | Language-agnostic | [Positron](https://posit.co/products/ide/positron/)                                      | -   [Get started with Positron](https://positron.posit.co/welcome.html)                              |
 |                   | [Visual Studio Code](https://code.visualstudio.com/)                                     | -   [Get started with VSCode](https://code.visualstudio.com/docs/introvideos/basics)                 |
 +-------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
-
-**RStudio** and **VSCode** are pre-approved for installation by corporate IT and can be installed readily via Company Portal.
-
-**PyCharm Community Edition** is free, though it is not pre-approved and so you can either [request approval through Service Gateway](https://servicegateway-passerelledeservice.hc-sc.gc.ca/en/s-not-pre-appr.html) or install it yourself on a Science Network laptop. **PyCharm Professional** is available by request in Service Gateway (listed as "PhyCharm"), though it must be paid for through an SAP request.
