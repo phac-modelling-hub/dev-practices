@@ -2,122 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/index.html</loc>
-    <lastmod>2026-04-13T18:48:38.898Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/extras/admin-git-groups.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/extras/models-in-production.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/extras/githubflow-demo-cli.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/deployment-and-maintenance/index.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/deployment-and-maintenance/licenses.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/deployment-and-maintenance/continuous-integration.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/day-to-day/index.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/day-to-day/functions.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/package-development/developer-docs.html</loc>
-    <lastmod>2026-04-13T18:48:38.898Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/package-development/get-started.html</loc>
-    <lastmod>2026-04-13T18:48:38.898Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/package-development/unit-testing.html</loc>
-    <lastmod>2026-04-13T18:48:38.898Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/projects/index.html</loc>
-    <lastmod>2026-04-13T18:48:38.899Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.192Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/projects/version-control.html</loc>
-    <lastmod>2026-04-13T18:48:38.899Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.192Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/projects/readmes.html</loc>
-    <lastmod>2026-04-13T18:48:38.899Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.192Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/projects/pipelines.html</loc>
-    <lastmod>2026-04-13T18:48:38.899Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.192Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/projects/virtual-environments.html</loc>
-    <lastmod>2026-04-13T18:48:38.899Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.192Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/projects/consistency.html</loc>
-    <lastmod>2026-04-13T18:48:38.898Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.192Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/package-development/readmes.html</loc>
-    <lastmod>2026-04-13T18:48:38.898Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/package-development/function-docs.html</loc>
-    <lastmod>2026-04-13T18:48:38.898Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/package-development/index.html</loc>
-    <lastmod>2026-04-13T18:48:38.898Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/day-to-day/readmes.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/day-to-day/IDEs.html</loc>
-    <lastmod>2026-04-13T18:48:38.895Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/day-to-day/commenting.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/deployment-and-maintenance/code-review.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/deployment-and-maintenance/versioning.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.190Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/extras/install-git.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/extras/writing-commit-messages.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/extras/index.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
   <url>
     <loc>https://phac-modelling-hub.github.io/dev-practices/extras/pipenv.html</loc>
-    <lastmod>2026-04-13T18:48:38.897Z</lastmod>
+    <lastmod>2026-04-13T18:44:24.191Z</lastmod>
   </url>
 </urlset>
