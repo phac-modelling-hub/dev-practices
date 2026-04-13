@@ -1,6 +1,5 @@
 ---
 title: Best practices for scientific software development
-toc: false
 ---
 
 If you're reading this guide, it's probably because you write scientific code and are curious about how you can get better at it. But what does it mean to be "good at coding"? What might comes to mind is writing concise code, or code that runs quickly, or code that is clear. We believe that this is just one piece of the puzzle.
