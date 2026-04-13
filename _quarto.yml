@@ -62,8 +62,11 @@ website:
       - text: "View on GitHub"
         icon: github
         href: https://github.com/phac-modelling-hub/dev-practices
-      - text: "Make a suggestion or report an issue"
+      - text: "Make a suggestion"
         icon: lightbulb-fill
+        href: https://github.com/phac-modelling-hub/dev-practices/issues/new/choose
+      - text: "Report an issue"
+        icon: bug-fill
         href: https://github.com/phac-modelling-hub/dev-practices/issues/new/choose
 
 format:
