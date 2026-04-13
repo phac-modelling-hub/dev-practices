@@ -8,12 +8,9 @@ If you find issues in the guide, such as typos, formatting/appearance issues, or
 
 # For contributors
 
-The guide is a [Quarto Website](https://quarto.org/docs/websites/):
-
-- The files generating the website are `index.qmd` and `.qmd`s in subdirectories corresponding to the guide's sections.
-- The website settings are in `_quarto.yml`. Edit this file to change the appearance of the guide of the navigation elements.
-- Preview the website using [these instructions](https://quarto.org/docs/websites/#website-preview).
+The guide is a [Quarto Website](https://quarto.org/docs/websites/). The files generating the website are `index.qmd` (home page) and `.qmd`s in subdirectories corresponding to the guide's sections. The website settings are in `_quarto.yml`. Edit this file to change the appearance of the guide of the navigation elements. Preview the website locally using [these instructions](https://quarto.org/docs/websites/#website-preview).
 
 ## Publishing the site
 
-Use `quarto publish gh-pages` locally (on `main`) to publish the latest version of the site.
+The site is built and published automatically via GitHub Actions upon changes to the `main` branch. The workflow is defined in `.github/workflows
+/publish-site.yml`.
