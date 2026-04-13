@@ -563,17 +563,6 @@
     ]
   },
   {
-    "objectID": "day-to-day/readmes.html#title-readme-files",
-    "href": "day-to-day/readmes.html#title-readme-files",
-    "title": "README files",
-    "section": "",
-    "text": "README files give useful information about files in a folder. READMEs are text files (usually .txt or .md) so that they can be read without any special software. By convention, they are named with uppercase “README” to draw attention to themselves when a folder is opened. If present, READMEs should be the first thing you consult when (re-)opening a project!\nWhen populating a README, think about what someone new to your folder would need to know to use it or build upon it. For instance, when you realize there’s something finicky or manual about using your files that you don’t have time to fix, at least document it in a README!",
-    "crumbs": [
-      "Day-to-day coding",
-      "README files"
-    ]
-  },
-  {
     "objectID": "day-to-day/readmes.html#what-to-include",
     "href": "day-to-day/readmes.html#what-to-include",
     "title": "README files",
