@@ -178,7 +178,11 @@
     "href": "package-development/developer-docs.html",
     "title": "Developer documentation",
     "section": "",
-    "text": "TO DO"
+    "text": "This page is still being drafted.\nDeveloper documentation is specifically meant to orient fellow contributors to a project. Fellow developers of a project need different information to those simply using the software.",
+    "crumbs": [
+      "Package development",
+      "Developer documentation"
+    ]
   },
   {
     "objectID": "package-development/get-started.html",
