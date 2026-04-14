@@ -40,7 +40,7 @@ website:
           - package-development/get-started.qmd
           - package-development/function-docs.qmd
           - package-development/unit-testing.qmd
-          - deployment-and-maintenance/developer-docs.qmd
+          - package-development/developer-docs.qmd
       - section: "Deployment and maintenance"
         icon: 4-circle-fill
         href: deployment-and-maintenance/index.qmd
