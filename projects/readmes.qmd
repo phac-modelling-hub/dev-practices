@@ -16,7 +16,7 @@ A good top-level project README can include:
     -   Where to learn more about the project (e.g., links to additional documentation)
 -   **One-time setup**:
     -   Any one-time setup required to use and/or develop the code base (_e.g._, supporting software installations, cloning of sibling repositories)
--   **Using the the code**
+-   **Using the code**
     -   Any setup required at the start of each user session (_e.g._ activating [virtual environments](virtual-environments.qmd))
     -   An overview of how the code is organized (_e.g._ main scripts and what they do, the order in which scripts should be executed)
     -   Any manual updates and settings that can/must be done to the code before running it (_e.g._ variables, data download)
