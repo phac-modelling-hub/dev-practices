@@ -16,7 +16,7 @@ A good top-level project README can include:
     -   Where to learn more about the project (e.g., links to additional documentation)
 -   **One-time setup**:
     -   Any one-time setup required to use and/or develop the code base (_e.g._, supporting software installations, cloning of sibling repositories)
--   **Using the the code**
+-   **Using the code**
     -   Any setup required at the start of each user session (_e.g._ activating [virtual environments](virtual-environments.qmd))
     -   An overview of how the code is organized (_e.g._ main scripts and what they do, the order in which scripts should be executed)
     -   Any manual updates and settings that can/must be done to the code before running it (_e.g._ variables, data download)
@@ -33,7 +33,7 @@ The above are simply suggestions and may or may not apply for each of your proje
 
 ## README format
 
-For projects that are hosted on GitLab or GitHub, you may wish to use `README.md` as opposed to `README.tex` as these Git servers automatically render Markdown README files to display nicely for reading on the web.
+For projects that are hosted on GitLab or GitHub, you may wish to use `README.md` as opposed to `README.txt` as these Git servers automatically render Markdown README files to display nicely for reading on the web.
 
 For R projects, you can also use a `README.Rmd` file in [R Markdown](https://rmarkdown.rstudio.com/) format to generate a `README.md` that includes the results of executable R code in `README.Rmd`, like code demonstrations and plots. The idea is to edit `README.Rmd` and then knit it to produce `README.md`, which will display nicely on the landing page for your project repository on a Git server. You can use the [`usethis::use_readme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html) to easily create this source file with the correct setup.[^1]
 
