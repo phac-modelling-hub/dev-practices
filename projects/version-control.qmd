@@ -47,7 +47,7 @@ When starting a new project, you will likely want to **create a new repository**
 
 Instructions for creating a new repo can be found [here for GitLab](https://docs.gitlab.com/ee/user/project/) and [here for GitHub](https://docs.Github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository). We recommend that you initialize your new repository with a [README](readmes.qmd) and and a [license file](../deployment-and-maintenance/licenses.qmd) and be mindful of the visibility level for your repository.
 
-To invite collaborators, follow [these instructions for GitLab](https://docs.gitlab.com/ee/user/project/members/) and [these instructions for GitHub](https://docs.Github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-Github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository).
+To invite collaborators, follow [these instructions for GitLab](https://docs.gitlab.com/ee/user/project/members/) and [these instructions for GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository).
 
 Once the cloud repository is created, the project lead and all collaborators should create a local, synchronized copy (or "clone") of the project on their computers in order to be able to work on the project files. To clone the project, you need to first decide how you will interact with Git on your computer, which we discuss in the next section. (We discuss how to actually clone a repository in a subsequent section.)
 
@@ -175,7 +175,7 @@ If changes are present, GitHub Desktop shows us how many new commits are availab
 
 Branches are a way of working on your files in a way that is isolated from other versions of your code. The default branch is `main` and should be thought of as the "live" version of your code; you should avoid making changes directly to your code on `main` unless you are confident that your changes won't break anything. Instead, experimentation and development should be done on another branch, especially when you are collaborating with others to avoid clashing with their changes in an uncontrolled way. Branches can be merged into one another at any point in time to reconcile changes.
 
-This paradigm comes from the world of software development and it may very well be overkill for a solo research project. However, it can be very useful when collaborating with others, and we recommend a common Git workflow that uses branches [below](#Github-flow).
+This paradigm comes from the world of software development and it may very well be overkill for a solo research project. However, it can be very useful when collaborating with others, and we recommend a common Git workflow that uses branches [below](#github-flow).
 
 We can visualise branching to understand it better. Imagine your file history as a timeline with a series of commits denoting snapshots of your code:
 
@@ -229,7 +229,7 @@ As suggested above, before creating a pull request (or "merge request" in GitLab
 
 Once you've synchronized your new branch with the base branch of your pull request, you can open a pull request.
 
-For repositories connected to GitHub, you should use [these instructions for creating a pull request from GitHub Desktop](https://docs.Github.com/en/desktop/working-with-your-remote-repository-on-Github-or-Github-enterprise/creating-an-issue-or-pull-request-from-Github-desktop#creating-a-pull-request). For repositories connected to GitLab, you should use [these instructions for creating a merge request from the merge request list on the GitLab website](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#from-the-merge-request-list).
+For repositories connected to GitHub, you should use [these instructions for creating a pull request from GitHub Desktop](https://docs.github.com/en/desktop/working-with-your-remote-repository-on-github-or-github-enterprise/creating-an-issue-or-pull-request-from-github-desktop#creating-a-pull-request). For repositories connected to GitLab, you should use [these instructions for creating a merge request from the merge request list on the GitLab website](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html#from-the-merge-request-list).
 
 Once the request is created, it can be reviewed and merged online:
 
@@ -245,7 +245,7 @@ Be sure to synchronize local repositories after merges. You may also want to del
 
 ### GitHub flow {#github-flow}
 
-Git, GitLab, and GitHub are very flexible pieces of software and it's possible to use them in many different ways. We recommend the use of [GitHub flow](https://docs.Github.com/en/get-started/quickstart/Github-flow)[^3], which is a straightforward and simple workflow. Here is an overview:
+Git, GitLab, and GitHub are very flexible pieces of software and it's possible to use them in many different ways. We recommend the use of [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow)[^3], which is a straightforward and simple workflow. Here is an overview:
 
 [^3]: GitHub flow is very similar in spirit to trunk-based development. You can learn more about this approach and the motivation behind it [here](https://trunkbaseddevelopment.com/).
 
