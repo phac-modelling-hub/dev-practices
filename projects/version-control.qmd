@@ -316,3 +316,12 @@ Create the `.gitignore` file in the directory, then add the following lines **to
 -   maintaining repo history
 
 Discuss considerations in each case.
+
+## Other resources 
+
+The following resouces may also be helpful for scientists and researchers looking to adopt git into their software development practice:
+
+1. [Version Control - The Turing Way](https://book.the-turing-way.org/reproducible-research/vcs/): a higher-level overview strongly motivated by doing reproducible research
+2. [Version control with git - Software Carpentry](https://swcarpentry.github.io/git-novice): more hands-on tutorial that is also more technical
+
+It may be useful to start with the first resource to develop a useful mental model of git, and then to follow up with the second to work through some concrete examples. 
